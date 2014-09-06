@@ -8,6 +8,7 @@ subprojects {
     dependencies {
         testCompile 'junit:junit:4.11'
         testCompile 'org.assertj:assertj-core:1.6.1'
+        testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.11.1'
     }
 }
 
