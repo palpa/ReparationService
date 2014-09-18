@@ -6,40 +6,41 @@ import org.junit.Before;
 import org.junit.Test;
 
 import reparationservice.entities.Worker;
+import reparationservice.gateways.WorkerGateway;
 
-public class ReparationServiceTests {
+public class WorkerGatewayTest {
 	private static final String WORKER_USER_NAME_1 = "UserName1";
 	private static final String WORKER_USER_NAME_2 = "UserName2";
-	private ReparationService reparationService;
+	private WorkerGateway workerGateway;
 
 	@Before
 	public void setUp() {
-		reparationService = new ReparationService();
+		workerGateway = new ReparationService();
 	}
 
 	@Test
 	public void addWorkerToReparationService() {
-		reparationService.add(newWorker1());
-		reparationService.add(newWorker2());
+		workerGateway.addWorker(newWorker1());
+		workerGateway.addWorker(newWorker2());
 
-		Worker worker1 = reparationService
+		Worker worker1 = workerGateway
 				.getWorkerByUserName(WORKER_USER_NAME_1);
 		assertThat(worker1.getUserName()).isEqualTo(WORKER_USER_NAME_1);
 
-		Worker worker2 = reparationService
+		Worker worker2 = workerGateway
 				.getWorkerByUserName(WORKER_USER_NAME_2);
 		assertThat(worker2.getUserName()).isEqualTo(WORKER_USER_NAME_2);
 	}
 
-	@Test(expected = ReparationService.WorkerAlreadyExists.class)
+	@Test(expected = WorkerGateway.WorkerAlreadyExists.class)
 	public void throwWorkerAlreadyExistsWhenTwoWorkersWithSameUserNameAdded() {
-		reparationService.add(newWorker1());
-		reparationService.add(newWorker1());
+		workerGateway.addWorker(newWorker1());
+		workerGateway.addWorker(newWorker1());
 	}
 
 	@Test
 	public void returnNullWhenWorkerNotFound() {
-		assertThat(reparationService.getWorkerByUserName(WORKER_USER_NAME_2))
+		assertThat(workerGateway.getWorkerByUserName(WORKER_USER_NAME_2))
 				.isNull();
 	}
 
