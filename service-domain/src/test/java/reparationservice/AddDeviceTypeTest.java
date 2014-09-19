@@ -8,7 +8,7 @@ import org.junit.Test;
 import reparationservice.entities.DeviceType;
 import reparationservice.gateways.DeviceTypeGateway;
 
-public class DeviceTypeGatewayTest {
+public class AddDeviceTypeTest {
 	private static final String DEVICE_TYPE_DESCRIPTION_1 = "Description";
 	private static final String DEVICE_TYPE_DESCRIPTION_2 = "Description2";
 	private DeviceTypeGateway gateway;

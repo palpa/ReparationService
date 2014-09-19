@@ -8,7 +8,7 @@ import org.junit.Test;
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
 
-public class WorkerGatewayTest {
+public class AddWorkerTest {
 	private static final String WORKER_USER_NAME_1 = "UserName1";
 	private static final String WORKER_USER_NAME_2 = "UserName2";
 	private WorkerGateway workerGateway;
