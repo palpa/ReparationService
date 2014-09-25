@@ -14,7 +14,13 @@ public class AddWorkerInteractor {
 	}
 
 	public void execute() {
+		if (workerGateway.getWorkerByUserName(workerUserName) != null)
+			throw new WorkerAlreadyExists();
+			
 		workerGateway.addWorker(Worker.newInstance(workerUserName));	
 	}
-
+	
+	public class WorkerAlreadyExists extends RuntimeException {
+		private static final long serialVersionUID = 3471396866818354971L;
+	}
 }

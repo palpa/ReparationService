@@ -1,14 +1,15 @@
-package reparationservice;
+package reparationservice.gateways;
 
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import reparationservice.ReparationService;
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
 
-public class AddWorkerTest {
+public class WorkerGatewayTest {
 	private static final String WORKER_USER_NAME_1 = "UserName1";
 	private static final String WORKER_USER_NAME_2 = "UserName2";
 	private WorkerGateway workerGateway;
@@ -30,12 +31,6 @@ public class AddWorkerTest {
 		Worker worker2 = workerGateway
 				.getWorkerByUserName(WORKER_USER_NAME_2);
 		assertThat(worker2.getUserName()).isEqualTo(WORKER_USER_NAME_2);
-	}
-
-	@Test(expected = WorkerGateway.WorkerAlreadyExists.class)
-	public void throwWorkerAlreadyExistsWhenTwoWorkersWithSameUserNameAdded() {
-		workerGateway.addWorker(newWorker1());
-		workerGateway.addWorker(newWorker1());
 	}
 
 	@Test

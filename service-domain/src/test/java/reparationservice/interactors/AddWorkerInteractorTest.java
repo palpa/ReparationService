@@ -28,5 +28,11 @@ public class AddWorkerInteractorTest {
 		Worker worker = workerGateway.getWorkerByUserName(WORKER_USERNAME);
 		assertThat(worker.getUserName()).isEqualTo(WORKER_USERNAME);
 	}
+	
+	@Test(expected = AddWorkerInteractor.WorkerAlreadyExists.class)
+	public void throwWorkerAlreadyExistsWhenTwoWorkersWithSameUserNameAdded() {
+		interactor.execute();
+		interactor.execute();
+	}
 
 }

@@ -14,8 +14,6 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway {
 
 	@Override
 	public void addWorker(Worker worker) {
-		if (workers.contains(worker))
-			throw new WorkerAlreadyExists();
 		workers.add(worker);
 	}
 
