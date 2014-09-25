@@ -1,14 +1,15 @@
-package reparationservice;
+package reparationservice.gateways;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import reparationservice.ReparationService;
 import reparationservice.entities.DeviceType;
 import reparationservice.gateways.DeviceTypeGateway;
 
-public class AddDeviceTypeTest {
+public class DeviceTypeGatewayTest {
 	private static final String DEVICE_TYPE_DESCRIPTION_1 = "Description";
 	private static final String DEVICE_TYPE_DESCRIPTION_2 = "Description2";
 	private DeviceTypeGateway gateway;
@@ -29,12 +30,6 @@ public class AddDeviceTypeTest {
 	@Test
 	public void returnNullWhenDeviceTypeNotExists() {
 		assertThat(gateway.getDeviceType(DEVICE_TYPE_DESCRIPTION_1)).isNull();
-	}
-	
-	@Test(expected = DeviceTypeGateway.DeviceTypeAlreadyExists.class)
-	public void throwDeviceTypeAlreadyExistsWhenTwoDeviceTypesWithSameDescriptionAdded() {
-		gateway.addDeviceType(newDeviceType1());
-		gateway.addDeviceType(newDeviceType1());
 	}
 
 	@Test
