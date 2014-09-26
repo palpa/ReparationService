@@ -1,7 +1,7 @@
 package reparationservice;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import reparationservice.entities.DeviceType;
 import reparationservice.entities.Worker;
@@ -9,34 +9,30 @@ import reparationservice.gateways.DeviceTypeGateway;
 import reparationservice.gateways.WorkerGateway;
 
 public class ReparationService implements WorkerGateway, DeviceTypeGateway {
-	private List<Worker> workers = new ArrayList<Worker>();
-	private List<DeviceType> deviceTypes = new ArrayList<DeviceType>();
+	private Map<String, Worker> workers = new HashMap<String, Worker>();
+	private Map<String, DeviceType> deviceTypes = new HashMap<String, DeviceType>();
 
 	@Override
 	public void addWorker(Worker worker) {
-		workers.add(worker);
+		workers.put(worker.getUserName(), worker);
 	}
 
 	@Override
 	public Worker getWorkerByUserName(String workerUserName) {
-		for (Worker worker : workers) {
-			if (worker.getUserName().equals(workerUserName))
-				return worker;
-		}
+		if (workers.containsKey(workerUserName))
+			return workers.get(workerUserName);
 		return Worker.NULL;
 	}
 
 	@Override
-	public DeviceType getDeviceTypeBy(String deviceTypeDescription) {
-		for (DeviceType deviceType : deviceTypes) {
-			if (deviceType.getDescription().equals(deviceTypeDescription))
-				return deviceType;
-		}
-		return DeviceType.NULL;
-	}
-
-	@Override
 	public void addDeviceType(DeviceType deviceType) {
-		this.deviceTypes.add(deviceType);
+		this.deviceTypes.put(deviceType.getDescription(), deviceType);
+	}
+	
+	@Override
+	public DeviceType getDeviceTypeBy(String deviceTypeDescription) {
+		if (deviceTypes.containsKey(deviceTypeDescription))
+			return deviceTypes.get(deviceTypeDescription);
+		return DeviceType.NULL;
 	}
 }
