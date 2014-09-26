@@ -27,12 +27,12 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway {
 	}
 
 	@Override
-	public DeviceType getDeviceType(String deviceTypeDescription) {
+	public DeviceType getDeviceTypeBy(String deviceTypeDescription) {
 		for (DeviceType deviceType : deviceTypes) {
 			if (deviceType.getDescription().equals(deviceTypeDescription))
 				return deviceType;
 		}
-		return null;
+		return DeviceType.NULL;
 	}
 
 	@Override

@@ -10,38 +10,35 @@ import reparationservice.entities.DeviceType;
 import reparationservice.gateways.DeviceTypeGateway;
 
 public class DeviceTypeGatewayTest {
-	private static final String DEVICE_TYPE_DESCRIPTION_1 = "Description";
+	private static final String DEVICE_TYPE_DESCRIPTION_1 = "Description1";
 	private static final String DEVICE_TYPE_DESCRIPTION_2 = "Description2";
-	private DeviceTypeGateway gateway;
-
-	private DeviceType newDeviceType1() {
-		return DeviceType.newInstance(DEVICE_TYPE_DESCRIPTION_1);
-	}
-	
-	private DeviceType newDeviceType2() {
-		return DeviceType.newInstance(DEVICE_TYPE_DESCRIPTION_2);
-	}
+	private DeviceTypeGateway deviceTypes;
 
 	@Before
 	public void givenDeviceTypeGateway() {
-		gateway = new ReparationService();
+		deviceTypes = new ReparationService();
 	}
 
 	@Test
-	public void returnNullWhenDeviceTypeNotExists() {
-		assertThat(gateway.getDeviceType(DEVICE_TYPE_DESCRIPTION_1)).isNull();
+	public void returnSpecialCaseWhenDeviceTypeNotExists() {
+		assertThat(deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_1)).
+				isEqualTo(DeviceType.NULL);
 	}
 
 	@Test
-	public void addDeviceTypes() {
-		gateway.addDeviceType(newDeviceType1());
-		gateway.addDeviceType(newDeviceType2());
+	public void testAddDeviceTypes() {
+		deviceTypes.addDeviceType(newDeviceTypeWith(DEVICE_TYPE_DESCRIPTION_1));
+		deviceTypes.addDeviceType(newDeviceTypeWith(DEVICE_TYPE_DESCRIPTION_2));
 
 		assertThat(
-				gateway.getDeviceType(DEVICE_TYPE_DESCRIPTION_1)
-						.getDescription()).isEqualTo(DEVICE_TYPE_DESCRIPTION_1);
+				deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_1).getDescription())
+				.isEqualTo(DEVICE_TYPE_DESCRIPTION_1);
 		assertThat(
-				gateway.getDeviceType(DEVICE_TYPE_DESCRIPTION_2)
-						.getDescription()).isEqualTo(DEVICE_TYPE_DESCRIPTION_2);
+				deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_2).getDescription())
+				.isEqualTo(DEVICE_TYPE_DESCRIPTION_2);
+	}
+
+	private DeviceType newDeviceTypeWith(String description) {
+		return DeviceType.newInstance(description);
 	}
 }

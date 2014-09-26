@@ -1,13 +1,14 @@
 package reparationservice.entities;
 
 public class DeviceType {
-	private String description;
+	public static final DeviceType NULL = new NullDeviceType();
+	private final String description;
 	
 	public static DeviceType newInstance(String deviceTypeDescription) {
 		return new DeviceType(deviceTypeDescription);
 	}
 
-	private DeviceType(String description) {
+	protected DeviceType(String description) {
 		this.description =  description;
 	}
 
@@ -39,5 +40,11 @@ public class DeviceType {
 		} else if (!description.equals(other.description))
 			return false;
 		return true;
+	}
+	
+	private static class NullDeviceType extends DeviceType {
+		protected NullDeviceType() {
+			super("");
+		}
 	}
 }

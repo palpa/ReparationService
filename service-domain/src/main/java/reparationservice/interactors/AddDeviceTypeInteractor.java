@@ -7,18 +7,20 @@ public class AddDeviceTypeInteractor implements Interactor {
 	private String deviceTypeDescription;
 	private DeviceTypeGateway deviceTypes;
 
-	public AddDeviceTypeInteractor(String deviceTypeDescription, DeviceTypeGateway deviceTypes) {
+	public AddDeviceTypeInteractor(String deviceTypeDescription,
+			DeviceTypeGateway deviceTypes) {
 		this.deviceTypeDescription = deviceTypeDescription;
 		this.deviceTypes = deviceTypes;
 	}
 
 	@Override
 	public void execute() {
-		if (deviceTypes.getDeviceType(deviceTypeDescription) != null)
+		if (deviceTypes.getDeviceTypeBy(deviceTypeDescription) != DeviceType.NULL)
 			throw new DeviceTypeAlreadyExists();
+
 		deviceTypes.addDeviceType(DeviceType.newInstance(deviceTypeDescription));
 	}
-	
+
 	public class DeviceTypeAlreadyExists extends RuntimeException {
 		private static final long serialVersionUID = 1944478993212099527L;
 	}

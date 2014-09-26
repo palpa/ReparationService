@@ -24,7 +24,7 @@ public class AddDeviceTypeInteractorTest {
 	@Test
 	public void executeAddOperation() {
 		addDeviceType.execute();
-		DeviceType deviceType = deviceTypes.getDeviceType(DEVICE_TYPE_DESCRIPTION);
+		DeviceType deviceType = deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION);
 		assertThat(deviceType.getDescription()).isEqualTo(DEVICE_TYPE_DESCRIPTION);
 	}
 
