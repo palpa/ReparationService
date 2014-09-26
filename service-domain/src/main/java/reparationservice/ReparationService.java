@@ -23,7 +23,7 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway {
 			if (worker.getUserName().equals(workerUserName))
 				return worker;
 		}
-		return null;
+		return Worker.NULL;
 	}
 
 	@Override

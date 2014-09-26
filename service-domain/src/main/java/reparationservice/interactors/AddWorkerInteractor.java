@@ -14,7 +14,7 @@ public class AddWorkerInteractor implements Interactor {
 
 	@Override
 	public void execute() {
-		if (workers.getWorkerByUserName(workerUserName) != null)
+		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
 			throw new WorkerAlreadyExists();
 			
 		workers.addWorker(Worker.newInstance(workerUserName));	

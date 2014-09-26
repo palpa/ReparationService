@@ -1,13 +1,14 @@
 package reparationservice.entities;
 
 public class Worker {
+	public static final NullWorker NULL = new NullWorker();;
 	private String userName;
 	
 	public static Worker newInstance(String workerUserName) {
 		return new Worker(workerUserName);	
 	}
 
-	private Worker(String userName) {
+	protected Worker(String userName) {
 		this.userName = userName;
 	}
 	
@@ -38,5 +39,11 @@ public class Worker {
 		} else if (!userName.equals(other.userName))
 			return false;
 		return true;
+	}
+	
+	private static class NullWorker extends Worker {
+		protected NullWorker() {
+			super("");
+		}
 	}
 }
