@@ -3,12 +3,14 @@ package reparationservice;
 import java.util.HashMap;
 import java.util.Map;
 
+import reparationservice.entities.Customer;
 import reparationservice.entities.DeviceType;
 import reparationservice.entities.Worker;
+import reparationservice.gateways.CustomerGateway;
 import reparationservice.gateways.DeviceTypeGateway;
 import reparationservice.gateways.WorkerGateway;
 
-public class ReparationService implements WorkerGateway, DeviceTypeGateway {
+public class ReparationService implements WorkerGateway, DeviceTypeGateway, CustomerGateway {
 	private Map<String, Worker> workers = new HashMap<String, Worker>();
 	private Map<String, DeviceType> deviceTypes = new HashMap<String, DeviceType>();
 
@@ -34,5 +36,11 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway {
 		if (deviceTypes.containsKey(deviceTypeDescription))
 			return deviceTypes.get(deviceTypeDescription);
 		return DeviceType.NULL;
+	}
+
+	@Override
+	public Customer getCustomerById(long customerId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
