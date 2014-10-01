@@ -1,7 +1,6 @@
 package reparationservice.interactors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -43,6 +42,14 @@ public class AddReparationInteractorTest {
 	
 	@Test(expected = AddReparationInteractor.CustomerNotFound.class)
 	public void throwCustomerNotFoundWhenProvidedCustomerIdDontMatchWithAnyCustomer() {
+		addReparation.execute();
+	}
+	
+	@Ignore
+	@Test
+	public void CustomerIsFoundWhenExecuteAddOperation() {
+		Interactor addCustomer = new AddCustomerInteractor(customerId, customers);
+		addCustomer.execute();
 		addReparation.execute();
 	}
 

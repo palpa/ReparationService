@@ -13,6 +13,7 @@ import reparationservice.gateways.WorkerGateway;
 public class ReparationService implements WorkerGateway, DeviceTypeGateway, CustomerGateway {
 	private Map<String, Worker> workers = new HashMap<String, Worker>();
 	private Map<String, DeviceType> deviceTypes = new HashMap<String, DeviceType>();
+	private Map<Long, Customer> customers = new HashMap<Long, Customer>();
 
 	@Override
 	public void addWorker(Worker worker) {
@@ -40,7 +41,11 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway, Cust
 
 	@Override
 	public Customer getCustomerById(long customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		return customers.get(customerId);
+	}
+
+	@Override
+	public void addCustomer(Customer customer) {
+		customers.put(customer.getId(), customer);
 	}
 }
