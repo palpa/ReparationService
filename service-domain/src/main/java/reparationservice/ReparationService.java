@@ -10,7 +10,8 @@ import reparationservice.gateways.CustomerGateway;
 import reparationservice.gateways.DeviceTypeGateway;
 import reparationservice.gateways.WorkerGateway;
 
-public class ReparationService implements WorkerGateway, DeviceTypeGateway, CustomerGateway {
+public class ReparationService implements WorkerGateway, DeviceTypeGateway,
+		CustomerGateway {
 	private Map<String, Worker> workers = new HashMap<String, Worker>();
 	private Map<String, DeviceType> deviceTypes = new HashMap<String, DeviceType>();
 	private Map<Long, Customer> customers = new HashMap<Long, Customer>();
@@ -31,7 +32,7 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway, Cust
 	public void addDeviceType(DeviceType deviceType) {
 		this.deviceTypes.put(deviceType.getDescription(), deviceType);
 	}
-	
+
 	@Override
 	public DeviceType getDeviceTypeBy(String deviceTypeDescription) {
 		if (deviceTypes.containsKey(deviceTypeDescription))
@@ -41,7 +42,9 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway, Cust
 
 	@Override
 	public Customer getCustomerById(long customerId) {
-		return customers.get(customerId);
+		if (customers.containsKey(customerId))
+			return customers.get(customerId);
+		return Customer.NULL;
 	}
 
 	@Override

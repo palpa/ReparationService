@@ -2,6 +2,7 @@ package reparationservice.interactors;
 
 import org.joda.time.DateTime;
 
+import reparationservice.entities.Customer;
 import reparationservice.gateways.CustomerGateway;
 
 public class AddReparationInteractor implements Interactor {
@@ -17,7 +18,7 @@ public class AddReparationInteractor implements Interactor {
 
 	@Override
 	public void execute() {
-		if (customers.getCustomerById(customerId) == null)
+		if (customers.getCustomerById(customerId) == Customer.NULL)
 			throw new CustomerNotFound();
 	}
 

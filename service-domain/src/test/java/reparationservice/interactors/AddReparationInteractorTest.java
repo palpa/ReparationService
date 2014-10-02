@@ -13,7 +13,6 @@ import reparationservice.entities.Reparation;
 import reparationservice.gateways.CustomerGateway;
 
 public class AddReparationInteractorTest {
-
 	private Interactor addReparation;
 	private CustomerGateway customers;
 	private final DateTime creationDate = new DateTime();
@@ -51,5 +50,4 @@ public class AddReparationInteractorTest {
 		addCustomer.execute();
 		addReparation.execute();
 	}
-
 }
