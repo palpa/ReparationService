@@ -45,7 +45,6 @@ public class AddReparationInteractorTest {
 		addReparation.execute();
 	}
 	
-	@Ignore
 	@Test
 	public void CustomerIsFoundWhenExecuteAddOperation() {
 		Interactor addCustomer = new AddCustomerInteractor(customerId, customers);
