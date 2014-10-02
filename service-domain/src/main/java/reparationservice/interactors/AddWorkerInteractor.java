@@ -2,18 +2,20 @@ package reparationservice.interactors;
 
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
+import reparationservice.requests.AddWorkerRequest;
+import reparationservice.requests.Request;
 
 public class AddWorkerInteractor implements Interactor {
 	private WorkerGateway workers;
-	private String workerUserName;
 
-	public AddWorkerInteractor(String workerUserName, WorkerGateway workers) {
-		this.workerUserName = workerUserName;
+	public AddWorkerInteractor(WorkerGateway workers) {
 		this.workers = workers;
 	}
 
 	@Override
-	public void execute() {
+	public void execute(Request request) {
+		String workerUserName = ((AddWorkerRequest) request).getUserName();
+		
 		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
 			throw new WorkerAlreadyExists();
 			
