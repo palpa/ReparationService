@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+import reparationservice.doubles.DeviceTypeGatewaySpy;
 import reparationservice.entities.DeviceType;
-import reparationservice.gateways.DeviceTypeGatewaySpy;
 import reparationservice.requests.AddDeviceTypeRequest;
 import reparationservice.requests.Request;
 

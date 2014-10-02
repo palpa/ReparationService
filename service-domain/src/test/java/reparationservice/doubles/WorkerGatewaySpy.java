@@ -1,6 +1,7 @@
-package reparationservice.gateways;
+package reparationservice.doubles;
 
 import reparationservice.entities.Worker;
+import reparationservice.gateways.WorkerGateway;
 
 public class WorkerGatewaySpy implements WorkerGateway {
 	private Worker worker = Worker.NULL;

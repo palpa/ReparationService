@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+import reparationservice.doubles.WorkerGatewaySpy;
 import reparationservice.entities.Worker;
-import reparationservice.gateways.WorkerGatewaySpy;
 import reparationservice.requests.AddWorkerRequest;
 import reparationservice.requests.Request;
 

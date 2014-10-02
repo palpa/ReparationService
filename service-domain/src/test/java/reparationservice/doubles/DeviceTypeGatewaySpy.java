@@ -1,6 +1,7 @@
-package reparationservice.gateways;
+package reparationservice.doubles;
 
 import reparationservice.entities.DeviceType;
+import reparationservice.gateways.DeviceTypeGateway;
 
 public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
 	private DeviceType deviceType = DeviceType.NULL;
