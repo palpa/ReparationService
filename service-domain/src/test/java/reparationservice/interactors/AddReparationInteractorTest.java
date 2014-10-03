@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import reparationservice.ReparationService;
+import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.entities.Customer;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.requests.AddCustomerRequest;
@@ -17,22 +17,23 @@ import reparationservice.requests.Request;
 
 @RunWith(HierarchicalContextRunner.class)
 public class AddReparationInteractorTest {
+	private static final int CUSTOMER_ID = 1;
+	private static final String DEVICE_FAILURE = "failure";
+	private static final DateTime CREATION_DATE = new DateTime();
+	private static final int DEVICE_SERIAL_NUMBER = 5;
+	private static final String REPARATION_OBSERVATIONS = "observations";
+	private static final String REPARATION_URGENCY = "urgency";
+	
 	private Interactor addReparation;
 	private CustomerGateway customers;
-	private final DateTime creationDate = new DateTime();
-	private final long customerId = 0;
-	private final long deviceSerialNumber = 0;
 	private Request request;
 
 	@Before
 	public void setUp() throws Exception {
-		customers = new ReparationService();
-		String failure = "";
-		String urgency = "";
-		String observations = "";
+		customers = new CustomerGatewaySpy();
 		addReparation = new AddReparationInteractor(customers);
-		request = new AddReparationRequest(creationDate, failure,
-				urgency, observations, customerId, deviceSerialNumber);
+		request = new AddReparationRequest(CREATION_DATE, DEVICE_FAILURE,
+				REPARATION_URGENCY, REPARATION_OBSERVATIONS, CUSTOMER_ID, DEVICE_SERIAL_NUMBER);
 	}
 
 	@Test(expected = AddReparationInteractor.CustomerNotFound.class)
@@ -44,7 +45,7 @@ public class AddReparationInteractorTest {
 		@Before
 		public void givenCustomer() {
 			Interactor addCustomer = new AddCustomerInteractor(customers);
-			Request addCustomerReq = new AddCustomerRequest(customerId);
+			Request addCustomerReq = new AddCustomerRequest(CUSTOMER_ID);
 			addCustomer.execute(addCustomerReq);
 		}
 
@@ -52,7 +53,7 @@ public class AddReparationInteractorTest {
 		public void testAddReparation() {
 			addReparation.execute(request);
 
-			Customer customer = customers.getCustomerById(customerId);
+			Customer customer = customers.getCustomerById(CUSTOMER_ID);
 			assertThat(customer).isNotNull();
 			assertThat(customer).isNotEqualTo(Customer.NULL);
 
