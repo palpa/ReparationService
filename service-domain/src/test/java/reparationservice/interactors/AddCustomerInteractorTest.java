@@ -2,27 +2,37 @@ package reparationservice.interactors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.ReparationService;
+import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.entities.Customer;
-import reparationservice.gateways.CustomerGateway;
 import reparationservice.requests.AddCustomerRequest;
-import reparationservice.requests.Request;
 
 public class AddCustomerInteractorTest {
 	private static final long CUSTOMER_ID = 1;
+	private CustomerGatewaySpy customersSpy;
+
+	@Before
+	public void setUp() {
+		customersSpy = new CustomerGatewaySpy();
+	}
 
 	@Test
-	public void creation() {
-		CustomerGateway customers = new ReparationService();
-		Interactor addCustomer = new AddCustomerInteractor(customers);
-		Request request = new AddCustomerRequest(CUSTOMER_ID);
-		
-		addCustomer.execute(request);
+	public void gatewayWasNotCalledWhenInteractorNotYetExecuted() {
+		assertThat(customersSpy.addCustomerWasCalled())
+				.isFalse();
+	}
 
-		Customer recoveredCustomer = customers.getCustomerById(CUSTOMER_ID);
-		assertThat(recoveredCustomer).isNotNull();
-		assertThat(recoveredCustomer.getId()).isEqualTo(CUSTOMER_ID);
+	@Test
+	public void executeOperation() {
+		Interactor addCustomer = new AddCustomerInteractor(customersSpy);
+		addCustomer.execute(new AddCustomerRequest(CUSTOMER_ID));
+
+		assertThat(((CustomerGatewaySpy) customersSpy).addCustomerWasCalled())
+				.isTrue();
+		Customer addedCustomer = customersSpy.getAddedCustomer();
+		assertThat(addedCustomer).isNotNull();
+		assertThat(addedCustomer.getId()).isEqualTo(CUSTOMER_ID);
 	}
 }
