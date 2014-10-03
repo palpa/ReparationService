@@ -4,13 +4,11 @@ import reparationservice.entities.Customer;
 import reparationservice.gateways.CustomerGateway;
 
 public class CustomerGatewaySpy implements CustomerGateway {
-
 	private Customer customer = Customer.NULL;
 
 	@Override
 	public Customer getCustomerById(long customerId) {
-		// TODO Auto-generated method stub
-		return null;
+		return customer;
 	}
 
 	@Override

@@ -24,10 +24,15 @@ public class AddWorkerInteractorTest {
 	}
 
 	@Test
+	public void gatewayWasNotCalledWhenInteractorNotYetExecuted() {
+		assertThat(workersSpy.addWorkerWasCalled()).isFalse();
+	}
+
+	@Test
 	public void executeAddOperation() {
 		addWorker.execute(request);
 		assertThat(workersSpy.addWorkerWasCalled()).isTrue();
-		Worker worker = workersSpy.getWorkerByUserName(WORKER_USERNAME);
+		Worker worker = workersSpy.getAddedWorker();
 		assertThat(worker.getUserName()).isEqualTo(WORKER_USERNAME);
 	}
 

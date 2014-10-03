@@ -12,27 +12,33 @@ import reparationservice.requests.Request;
 
 public class AddDeviceTypeInteractorTest {
 	private static final String DEVICE_TYPE_DESCRIPTION = "Description";
-	private DeviceTypeGatewaySpy deviceTypesSpy;
+	private DeviceTypeGatewaySpy devTypesSpy;
 	private Interactor addDeviceType;
 	private Request request;
 
 	@Before
 	public void givenAddDeviceTypeInteractor() {
-		deviceTypesSpy = new DeviceTypeGatewaySpy();
-		addDeviceType = new AddDeviceTypeInteractor(deviceTypesSpy);
+		devTypesSpy = new DeviceTypeGatewaySpy();
+		addDeviceType = new AddDeviceTypeInteractor(devTypesSpy);
 		request = new AddDeviceTypeRequest(DEVICE_TYPE_DESCRIPTION);
 	}
-	
+
+	@Test
+	public void gatewayWasNotCalledWhenInteractorNotYetExecuted() {
+		assertThat(devTypesSpy.addDeviceTypeWasCalled()).isFalse();
+	}
+
 	@Test
 	public void executeAddOperation() {
 		addDeviceType.execute(request);
-		assertThat(deviceTypesSpy.addDeviceTypeWasCalled()).isTrue();
-		DeviceType deviceType = deviceTypesSpy.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION);
-		assertThat(deviceType.getDescription()).isEqualTo(DEVICE_TYPE_DESCRIPTION);
+		assertThat(devTypesSpy.addDeviceTypeWasCalled()).isTrue();
+		DeviceType deviceType = devTypesSpy.getAddedDeviceType();
+		assertThat(deviceType.getDescription()).isEqualTo(
+				DEVICE_TYPE_DESCRIPTION);
 	}
 
 	@Test(expected = AddDeviceTypeInteractor.DeviceTypeAlreadyExists.class)
-	public void throwDeviceTypeAlreadyExistsWhenTwoDeviceTypesWithSameDescriptionAdded() {		
+	public void throwDeviceTypeAlreadyExistsWhenTwoDeviceTypesWithSameDescriptionAdded() {
 		addDeviceType.execute(request);
 		addDeviceType.execute(request);
 	}

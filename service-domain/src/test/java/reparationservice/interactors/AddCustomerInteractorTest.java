@@ -20,17 +20,16 @@ public class AddCustomerInteractorTest {
 
 	@Test
 	public void gatewayWasNotCalledWhenInteractorNotYetExecuted() {
-		assertThat(customersSpy.addCustomerWasCalled())
-				.isFalse();
+		assertThat(customersSpy.addCustomerWasCalled()).isFalse();
 	}
 
 	@Test
 	public void executeOperation() {
 		Interactor addCustomer = new AddCustomerInteractor(customersSpy);
+		
 		addCustomer.execute(new AddCustomerRequest(CUSTOMER_ID));
 
-		assertThat(((CustomerGatewaySpy) customersSpy).addCustomerWasCalled())
-				.isTrue();
+		assertThat(customersSpy.addCustomerWasCalled()).isTrue();
 		Customer addedCustomer = customersSpy.getAddedCustomer();
 		assertThat(addedCustomer).isNotNull();
 		assertThat(addedCustomer.getId()).isEqualTo(CUSTOMER_ID);

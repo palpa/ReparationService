@@ -19,4 +19,8 @@ public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
 	public boolean addDeviceTypeWasCalled() {
 		return (deviceType != DeviceType.NULL);
 	}
+
+	public DeviceType getAddedDeviceType() {
+		return deviceType;
+	}
 }

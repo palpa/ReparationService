@@ -19,4 +19,8 @@ public class WorkerGatewaySpy implements WorkerGateway {
 	public boolean addWorkerWasCalled() {
 		return worker != Worker.NULL;
 	}
+
+	public Worker getAddedWorker() {
+		return worker;
+	}
 }
