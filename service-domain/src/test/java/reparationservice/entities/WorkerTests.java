@@ -31,26 +31,4 @@ public class WorkerTests {
 	public void getWorkerUserName() {
 		assertThat(workerX.getUserName()).isEqualTo(WORKER_USER_NAME);
 	}
-
-	public class Comparing {
-
-		private Worker workerY;
-
-		@Before
-		public void setUp() throws Exception {
-			workerY = getNewWorker();
-		}
-
-		@Test
-		public void equalsShouldBeSymmetric() {
-			assertThat(
-					workerX.equals(getNewWorker()) && workerY.equals(workerX))
-					.isTrue();
-		}
-
-		@Test
-		public void hashCodeShouldBeSymmetric() {
-			assertThat(workerX.hashCode() == workerY.hashCode()).isTrue();
-		}
-	}
 }
