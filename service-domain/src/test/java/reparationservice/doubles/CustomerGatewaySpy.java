@@ -4,11 +4,15 @@ import reparationservice.entities.Customer;
 import reparationservice.gateways.CustomerGateway;
 
 public class CustomerGatewaySpy implements CustomerGateway {
-	private Customer customer = Customer.NULL;
+	protected Customer customer;
+	
+	public CustomerGatewaySpy() {
+		customer = Customer.NULL;
+	}
 
 	@Override
 	public Customer getCustomerById(long customerId) {
-		return customer;
+		return this.customer;
 	}
 
 	@Override
@@ -17,10 +21,10 @@ public class CustomerGatewaySpy implements CustomerGateway {
 	}
 
 	public boolean addCustomerWasCalled() {
-		return customer != Customer.NULL;
+		return this.customer != Customer.NULL;
 	}
 	
 	public Customer getAddedCustomer() {
-		return customer;
+		return this.customer;
 	}
 }
