@@ -30,7 +30,7 @@ public class AddCustomerInteractorTest {
 		addCustomer.execute(new AddCustomerRequest(CUSTOMER_ID));
 
 		assertThat(customersSpy.addCustomerWasCalled()).isTrue();
-		Customer addedCustomer = customersSpy.getAddedCustomer();
+		Customer addedCustomer = customersSpy.getCustomer();
 		assertThat(addedCustomer).isNotNull();
 		assertThat(addedCustomer.getId()).isEqualTo(CUSTOMER_ID);
 	}

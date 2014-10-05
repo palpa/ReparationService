@@ -24,7 +24,7 @@ public class CustomerGatewaySpy implements CustomerGateway {
 		return this.customer != Customer.NULL;
 	}
 	
-	public Customer getAddedCustomer() {
+	public Customer getCustomer() {
 		return this.customer;
 	}
 }

@@ -15,8 +15,11 @@ public class AddReparationInteractor implements Interactor {
 	@Override
 	public void execute(Request request) {
 		AddReparationRequest repReq = (AddReparationRequest) request;
-		if (customers.getCustomerById(repReq.getCustomerId()) == Customer.NULL)
+		Customer customer = customers.getCustomerById(repReq.getCustomerId());
+		if (customer == Customer.NULL)
 			throw new CustomerNotFound();
+		
+		customer.addReparation(repReq.getCreationDate(), repReq.getDeviceSerialNumber(), repReq.getDeviceFailure());
 	}
 
 	public class CustomerNotFound extends RuntimeException {
