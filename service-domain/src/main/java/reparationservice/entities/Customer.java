@@ -1,11 +1,8 @@
 package reparationservice.entities;
 
-import org.joda.time.DateTime;
-
 public class Customer {
 	public static final NullCustomer NULL = new NullCustomer();
 	private long customerId;
-	private Reparation reparation;
 
 	public static Customer newInstance(long customerId) {
 		return new Customer(customerId);
@@ -13,11 +10,6 @@ public class Customer {
 
 	public long getId() {
 		return customerId;
-	}
-
-	public Reparation getReparation(long deviceSerialNumber,
-			DateTime creationDate) {
-		return reparation;
 	}
 
 	protected Customer(long customerId) {
@@ -30,9 +22,7 @@ public class Customer {
 		}
 	}
 
-	public void addReparation(DateTime creationDate, long deviceSerialNumber,
-			String deviceFailure) {
-		reparation = Reparation.newInstance(creationDate, deviceSerialNumber, deviceFailure);
-		
+	public Device getDevice(long deviceSerialNumber) {
+		return Device.NULL;
 	}
 }

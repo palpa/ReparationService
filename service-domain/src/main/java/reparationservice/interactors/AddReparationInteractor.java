@@ -1,6 +1,7 @@
 package reparationservice.interactors;
 
 import reparationservice.entities.Customer;
+import reparationservice.entities.Device;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.requests.AddReparationRequest;
 import reparationservice.requests.Request;
@@ -18,11 +19,20 @@ public class AddReparationInteractor implements Interactor {
 		Customer customer = customers.getCustomerById(repReq.getCustomerId());
 		if (customer == Customer.NULL)
 			throw new CustomerNotFound();
+
+		Device device = customer.getDevice(repReq.getDeviceSerialNumber());
 		
-		customer.addReparation(repReq.getCreationDate(), repReq.getDeviceSerialNumber(), repReq.getDeviceFailure());
+		if (device == Device.NULL)
+			throw new DeviceNotFound();
+		
+		//customer.addReparation(repReq.getCreationDate(), repReq.getDeviceSerialNumber(), repReq.getDeviceFailure());
 	}
 
 	public class CustomerNotFound extends RuntimeException {
 		private static final long serialVersionUID = -4809605819126335670L;
+	}
+	
+	public class DeviceNotFound extends RuntimeException {
+		private static final long serialVersionUID = 5345290062168301775L;
 	}
 }
