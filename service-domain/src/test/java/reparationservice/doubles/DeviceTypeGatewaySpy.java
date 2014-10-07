@@ -1,14 +1,15 @@
 package reparationservice.doubles;
 
 import reparationservice.entities.DeviceType;
+import reparationservice.entities.impl.DeviceTypeImpl;
 import reparationservice.gateways.DeviceTypeGateway;
 
 public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
 	private DeviceType deviceType = DeviceType.NULL;
 
 	@Override
-	public void addDeviceType(DeviceType deviceType) {
-		this.deviceType = deviceType;		
+	public void addDeviceType(String deviceTypeDescription) {
+		this.deviceType = new DeviceTypeImpl(deviceTypeDescription);		
 	}
 
 	@Override
@@ -20,7 +21,7 @@ public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
 		return (deviceType != DeviceType.NULL);
 	}
 
-	public DeviceType getAddedDeviceType() {
+	public DeviceType getDeviceType() {
 		return deviceType;
 	}
 }

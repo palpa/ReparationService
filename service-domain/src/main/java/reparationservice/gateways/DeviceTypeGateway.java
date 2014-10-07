@@ -3,6 +3,6 @@ package reparationservice.gateways;
 import reparationservice.entities.DeviceType;
 
 public interface DeviceTypeGateway {
-	void addDeviceType(DeviceType deviceType);
+	void addDeviceType(String deviceTypeDescription);
 	DeviceType getDeviceTypeBy(String deviceTypeDescription);
 }

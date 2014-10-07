@@ -7,6 +7,7 @@ import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Customer;
 import reparationservice.entities.DeviceType;
 import reparationservice.entities.Worker;
+import reparationservice.entities.impl.DeviceTypeImpl;
 import reparationservice.entities.impl.WorkerImpl;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.gateways.DeviceTypeGateway;
@@ -32,8 +33,9 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 	}
 
 	@Override
-	public void addDeviceType(DeviceType deviceType) {
-		this.deviceTypes.put(deviceType.getDescription(), deviceType);
+	public void addDeviceType(String deviceTypeDescription) {
+		this.deviceTypes.put(deviceTypeDescription, new DeviceTypeImpl(
+				deviceTypeDescription));
 	}
 
 	@Override

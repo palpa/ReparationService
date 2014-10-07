@@ -20,7 +20,7 @@ public class AddDeviceTypeInteractor implements Interactor {
 		if (deviceTypes.getDeviceTypeBy(deviceTypeDescription) != DeviceType.NULL)
 			throw new DeviceTypeAlreadyExists();
 
-		deviceTypes.addDeviceType(DeviceType.newInstance(deviceTypeDescription));
+		deviceTypes.addDeviceType(deviceTypeDescription);
 	}
 
 	public class DeviceTypeAlreadyExists extends RuntimeException {

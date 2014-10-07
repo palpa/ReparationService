@@ -27,18 +27,14 @@ public class DeviceTypeGatewayTest {
 
 	@Test
 	public void testAddDeviceTypes() {
-		deviceTypes.addDeviceType(newDeviceTypeWith(DEVICE_TYPE_DESCRIPTION_1));
-		deviceTypes.addDeviceType(newDeviceTypeWith(DEVICE_TYPE_DESCRIPTION_2));
+		deviceTypes.addDeviceType(DEVICE_TYPE_DESCRIPTION_1);
+		deviceTypes.addDeviceType(DEVICE_TYPE_DESCRIPTION_2);
 
 		assertThat(
-				deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_1).getDescription())
-				.isEqualTo(DEVICE_TYPE_DESCRIPTION_1);
+				deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_1)
+						.getDescription()).isEqualTo(DEVICE_TYPE_DESCRIPTION_1);
 		assertThat(
-				deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_2).getDescription())
-				.isEqualTo(DEVICE_TYPE_DESCRIPTION_2);
-	}
-
-	private DeviceType newDeviceTypeWith(String description) {
-		return DeviceType.newInstance(description);
+				deviceTypes.getDeviceTypeBy(DEVICE_TYPE_DESCRIPTION_2)
+						.getDescription()).isEqualTo(DEVICE_TYPE_DESCRIPTION_2);
 	}
 }

@@ -32,7 +32,7 @@ public class AddDeviceTypeInteractorTest {
 	public void executeAddOperation() {
 		addDeviceType.execute(request);
 		assertThat(devTypesSpy.addDeviceTypeWasCalled()).isTrue();
-		DeviceType deviceType = devTypesSpy.getAddedDeviceType();
+		DeviceType deviceType = devTypesSpy.getDeviceType();
 		assertThat(deviceType.getDescription()).isEqualTo(
 				DEVICE_TYPE_DESCRIPTION);
 	}
