@@ -1,14 +1,16 @@
 package reparationservice.doubles;
 
+import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Worker;
+import reparationservice.entities.impl.WorkerImpl;
 import reparationservice.gateways.WorkerGateway;
 
 public class WorkerGatewaySpy implements WorkerGateway {
 	private Worker worker = Worker.NULL;
 
 	@Override
-	public void addWorker(Worker worker) {
-		this.worker = worker;
+	public void addWorker(WorkerDTO workerDTO) {
+		this.worker = new WorkerImpl(workerDTO);
 	}
 
 	@Override
@@ -20,7 +22,7 @@ public class WorkerGatewaySpy implements WorkerGateway {
 		return worker != Worker.NULL;
 	}
 
-	public Worker getAddedWorker() {
+	public Worker getWorker() {
 		return worker;
 	}
 }

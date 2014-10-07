@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import reparationservice.ReparationService;
+import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
 
@@ -24,11 +25,11 @@ public class WorkerGatewayTest {
 		assertThat(workers.getWorkerByUserName(WORKER_USER_NAME_1))
 				.isEqualTo(Worker.NULL);
 	}
-
+	
 	@Test
-	public void addWorkerToReparationService() {
-		workers.addWorker(newWorker(WORKER_USER_NAME_1));
-		workers.addWorker(newWorker(WORKER_USER_NAME_2));
+	public void testAddWorker() {
+		workers.addWorker(newWorkerDTO(WORKER_USER_NAME_1));
+		workers.addWorker(newWorkerDTO(WORKER_USER_NAME_2));
 
 		Worker worker1 = workers
 				.getWorkerByUserName(WORKER_USER_NAME_1);
@@ -39,7 +40,7 @@ public class WorkerGatewayTest {
 		assertThat(worker2.getUserName()).isEqualTo(WORKER_USER_NAME_2);
 	}
 
-	private Worker newWorker(String userName) {
-		return Worker.newInstance(userName);
+	private WorkerDTO newWorkerDTO(String userName) {
+		return new WorkerDTO(userName);
 	}
 }

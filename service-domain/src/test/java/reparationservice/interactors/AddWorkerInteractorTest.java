@@ -32,7 +32,7 @@ public class AddWorkerInteractorTest {
 	public void executeAddOperation() {
 		addWorker.execute(request);
 		assertThat(workersSpy.addWorkerWasCalled()).isTrue();
-		Worker worker = workersSpy.getAddedWorker();
+		Worker worker = workersSpy.getWorker();
 		assertThat(worker.getUserName()).isEqualTo(WORKER_USERNAME);
 	}
 

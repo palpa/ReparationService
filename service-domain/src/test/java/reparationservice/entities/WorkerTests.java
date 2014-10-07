@@ -6,29 +6,41 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import reparationservice.dtos.WorkerDTO;
+import reparationservice.entities.impl.WorkerImpl;
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 @RunWith(HierarchicalContextRunner.class)
 public class WorkerTests {
-	private static final String WORKER_USER_NAME = "UserName";
-	private Worker workerX;
-
-	@Before
-	public void setUp() throws Exception {
-		workerX = getNewWorker();
-	}
-
-	private Worker getNewWorker() {
-		return Worker.newInstance(WORKER_USER_NAME);
-	}
-
+	private static final String USER_NAME = "UserName";
+	private static final String EMPTY_USERNAME = "";
+	
 	@Test
-	public void createWorker() {
-		assertThat(workerX).isNotNull();
+	public void workerSpecialCase() {
+		Worker worker = Worker.NULL;
+		assertThat(worker).isNotNull();
+		assertThat(worker.getUserName()).isEqualTo(EMPTY_USERNAME);
 	}
 
-	@Test
-	public void getWorkerUserName() {
-		assertThat(workerX.getUserName()).isEqualTo(WORKER_USER_NAME);
+	public class InMemoryImpl {	
+		private WorkerDTO workerDTO;
+		
+		@Before
+		public void setUp() {
+			workerDTO = new WorkerDTO(USER_NAME);
+		}
+
+		@Test
+		public void testWorkerDTO() {
+			assertThat(workerDTO).isNotNull();
+			assertThat(workerDTO.getUserName()).isEqualTo(USER_NAME);
+		}
+
+		@Test
+		public void createWorker() {
+			Worker worker = new WorkerImpl(workerDTO);
+			assertThat(worker).isNotNull();
+			assertThat(worker.getUserName()).isEqualTo(USER_NAME);
+		}
 	}
 }

@@ -3,9 +3,11 @@ package reparationservice;
 import java.util.HashMap;
 import java.util.Map;
 
+import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Customer;
 import reparationservice.entities.DeviceType;
 import reparationservice.entities.Worker;
+import reparationservice.entities.impl.WorkerImpl;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.gateways.DeviceTypeGateway;
 import reparationservice.gateways.WorkerGateway;
@@ -17,8 +19,9 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 	private Map<Long, Customer> customers = new HashMap<Long, Customer>();
 
 	@Override
-	public void addWorker(Worker worker) {
-		workers.put(worker.getUserName(), worker);
+	public void addWorker(WorkerDTO workerDTO) {
+		Worker worker = new WorkerImpl(workerDTO);
+		workers.put(workerDTO.getUserName(), worker);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package reparationservice.interactors;
 
+import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
 import reparationservice.requests.AddWorkerRequest;
@@ -19,7 +20,7 @@ public class AddWorkerInteractor implements Interactor {
 		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
 			throw new WorkerAlreadyExists();
 			
-		workers.addWorker(Worker.newInstance(workerUserName));	
+		workers.addWorker(new WorkerDTO(workerUserName));	
 	}
 	
 	public class WorkerAlreadyExists extends RuntimeException {
