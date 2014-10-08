@@ -7,6 +7,7 @@ import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Customer;
 import reparationservice.entities.DeviceType;
 import reparationservice.entities.Worker;
+import reparationservice.entities.impl.CustomerImpl;
 import reparationservice.entities.impl.DeviceTypeImpl;
 import reparationservice.entities.impl.WorkerImpl;
 import reparationservice.gateways.CustomerGateway;
@@ -53,7 +54,7 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 	}
 
 	@Override
-	public void addCustomer(Customer customer) {
-		customers.put(customer.getId(), customer);
+	public void addCustomer(long customerId) {
+		customers.put(customerId, new CustomerImpl(customerId));
 	}
 }

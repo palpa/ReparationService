@@ -4,10 +4,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
+import reparationservice.doubles.CusromerWithDeviceSpy;
 import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.doubles.NotEmptyCustomerSpy;
 import reparationservice.gateways.CustomerGateway;
@@ -48,18 +50,35 @@ public class AddReparationInteractorTest {
 		addReparation.execute(request);
 	}
 
-	public class CustomerIsFoundWhenExecuteAddOperation {
-		private NotEmptyCustomerSpy notEmptyCustomerSpy;
-
+	public class CustomerIsFound {
 		@Before
 		public void givenCustomer() {
-			notEmptyCustomerSpy = new NotEmptyCustomerSpy();
+			CustomerGateway notEmptyCustomerSpy = new NotEmptyCustomerSpy();
 			addReparation = new AddReparationInteractor(notEmptyCustomerSpy);
 		}
 
 		@Test(expected = AddReparationInteractor.DeviceNotFound.class)
 		public void throwDeviceNotFoundWhenDeviceSerialNumberNotFound() {
 			addReparation.execute(request);
+		}
+		
+		public class DeviceIsFound {
+			private CustomerGatewaySpy cusromerWithDeviceSpy;
+
+			@Before
+			public void givenDevice() {
+				cusromerWithDeviceSpy = new CusromerWithDeviceSpy();
+				addReparation = new AddReparationInteractor(cusromerWithDeviceSpy);
+			}
+			
+			@Ignore
+			@Test
+			public void addReparation() {
+//				addReparation.execute(request);
+//				cusromerWithDeviceSpy.getCustomer()
+//				Reparation reparation;
+//				assertThat(reparation.creationDate()).
+			}
 		}
 	}
 

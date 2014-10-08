@@ -1,6 +1,5 @@
 package reparationservice.interactors;
 
-import reparationservice.entities.Customer;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.requests.AddCustomerRequest;
 import reparationservice.requests.Request;
@@ -15,6 +14,6 @@ public class AddCustomerInteractor implements Interactor {
 	@Override
 	public void execute(Request request) {
 		long customerId = ((AddCustomerRequest) request).getId();
-		customers.addCustomer(Customer.newInstance(customerId));	
+		customers.addCustomer(customerId);	
 	}
 }

@@ -26,8 +26,8 @@ public class CustomerGatewayTest {
 
 	@Test
 	public void addCustomers() {
-		customers.addCustomer(Customer.newInstance(CUSTOMER_1_ID));
-		customers.addCustomer(Customer.newInstance(CUSTOMER_2_ID));
+		customers.addCustomer(CUSTOMER_1_ID);
+		customers.addCustomer(CUSTOMER_2_ID);
 
 		Customer recoveredCustomer = customers.getCustomerById(CUSTOMER_1_ID);
 		assertThat(recoveredCustomer).isNotNull();

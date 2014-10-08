@@ -1,28 +1,22 @@
 package reparationservice.entities;
 
-public class Customer {
-	public static final NullCustomer NULL = new NullCustomer();
-	private long customerId;
-
-	public static Customer newInstance(long customerId) {
-		return new Customer(customerId);
-	}
-
-	public long getId() {
-		return customerId;
-	}
-
-	protected Customer(long customerId) {
-		this.customerId = customerId;
-	}
+public abstract class Customer {
+	public static final Customer NULL = new NullCustomer();
+	public abstract long getId();
+	public abstract Device getDevice(long deviceSerialNumber);
+	public abstract void addDevice(long deviceSerialNumber);
 	
 	private static class NullCustomer extends Customer {
-		protected NullCustomer() {
-			super(0);
+		@Override
+		public long getId() {
+			return 0;
 		}
-	}
-
-	public Device getDevice(long deviceSerialNumber) {
-		return Device.NULL;
+		@Override
+		public Device getDevice(long deviceSerialNumber) {
+			return Device.NULL;
+		}
+		@Override
+		public void addDevice(long deviceSerialNumber) {
+		}
 	}
 }

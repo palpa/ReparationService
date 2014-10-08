@@ -1,6 +1,7 @@
 package reparationservice.doubles;
 
 import reparationservice.entities.Customer;
+import reparationservice.entities.impl.CustomerImpl;
 import reparationservice.gateways.CustomerGateway;
 
 public class CustomerGatewaySpy implements CustomerGateway {
@@ -12,19 +13,19 @@ public class CustomerGatewaySpy implements CustomerGateway {
 
 	@Override
 	public Customer getCustomerById(long customerId) {
-		return this.customer;
+		return customer;
 	}
 
 	@Override
-	public void addCustomer(Customer customer) {
-		this.customer = customer;
+	public void addCustomer(long customerId) {
+		customer = new CustomerImpl(customerId);
 	}
 
 	public boolean addCustomerWasCalled() {
-		return this.customer != Customer.NULL;
+		return customer != Customer.NULL;
 	}
 	
 	public Customer getCustomer() {
-		return this.customer;
+		return customer;
 	}
 }
