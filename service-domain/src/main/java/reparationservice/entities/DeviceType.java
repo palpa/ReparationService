@@ -1,14 +1,12 @@
 package reparationservice.entities;
 
 public abstract class DeviceType {
-	public static final DeviceType NULL = new NullDeviceType();
-
-	public abstract String getDescription();
-	
-	private static class NullDeviceType extends DeviceType {
+	public static final DeviceType NULL = new DeviceType() {
 		@Override
 		public String getDescription() {
 			return "";
 		}
-	}
+	};
+
+	public abstract String getDescription();
 }
