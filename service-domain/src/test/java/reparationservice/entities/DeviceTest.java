@@ -15,6 +15,8 @@ import reparationservice.entities.impl.DeviceImpl;
 public class DeviceTest {
 	private static final int SERIAL_NUMBER = 150;
 	private static final DateTime REP_CREATION_DATE_1 = DateTime.now();
+	private static final DateTime REP_CREATION_DATE_2 = REP_CREATION_DATE_1
+			.plusDays(1);
 	private Device device;
 
 	@Before
@@ -31,13 +33,20 @@ public class DeviceTest {
 	public class ReparationOps
 	{
 		private static final String REP_FAILURE = "failure";
-		
+
 		@Test
 		public void getReparation() {
 			device.addReparation(newRepDTO(REP_CREATION_DATE_1));
-			Reparation reparation = device.getReparation(REP_CREATION_DATE_1);
-			assertThat(reparation).isNotNull();
-			assertThat(reparation.getCreationDate()).isEqualTo(REP_CREATION_DATE_1);
+			device.addReparation(newRepDTO(REP_CREATION_DATE_2));
+
+			Reparation reparation1 = device.getReparation(REP_CREATION_DATE_1);
+			assertThat(reparation1).isNotNull();
+			assertThat(reparation1.getCreationDate()).isEqualTo(
+					REP_CREATION_DATE_1);
+			Reparation reparation2 = device.getReparation(REP_CREATION_DATE_2);
+			assertThat(reparation2).isNotNull();
+			assertThat(reparation2.getCreationDate()).isEqualTo(
+					REP_CREATION_DATE_2);
 		}
 
 		private ReparationDTO newRepDTO(DateTime creationDate) {
