@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -15,7 +14,7 @@ import reparationservice.entities.impl.DeviceImpl;
 @RunWith(HierarchicalContextRunner.class)
 public class DeviceTest {
 	private static final int SERIAL_NUMBER = 150;
-	private static final DateTime REP_CREATION_DATE = DateTime.now();
+	private static final DateTime REP_CREATION_DATE_1 = DateTime.now();
 	private Device device;
 
 	@Before
@@ -33,14 +32,16 @@ public class DeviceTest {
 	{
 		private static final String REP_FAILURE = "failure";
 		
-		@Ignore
 		@Test
 		public void getReparation() {
-			ReparationDTO reparationDTO = new ReparationDTO(REP_CREATION_DATE, REP_FAILURE);
-			device.addReparation(reparationDTO);
-			Reparation reparation = device.getReparation(REP_CREATION_DATE);
+			device.addReparation(newRepDTO(REP_CREATION_DATE_1));
+			Reparation reparation = device.getReparation(REP_CREATION_DATE_1);
 			assertThat(reparation).isNotNull();
-			assertThat(reparation.getCreationDate()).isEqualTo(REP_CREATION_DATE);
+			assertThat(reparation.getCreationDate()).isEqualTo(REP_CREATION_DATE_1);
+		}
+
+		private ReparationDTO newRepDTO(DateTime creationDate) {
+			return new ReparationDTO(creationDate, REP_FAILURE);
 		}
 	}
 }

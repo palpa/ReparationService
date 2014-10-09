@@ -8,21 +8,24 @@ import reparationservice.entities.Reparation;
 
 public class DeviceImpl extends Device {
 	private final long serialNumber;
+	private Reparation reparation;
 
 	public DeviceImpl(long serialNumber) {
 		this.serialNumber = serialNumber;
 	}
+
 	@Override
 	public long getSerialNumber() {
 		return serialNumber;
 	}
+
 	@Override
 	public Reparation getReparation(DateTime creationDate) {
-		return null;
+		return reparation;
 	}
+
 	@Override
 	public void addReparation(ReparationDTO reparationDTO) {
-		// TODO Auto-generated method stub
-		
+		reparation = new ReparationImpl(reparationDTO);
 	}
 }
