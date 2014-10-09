@@ -12,6 +12,9 @@ import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import reparationservice.doubles.CusromerWithDeviceSpy;
 import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.doubles.NotEmptyCustomerSpy;
+import reparationservice.entities.Customer;
+import reparationservice.entities.Device;
+import reparationservice.entities.Reparation;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.requests.AddReparationRequest;
 import reparationservice.requests.Request;
@@ -61,23 +64,38 @@ public class AddReparationInteractorTest {
 		public void throwDeviceNotFoundWhenDeviceSerialNumberNotFound() {
 			addReparation.execute(request);
 		}
-		
+
 		public class DeviceIsFound {
-			private CustomerGatewaySpy cusromerWithDeviceSpy;
+			private CustomerGatewaySpy customerWithDeviceSpy;
 
 			@Before
 			public void givenDevice() {
-				cusromerWithDeviceSpy = new CusromerWithDeviceSpy();
-				addReparation = new AddReparationInteractor(cusromerWithDeviceSpy);
+				customerWithDeviceSpy = new CusromerWithDeviceSpy();
+				addReparation = new AddReparationInteractor(
+						customerWithDeviceSpy);
 			}
-			
+
 			@Ignore
 			@Test
 			public void addReparation() {
-//				addReparation.execute(request);
-//				cusromerWithDeviceSpy.getCustomer()
-//				Reparation reparation;
-//				assertThat(reparation.creationDate()).
+				// addReparation.execute(request);
+				// cusromerWithDeviceSpy.getCustomer()
+				Reparation reparation = getReparation(DEVICE_SERIAL_NUMBER,
+						CREATION_DATE, customerWithDeviceSpy);
+				assertThat(reparation).isNotNull();
+				assertThat(reparation.getCreationDate()).isEqualTo(
+						CREATION_DATE);
+			}
+
+			private Reparation getReparation(int deviceSerialNumber,
+					DateTime creationDate, CustomerGatewaySpy customerGatewaySpy) {
+				Customer customer = customerGatewaySpy.getCustomer();
+				assertThat(customer).isNotNull();
+				Device device = customer.getDevice(deviceSerialNumber);
+				assertThat(device).isNotNull();
+				Reparation reparation = device.getReparation(creationDate);
+				assertThat(customer).isNotNull();
+				return reparation;
 			}
 		}
 	}
