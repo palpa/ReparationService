@@ -31,22 +31,12 @@ public class DeviceTest {
 
 	public class ReparationOps
 	{
-		private ReparationDTO reparationDTO;
-
-		@Before
-		public void givenReparationDTO() {
-			reparationDTO = new ReparationDTO(REP_CREATION_DATE);
-		}
-
-		@Test
-		public void testReparationDTO() {
-			assertThat(reparationDTO).isNotNull();
-			assertThat(reparationDTO.getCreationDate()).isEqualTo(REP_CREATION_DATE);
-		}
-
+		private static final String REP_FAILURE = "failure";
+		
 		@Ignore
 		@Test
 		public void getReparation() {
+			ReparationDTO reparationDTO = new ReparationDTO(REP_CREATION_DATE, REP_FAILURE);
 			device.addReparation(reparationDTO);
 			Reparation reparation = device.getReparation(REP_CREATION_DATE);
 			assertThat(reparation).isNotNull();

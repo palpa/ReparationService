@@ -4,4 +4,6 @@ import org.joda.time.DateTime;
 
 public abstract class Reparation {
 	public abstract DateTime getCreationDate();
+
+	public abstract String getFailure();
 }
