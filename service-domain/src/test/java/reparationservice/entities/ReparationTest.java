@@ -6,8 +6,8 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 
+import reparationservice.Configurator;
 import reparationservice.dtos.ReparationDTO;
-import reparationservice.entities.impl.ReparationImpl;
 
 public class ReparationTest {
 	private static final String FAILURE = "failure";
@@ -30,7 +30,7 @@ public class ReparationTest {
 
 	@Test
 	public void createReparation() {
-		Reparation rep = new ReparationImpl(reparationDTO);
+		Reparation rep = Configurator.getNewReparation(reparationDTO);
 		assertThat(rep).isNotNull();
 		assertThat(rep.getCreationDate()).isEqualTo(CREATION_DATE);
 		assertThat(rep.getFailure()).isEqualTo(FAILURE);

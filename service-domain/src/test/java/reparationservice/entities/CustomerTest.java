@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import reparationservice.entities.impl.CustomerImpl;
+import reparationservice.Configurator;
 
 @RunWith(HierarchicalContextRunner.class)
 public class CustomerTest {
@@ -61,8 +61,8 @@ public class CustomerTest {
 			assertThat(device.getSerialNumber()).isEqualTo(DEVICE_SERIAL_NUMBER);
 		}
 
-		private CustomerImpl createCustomer(long customerId) {
-			return new CustomerImpl(customerId);
+		private Customer createCustomer(long customerId) {
+			return Configurator.getNewCustomer(customerId);
 		}
 	}
 }

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.ReparationService;
+import reparationservice.Configurator;
 import reparationservice.entities.Customer;
 
 public class CustomerGatewayTest {
@@ -15,7 +15,7 @@ public class CustomerGatewayTest {
 
 	@Before
 	public void givenCustomerGateway() {
-		customers = new ReparationService();
+		customers = Configurator.getCustomerGateway();
 	}
 
 	@Test

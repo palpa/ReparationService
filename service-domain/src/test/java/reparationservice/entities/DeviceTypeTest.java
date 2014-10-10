@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import reparationservice.entities.impl.DeviceTypeImpl;
+import reparationservice.Configurator;
 
 public class DeviceTypeTest {
 	private static final String EMPTY_DEVICE_DESCRIPTION = "";
@@ -19,7 +19,7 @@ public class DeviceTypeTest {
 	
 	@Test
 	public void testDeviceTypeImpl() {
-		DeviceType device = new DeviceTypeImpl(DEVICE_DESCRIPTION);
+		DeviceType device = Configurator.getNewDeviceType(DEVICE_DESCRIPTION);
 		assertThat(device).isNotNull();
 		assertThat(device.getDescription()).isEqualTo(DEVICE_DESCRIPTION);
 	}

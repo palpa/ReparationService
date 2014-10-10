@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import reparationservice.Configurator;
 import reparationservice.dtos.WorkerDTO;
-import reparationservice.entities.impl.WorkerImpl;
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
 
 @RunWith(HierarchicalContextRunner.class)
@@ -38,7 +38,7 @@ public class WorkerTests {
 
 		@Test
 		public void createWorker() {
-			Worker worker = new WorkerImpl(workerDTO);
+			Worker worker = Configurator.getNewWorker(workerDTO);
 			assertThat(worker).isNotNull();
 			assertThat(worker.getUserName()).isEqualTo(USER_NAME);
 		}

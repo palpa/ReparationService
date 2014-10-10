@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.ReparationService;
+import reparationservice.Configurator;
 import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
@@ -17,7 +17,7 @@ public class WorkerGatewayTest {
 
 	@Before
 	public void setUp() {
-		workers = new ReparationService();
+		workers = Configurator.getWorkerGateway();
 	}
 
 	@Test

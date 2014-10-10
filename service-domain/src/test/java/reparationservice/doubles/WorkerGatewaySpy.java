@@ -1,8 +1,8 @@
 package reparationservice.doubles;
 
+import reparationservice.Configurator;
 import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Worker;
-import reparationservice.entities.impl.WorkerImpl;
 import reparationservice.gateways.WorkerGateway;
 
 public class WorkerGatewaySpy implements WorkerGateway {
@@ -10,7 +10,7 @@ public class WorkerGatewaySpy implements WorkerGateway {
 
 	@Override
 	public void addWorker(WorkerDTO workerDTO) {
-		this.worker = new WorkerImpl(workerDTO);
+		this.worker = Configurator.getNewWorker(workerDTO);
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.ReparationService;
+import reparationservice.Configurator;
 import reparationservice.entities.DeviceType;
 import reparationservice.gateways.DeviceTypeGateway;
 
@@ -16,7 +16,7 @@ public class DeviceTypeGatewayTest {
 
 	@Before
 	public void givenDeviceTypeGateway() {
-		deviceTypes = new ReparationService();
+		deviceTypes = Configurator.getDeviceTypeGateway();
 	}
 
 	@Test

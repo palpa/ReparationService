@@ -1,5 +1,6 @@
 package reparationservice.entities.impl;
 
+import reparationservice.Configurator;
 import reparationservice.entities.Customer;
 import reparationservice.entities.Device;
 
@@ -25,6 +26,6 @@ public class CustomerImpl extends Customer {
 
 	@Override
 	public void addDevice(long deviceSerialNumber) {
-		device = new DeviceImpl(deviceSerialNumber);
+		device = Configurator.getNewDevice(deviceSerialNumber);
 	}
 }

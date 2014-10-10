@@ -1,7 +1,7 @@
 package reparationservice.doubles;
 
+import reparationservice.Configurator;
 import reparationservice.entities.Customer;
-import reparationservice.entities.impl.CustomerImpl;
 import reparationservice.gateways.CustomerGateway;
 
 public class CustomerGatewaySpy implements CustomerGateway {
@@ -18,7 +18,7 @@ public class CustomerGatewaySpy implements CustomerGateway {
 
 	@Override
 	public void addCustomer(long customerId) {
-		customer = new CustomerImpl(customerId);
+		customer = Configurator.getNewCustomer(customerId);
 	}
 
 	public boolean addCustomerWasCalled() {

@@ -1,7 +1,7 @@
 package reparationservice.doubles;
 
+import reparationservice.Configurator;
 import reparationservice.entities.DeviceType;
-import reparationservice.entities.impl.DeviceTypeImpl;
 import reparationservice.gateways.DeviceTypeGateway;
 
 public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
@@ -9,7 +9,7 @@ public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
 
 	@Override
 	public void addDeviceType(String deviceTypeDescription) {
-		this.deviceType = new DeviceTypeImpl(deviceTypeDescription);		
+		this.deviceType = Configurator.getNewDeviceType(deviceTypeDescription);		
 	}
 
 	@Override

@@ -8,8 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
+import reparationservice.Configurator;
 import reparationservice.dtos.ReparationDTO;
-import reparationservice.entities.impl.DeviceImpl;
 
 @RunWith(HierarchicalContextRunner.class)
 public class DeviceTest {
@@ -36,7 +36,7 @@ public class DeviceTest {
 
 		@Before
 		public void givenDevice() {
-			device = new DeviceImpl(SERIAL_NUMBER);
+			device = Configurator.getNewDevice(SERIAL_NUMBER);
 		}
 
 		@Test
