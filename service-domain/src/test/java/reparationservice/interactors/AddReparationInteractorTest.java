@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.joda.time.DateTime;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -12,8 +11,6 @@ import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import reparationservice.doubles.CusromerWithDeviceSpy;
 import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.doubles.NotEmptyCustomerSpy;
-import reparationservice.entities.Customer;
-import reparationservice.entities.Device;
 import reparationservice.entities.Reparation;
 import reparationservice.gateways.CustomerGateway;
 import reparationservice.requests.AddReparationRequest;
@@ -24,7 +21,7 @@ public class AddReparationInteractorTest {
 	private static final int CUSTOMER_ID = NotEmptyCustomerSpy.CUSTOMER_ID;
 	private static final String DEVICE_FAILURE = "failure";
 	private static final DateTime CREATION_DATE = DateTime.now();
-	private static final int DEVICE_SERIAL_NUMBER = 5;
+	private static final long DEVICE_SERIAL_NUMBER = CusromerWithDeviceSpy.DEVICE_SERIAL_NUMBER;
 	private static final String REPARATION_OBSERVATIONS = "observations";
 	private static final String REPARATION_URGENCY = "urgency";
 
@@ -75,11 +72,10 @@ public class AddReparationInteractorTest {
 						customerWithDeviceSpy);
 			}
 
-			@Ignore
 			@Test
 			public void addReparation() {
-				// addReparation.execute(request);
-				// cusromerWithDeviceSpy.getCustomer()
+				addReparation.execute(request);
+
 				Reparation reparation = getReparation(DEVICE_SERIAL_NUMBER,
 						CREATION_DATE, customerWithDeviceSpy);
 				assertThat(reparation).isNotNull();
@@ -87,15 +83,11 @@ public class AddReparationInteractorTest {
 						CREATION_DATE);
 			}
 
-			private Reparation getReparation(int deviceSerialNumber,
+			private Reparation getReparation(long deviceSerialNumber,
 					DateTime creationDate, CustomerGatewaySpy customerGatewaySpy) {
-				Customer customer = customerGatewaySpy.getCustomer();
-				assertThat(customer).isNotNull();
-				Device device = customer.getDevice(deviceSerialNumber);
-				assertThat(device).isNotNull();
-				Reparation reparation = device.getReparation(creationDate);
-				assertThat(customer).isNotNull();
-				return reparation;
+				return customerGatewaySpy.getCustomer()
+						.getDevice(deviceSerialNumber)
+						.getReparation(creationDate);
 			}
 		}
 	}
