@@ -18,6 +18,7 @@ import reparationservice.gateways.WorkerGateway;
 
 public final class Configurator {
 	private Configurator() {
+		throw new AssertionError();
 	}
 
 	public static CustomerGateway getCustomerGateway() {
