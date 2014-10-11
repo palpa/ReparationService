@@ -25,6 +25,7 @@ public class DeviceTest {
 		device = Device.NULL;
 		assertThat(device).isNotNull();
 		assertThat(device.getSerialNumber()).isEqualTo(INVALID_SERIAL_NUMBER);
+		assertThat(device.toString()).isEqualTo("Null Device");
 		ReparationDTO anyRepDTO = null;
 		device.addReparation(anyRepDTO);
 		assertThat(device.getReparation(ANY_CREATION_DATE)).isEqualTo(

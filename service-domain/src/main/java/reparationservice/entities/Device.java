@@ -7,6 +7,11 @@ import reparationservice.dtos.ReparationDTO;
 public abstract class Device {
 	public static final Device NULL = new Device() {
 		@Override
+		public String toString() {
+			return "Null Device";
+		}
+
+		@Override
 		public long getSerialNumber() {
 			return -1;
 		}
