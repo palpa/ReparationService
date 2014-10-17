@@ -4,40 +4,39 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class)
-@WebAppConfiguration
-public class AddWorkerControllerTest {
-	@Autowired
-	private WebApplicationContext wac;
-	private MockMvc mockMvc;
-
-	@Before
-	public void setUp() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-	}
-
+public class AddWorkerControllerTest extends ControllerTest {
 	@Test
 	public void addWorker() throws Exception {
-		mockMvc.perform(post("/workers"))
+		String workerJson = json(new Worker("username"));
+		mockMvc.perform(
+				post("/workers")
+						.contentType(contentType)
+						.content(workerJson))
 				.andDo(print())
-				.andExpect(status().isOk());
+				.andExpect(status().isCreated());
 	}
 
 	@Test
 	public void NotFoundWhenAddWorkerOnWrongPath() throws Exception {
-		mockMvc.perform(post("/worker")).andExpect(status().isNotFound());
+		String workerJson = json(new Worker("username"));
+		mockMvc.perform(post("/wrong/path")
+				.contentType(contentType)
+				.content(workerJson))
+				.andDo(print())
+				.andExpect(status().isNotFound());
+	}
+
+	static class Worker {
+		private final String username;
+
+		public Worker(String username) {
+			this.username = username;
+		}
+
+		public String getUsername() {
+			return username;
+		}
 	}
 }
