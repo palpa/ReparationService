@@ -1,4 +1,4 @@
-package org.reparationservice.rest.controllers;
+package org.reparationservice.rest.controllers.webappcontext;
 
 import java.io.IOException;
 import java.util.Arrays;

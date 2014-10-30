@@ -3,9 +3,13 @@ package org.reparationservice.rest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+
+import reparationservice.Configurator;
+import reparationservice.gateways.WorkerGateway;
 
 @Configuration
 @ComponentScan
@@ -15,6 +19,11 @@ public class Application {
     SpringApplication.run(Application.class, args);
   }
 
+  @Bean
+  WorkerGateway getWorkerGW() {
+    return Configurator.getWorkerGateway();
+  }
+  
   @Configuration
   public static class DisableStaticResourceConfiguration extends WebMvcAutoConfigurationAdapter {
     @Override
