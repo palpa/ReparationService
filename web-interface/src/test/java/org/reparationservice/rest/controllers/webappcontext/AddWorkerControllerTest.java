@@ -6,23 +6,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.junit.Test;
+import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
-import reparationservice.requests.AddWorkerRequest;
 
 public class AddWorkerControllerTest extends ControllerTest {
+  private static final String WORKER_USERNAME = "username";
   @Autowired
   WorkerGateway workerGW;
 
   @Test
   @DirtiesContext
   public void addWorker() throws Exception {
-    String workerJson = json(new AddWorkerRequest("username"));
+    String workerJson = json(AddWorkerJsonRequest.newInstance(WORKER_USERNAME));
 
-    assertThat(workerGW.getWorkerByUserName("username"))
+    assertThat(workerGW.getWorkerByUserName(WORKER_USERNAME))
         .isEqualTo(Worker.NULL);
 
     mockMvc.perform(
@@ -32,7 +33,7 @@ public class AddWorkerControllerTest extends ControllerTest {
         .andDo(print())
         .andExpect(status().isCreated());
 
-    assertThat(workerGW.getWorkerByUserName("username").getUserName())
-        .isEqualTo("username");
+    assertThat(workerGW.getWorkerByUserName(WORKER_USERNAME).getUserName())
+        .isEqualTo(WORKER_USERNAME);
   }
 }
