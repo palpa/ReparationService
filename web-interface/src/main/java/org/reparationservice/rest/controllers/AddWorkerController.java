@@ -1,5 +1,6 @@
 package org.reparationservice.rest.controllers;
 
+import org.reparationservice.rest.requestor.InteractorFactory;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.VndErrors;
@@ -14,29 +15,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import reparationservice.gateways.WorkerGateway;
-import reparationservice.interactors.AddWorkerInteractor;
 import reparationservice.interactors.AddWorkerInteractor.WorkerAlreadyExists;
+import reparationservice.interactors.Interactor;
 import reparationservice.requests.AddWorkerRequest;
 import reparationservice.requests.Request;
 
 @RestController
 public class AddWorkerController {
-  private WorkerGateway workerGW;
+  private final InteractorFactory intFactory;
 
   @Autowired
-  public AddWorkerController(WorkerGateway workerGW) {
-    this.workerGW = workerGW;
+  public AddWorkerController(InteractorFactory intFactory) {
+    this.intFactory = intFactory;
   }
 
   @RequestMapping(value = "/workers", method = RequestMethod.POST)
   ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
-    AddWorkerInteractor interactor = new AddWorkerInteractor(workerGW);
+    Interactor interactor = intFactory.make("AddWorkerInteractor");
     Request request = new AddWorkerRequest(workerReq.getUsername());
     interactor.execute(request);
 
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
+
 
   @ControllerAdvice
   public static class AddWorkerControllerAdvice {

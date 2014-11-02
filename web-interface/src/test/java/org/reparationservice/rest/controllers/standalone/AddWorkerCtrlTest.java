@@ -9,16 +9,21 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.reparationservice.rest.controllers.AddWorkerController;
+import org.reparationservice.rest.requestor.InteractorActivator;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.reparationservice.rest.utils.TestUtil;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import de.bechte.junit.runners.context.HierarchicalContextRunner;
+import doubles.InteractorActivatorStub;
 import reparationservice.Configurator;
 import reparationservice.gateways.WorkerGateway;
 
+@RunWith(HierarchicalContextRunner.class)
 public class AddWorkerCtrlTest {
   private static final String WORKER_USERNAME_1 = "username1";
   private static final String WORKER_USERNAME_2 = "username2";
@@ -27,17 +32,36 @@ public class AddWorkerCtrlTest {
   private MockMvc mockMvc;
   private WorkerGateway workerGW;
 
-  @Before
-  public void setup() {
-    workerGW = Configurator.getWorkerGateway();
-    addWorkerCtrl = new AddWorkerController(workerGW);
-    this.mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
+  public class Unit {
+    @Test
+    public void callToAddWorkerInteractor() throws Exception {
+      InteractorActivatorStub intActivatorStub = InteractorActivatorStub.newInstance();
+      addWorkerCtrl = new AddWorkerController(intActivatorStub);
+      mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
+      sendWorkerPostRequestFor(WORKER_USERNAME_1);
+      assertThat(intActivatorStub.getCalledInteractorName()).isEqualTo(
+          InteractorActivator.ADD_WORKER_INTERACTOR);
+    }
   }
 
-  @Test
-  public void addWorker() throws Exception {
-    sendWorkerPostRequestFor(WORKER_USERNAME_1);
-    sendWorkerPostRequestFor(WORKER_USERNAME_2);
+  public class Integration {
+    @Before
+    public void setup() {
+      workerGW = Configurator.getWorkerGateway();
+      addWorkerCtrl = new AddWorkerController(new InteractorActivator(workerGW));
+      mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
+    }
+
+    @Test
+    public void successfulWorkerCreation() throws Exception {
+      sendWorkerPostRequestFor(WORKER_USERNAME_1);
+      sendWorkerPostRequestFor(WORKER_USERNAME_2);
+
+      assertThat(workerGW.getWorkerByUserName(WORKER_USERNAME_1).getUserName())
+          .isEqualTo(WORKER_USERNAME_1);
+      assertThat(workerGW.getWorkerByUserName(WORKER_USERNAME_2).getUserName())
+          .isEqualTo(WORKER_USERNAME_2);
+    }
   }
 
   private void sendWorkerPostRequestFor(String username) throws Exception, IOException {
@@ -47,9 +71,6 @@ public class AddWorkerCtrlTest {
             .content(getJsonWorkerReq(username)))
         .andDo(print())
         .andExpect(status().isCreated());
-
-    assertThat(workerGW.getWorkerByUserName(username).getUserName())
-        .isEqualTo(username);
   }
 
   private byte[] getJsonWorkerReq(String username) throws IOException {
