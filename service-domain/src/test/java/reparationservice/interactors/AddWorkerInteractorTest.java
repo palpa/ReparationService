@@ -7,14 +7,15 @@ import org.junit.Test;
 
 import reparationservice.doubles.WorkerGatewaySpy;
 import reparationservice.entities.Worker;
-import reparationservice.requests.AddWorkerRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddWorkerRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
 public class AddWorkerInteractorTest {
 	private static final String WORKER_USERNAME = "username";
-	private Interactor addWorker;
+	private UseCaseActivator addWorker;
 	private WorkerGatewaySpy workersSpy;
-	private Request request;
+	private UseCaseRequest request;
 
 	@Before
 	public void givenAddWorkerInteractor() {

@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import reparationservice.interactors.AddWorkerInteractor.WorkerAlreadyExists;
-import reparationservice.interactors.Interactor;
+import reparationservice.interactors.requests.AddWorkerRequest;
+import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.InteractorFactory;
-import reparationservice.requests.AddWorkerRequest;
-import reparationservice.requests.Request;
+import reparationservice.requestor.UseCaseRequest;
 
 @RestController
 public class AddWorkerController {
@@ -31,8 +31,8 @@ public class AddWorkerController {
 
   @RequestMapping(value = "/workers", method = RequestMethod.POST)
   ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
-    Interactor interactor = intFactory.make("AddWorkerInteractor");
-    Request request = new AddWorkerRequest(workerReq.getUsername());
+    UseCaseActivator interactor = intFactory.make("AddWorkerInteractor");
+    UseCaseRequest request = new AddWorkerRequest(workerReq.getUsername());
     interactor.execute(request);
 
     return new ResponseEntity<>(HttpStatus.CREATED);

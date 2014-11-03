@@ -1,8 +1,10 @@
-package reparationservice.requests;
+package reparationservice.interactors.requests;
 
 import org.joda.time.DateTime;
 
-public class AddReparationRequest extends Request {
+import reparationservice.requestor.UseCaseRequest;
+
+public class AddReparationRequest extends UseCaseRequest {
 	private long customerId;
 	private DateTime creationDate;
 	private long deviceSerialNumber;

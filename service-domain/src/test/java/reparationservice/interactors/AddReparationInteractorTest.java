@@ -13,8 +13,9 @@ import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.doubles.NotEmptyCustomerSpy;
 import reparationservice.entities.Reparation;
 import reparationservice.gateways.CustomerGateway;
-import reparationservice.requests.AddReparationRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddReparationRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
 @RunWith(HierarchicalContextRunner.class)
 public class AddReparationInteractorTest {
@@ -25,8 +26,8 @@ public class AddReparationInteractorTest {
 	private static final String REPARATION_OBSERVATIONS = "observations";
 	private static final String REPARATION_URGENCY = "urgency";
 
-	private Interactor addReparation;
-	private Request request;
+	private UseCaseActivator addReparation;
+	private UseCaseRequest request;
 
 	@Before
 	public void givenRequest() throws Exception {
@@ -92,7 +93,7 @@ public class AddReparationInteractorTest {
 		}
 	}
 
-	private Request createRequest() {
+	private UseCaseRequest createRequest() {
 		return new AddReparationRequest(CUSTOMER_ID, DEVICE_SERIAL_NUMBER,
 				CREATION_DATE, DEVICE_FAILURE, REPARATION_URGENCY,
 				REPARATION_OBSERVATIONS);

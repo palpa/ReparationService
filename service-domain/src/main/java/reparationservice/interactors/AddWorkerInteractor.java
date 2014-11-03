@@ -3,10 +3,11 @@ package reparationservice.interactors;
 import reparationservice.dtos.WorkerDTO;
 import reparationservice.entities.Worker;
 import reparationservice.gateways.WorkerGateway;
-import reparationservice.requests.AddWorkerRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddWorkerRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
-public class AddWorkerInteractor implements Interactor {
+public class AddWorkerInteractor implements UseCaseActivator {
 	private WorkerGateway workers;
 
 	public AddWorkerInteractor(WorkerGateway workers) {
@@ -14,7 +15,7 @@ public class AddWorkerInteractor implements Interactor {
 	}
 
 	@Override
-	public void execute(Request request) {
+	public void execute(UseCaseRequest request) {
 		String workerUserName = ((AddWorkerRequest) request).getUserName();
 		
 		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)

@@ -1,6 +1,8 @@
-package reparationservice.requests;
+package reparationservice.interactors.requests;
 
-public class AddDeviceTypeRequest extends Request {
+import reparationservice.requestor.UseCaseRequest;
+
+public class AddDeviceTypeRequest extends UseCaseRequest {
 	private String deviceTypeDescription;
 
 	public AddDeviceTypeRequest(String deviceTypeDescription) {

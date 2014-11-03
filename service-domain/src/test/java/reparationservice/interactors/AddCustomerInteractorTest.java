@@ -7,7 +7,8 @@ import org.junit.Test;
 
 import reparationservice.doubles.CustomerGatewaySpy;
 import reparationservice.entities.Customer;
-import reparationservice.requests.AddCustomerRequest;
+import reparationservice.interactors.requests.AddCustomerRequest;
+import reparationservice.requestor.UseCaseActivator;
 
 public class AddCustomerInteractorTest {
 	private static final long CUSTOMER_ID = 1;
@@ -25,7 +26,7 @@ public class AddCustomerInteractorTest {
 
 	@Test
 	public void executeOperation() {
-		Interactor addCustomer = new AddCustomerInteractor(customersSpy);
+		UseCaseActivator addCustomer = new AddCustomerInteractor(customersSpy);
 		
 		addCustomer.execute(new AddCustomerRequest(CUSTOMER_ID));
 

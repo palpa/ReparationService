@@ -1,10 +1,11 @@
 package reparationservice.interactors;
 
 import reparationservice.gateways.CustomerGateway;
-import reparationservice.requests.AddCustomerRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddCustomerRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
-public class AddCustomerInteractor implements Interactor {
+public class AddCustomerInteractor implements UseCaseActivator {
 	private CustomerGateway customers;
 
 	public AddCustomerInteractor(CustomerGateway customers) {
@@ -12,7 +13,7 @@ public class AddCustomerInteractor implements Interactor {
 	}
 
 	@Override
-	public void execute(Request request) {
+	public void execute(UseCaseRequest request) {
 		long customerId = ((AddCustomerRequest) request).getId();
 		customers.addCustomer(customerId);	
 	}

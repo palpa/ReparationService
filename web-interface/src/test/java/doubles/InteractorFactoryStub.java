@@ -1,19 +1,19 @@
 package doubles;
 
-import reparationservice.interactors.Interactor;
+import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.InteractorFactory;
-import reparationservice.requests.Request;
+import reparationservice.requestor.UseCaseRequest;
 
 public final class InteractorFactoryStub implements InteractorFactory {
   private String interactorName;
   private boolean executeCalled = false;
 
   @Override
-  public Interactor make(String interactorName) {
+  public UseCaseActivator make(String interactorName) {
     this.interactorName = interactorName;
-    return new Interactor() {
+    return new UseCaseActivator() {
       @Override
-      public void execute(Request request) {
+      public void execute(UseCaseRequest request) {
         executeCalled = true;
       }
     };

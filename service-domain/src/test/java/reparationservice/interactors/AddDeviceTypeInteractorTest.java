@@ -7,14 +7,15 @@ import org.junit.Test;
 
 import reparationservice.doubles.DeviceTypeGatewaySpy;
 import reparationservice.entities.DeviceType;
-import reparationservice.requests.AddDeviceTypeRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddDeviceTypeRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
 public class AddDeviceTypeInteractorTest {
 	private static final String DEVICE_TYPE_DESCRIPTION = "Description";
 	private DeviceTypeGatewaySpy devTypesSpy;
-	private Interactor addDeviceType;
-	private Request request;
+	private UseCaseActivator addDeviceType;
+	private UseCaseRequest request;
 
 	@Before
 	public void givenAddDeviceTypeInteractor() {

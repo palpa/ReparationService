@@ -1,6 +1,8 @@
-package reparationservice.requests;
+package reparationservice.interactors.requests;
 
-public class AddWorkerRequest extends Request {
+import reparationservice.requestor.UseCaseRequest;
+
+public class AddWorkerRequest extends UseCaseRequest {
 	private String username;
 
 	public AddWorkerRequest(String username) {

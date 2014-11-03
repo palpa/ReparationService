@@ -2,10 +2,11 @@ package reparationservice.interactors;
 
 import reparationservice.entities.DeviceType;
 import reparationservice.gateways.DeviceTypeGateway;
-import reparationservice.requests.AddDeviceTypeRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddDeviceTypeRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
-public class AddDeviceTypeInteractor implements Interactor {
+public class AddDeviceTypeInteractor implements UseCaseActivator {
 	private DeviceTypeGateway deviceTypes;
 
 	public AddDeviceTypeInteractor(DeviceTypeGateway deviceTypes) {
@@ -13,7 +14,7 @@ public class AddDeviceTypeInteractor implements Interactor {
 	}
 
 	@Override
-	public void execute(Request request) {
+	public void execute(UseCaseRequest request) {
 		AddDeviceTypeRequest dtReq = (AddDeviceTypeRequest) request;
 		String deviceTypeDescription = dtReq.getDescription();
 		

@@ -4,10 +4,11 @@ import reparationservice.dtos.ReparationDTO;
 import reparationservice.entities.Customer;
 import reparationservice.entities.Device;
 import reparationservice.gateways.CustomerGateway;
-import reparationservice.requests.AddReparationRequest;
-import reparationservice.requests.Request;
+import reparationservice.interactors.requests.AddReparationRequest;
+import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 
-public class AddReparationInteractor implements Interactor {
+public class AddReparationInteractor implements UseCaseActivator {
 	private CustomerGateway customers;
 
 	public AddReparationInteractor(CustomerGateway customers) {
@@ -15,7 +16,7 @@ public class AddReparationInteractor implements Interactor {
 	}
 
 	@Override
-	public void execute(Request request) {
+	public void execute(UseCaseRequest request) {
 		AddReparationRequest repReq = (AddReparationRequest) request;
 		Customer customer = customers.getCustomerById(repReq.getCustomerId());
 		if (customer == Customer.NULL)
