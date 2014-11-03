@@ -1,11 +1,10 @@
 package doubles;
 
-import org.reparationservice.rest.requestor.InteractorFactory;
-
 import reparationservice.interactors.Interactor;
+import reparationservice.requestor.InteractorFactory;
 import reparationservice.requests.Request;
 
-public final class InteractorActivatorStub implements InteractorFactory {
+public final class InteractorFactoryStub implements InteractorFactory {
   private String interactorName;
   private boolean executeCalled = false;
 
@@ -23,12 +22,12 @@ public final class InteractorActivatorStub implements InteractorFactory {
   public String getCalledInteractorName() {
     return interactorName;
   }
-
+  
   public boolean wasExecuteCalled() {
     return executeCalled;
   }
 
-  public static InteractorActivatorStub newInstance() {
-    return new InteractorActivatorStub();
+  public static InteractorFactoryStub newInstance() {
+    return new InteractorFactoryStub();
   }
 }

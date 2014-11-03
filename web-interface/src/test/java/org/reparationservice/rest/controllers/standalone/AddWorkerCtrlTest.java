@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.reparationservice.rest.controllers.AddWorkerController;
-import org.reparationservice.rest.requestor.InteractorActivator;
+import org.reparationservice.rest.requestor.InteractorFactoryImpl;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.reparationservice.rest.utils.TestUtil;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import doubles.InteractorActivatorStub;
+import doubles.InteractorFactoryStub;
 import reparationservice.Configurator;
 import reparationservice.gateways.WorkerGateway;
 
@@ -33,11 +33,11 @@ public class AddWorkerCtrlTest {
   private WorkerGateway workerGW;
 
   public class Unit {
-    private InteractorActivatorStub intActivatorStub;
+    private InteractorFactoryStub intActivatorStub;
 
     @Before
     public void setup() throws Exception {
-      intActivatorStub = InteractorActivatorStub.newInstance();
+      intActivatorStub = InteractorFactoryStub.newInstance();
       addWorkerCtrl = new AddWorkerController(intActivatorStub);
       mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
       sendWorkerPostRequestFor(WORKER_USERNAME_1);
@@ -46,7 +46,7 @@ public class AddWorkerCtrlTest {
     @Test
     public void callToAddWorkerInteractor() throws Exception {
       assertThat(intActivatorStub.getCalledInteractorName()).isEqualTo(
-          InteractorActivator.ADD_WORKER_INTERACTOR);
+          InteractorFactoryImpl.ADD_WORKER_INTERACTOR);
     }
     
     @Test
@@ -59,7 +59,7 @@ public class AddWorkerCtrlTest {
     @Before
     public void setup() {
       workerGW = Configurator.getWorkerGateway();
-      addWorkerCtrl = new AddWorkerController(new InteractorActivator(workerGW));
+      addWorkerCtrl = new AddWorkerController(new InteractorFactoryImpl(workerGW));
       mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
     }
 

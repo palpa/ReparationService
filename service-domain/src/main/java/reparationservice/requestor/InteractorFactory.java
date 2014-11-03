@@ -1,4 +1,4 @@
-package org.reparationservice.rest.requestor;
+package reparationservice.requestor;
 
 import reparationservice.interactors.Interactor;
 

@@ -1,6 +1,5 @@
 package org.reparationservice.rest.controllers;
 
-import org.reparationservice.rest.requestor.InteractorFactory;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.VndErrors;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import reparationservice.interactors.AddWorkerInteractor.WorkerAlreadyExists;
 import reparationservice.interactors.Interactor;
+import reparationservice.requestor.InteractorFactory;
 import reparationservice.requests.AddWorkerRequest;
 import reparationservice.requests.Request;
 
