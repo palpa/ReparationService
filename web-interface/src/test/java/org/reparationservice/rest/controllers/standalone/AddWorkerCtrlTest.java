@@ -33,14 +33,25 @@ public class AddWorkerCtrlTest {
   private WorkerGateway workerGW;
 
   public class Unit {
-    @Test
-    public void callToAddWorkerInteractor() throws Exception {
-      InteractorActivatorStub intActivatorStub = InteractorActivatorStub.newInstance();
+    private InteractorActivatorStub intActivatorStub;
+
+    @Before
+    public void setup() throws Exception {
+      intActivatorStub = InteractorActivatorStub.newInstance();
       addWorkerCtrl = new AddWorkerController(intActivatorStub);
       mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
       sendWorkerPostRequestFor(WORKER_USERNAME_1);
+    }
+
+    @Test
+    public void callToAddWorkerInteractor() throws Exception {
       assertThat(intActivatorStub.getCalledInteractorName()).isEqualTo(
           InteractorActivator.ADD_WORKER_INTERACTOR);
+    }
+    
+    @Test
+    public void executeWasCalled() throws Exception {
+      assertThat(intActivatorStub.wasExecuteCalled()).isTrue();
     }
   }
 
