@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
-import reparationservice.Configurator;
-import reparationservice.gateways.WorkerGateway;
+import reparationservice.entities.worker.WorkerGateway;
+import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
 
 @Configuration
 @ComponentScan
@@ -21,7 +21,7 @@ public class Application {
 
   @Bean
   WorkerGateway getWorkerGW() {
-    return Configurator.getWorkerGateway();
+    return InMemoryConfigurator.getWorkerGateway();
   }
   
   @Configuration

@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
-import reparationservice.interactors.requests.AddWorkerRequest;
 import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseRequest;
+import reparationservice.usecases.worker.AddWorkerRequest;
 
 public class RequestBuilderTest {
   private static final String USERNAME_PARAM_KEY = "username";

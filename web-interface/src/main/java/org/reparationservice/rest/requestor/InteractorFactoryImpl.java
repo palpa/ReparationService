@@ -3,10 +3,10 @@ package org.reparationservice.rest.requestor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import reparationservice.gateways.WorkerGateway;
-import reparationservice.interactors.AddWorkerInteractor;
+import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.InteractorFactory;
+import reparationservice.usecases.worker.AddWorkerInteractor;
 
 @Component
 public class InteractorFactoryImpl implements InteractorFactory {

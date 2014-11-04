@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import reparationservice.entities.Worker;
-import reparationservice.gateways.WorkerGateway;
+import reparationservice.entities.worker.Worker;
+import reparationservice.entities.worker.WorkerGateway;
 
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class AddWorkerControllerTest extends ControllerTest {

@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Component;
 
-import reparationservice.interactors.requests.AddWorkerRequest;
 import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseRequest;
+import reparationservice.usecases.worker.AddWorkerRequest;
 
 @Component
 public class RequestBuilderImpl implements RequestBuilder {

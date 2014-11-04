@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import reparationservice.interactors.AddWorkerInteractor.WorkerAlreadyExists;
 import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseRequest;
+import reparationservice.usecases.worker.AddWorkerInteractor.WorkerAlreadyExists;
 
 @RestController
 public class AddWorkerController {
