@@ -5,7 +5,7 @@ import java.util.HashMap;
 import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseRequest;
 
-public class RequestBuilderStub implements RequestBuilder {
+public class DynamicRequestBuilderStub implements RequestBuilder {
   private String requestName;
   private HashMap<String, Object> args;
   private boolean buildCalled = false;

@@ -17,7 +17,7 @@ public class RequestBuilderTest {
 
   @Test
   public void buildAddWorkerRequest() {
-    RequestBuilder reqBuilder = new RequestBuilderImpl();
+    RequestBuilder reqBuilder = new DynamicRequestBuilderImpl();
     String requestName = "AddWorkerRequest";
     HashMap<String, Object> args = new HashMap<String, Object>();
     args.put(USERNAME_PARAM_KEY, WORKER_USERNAME);

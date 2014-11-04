@@ -1,14 +1,7 @@
 package reparationservice.requestor;
 
+import reparationservice.usecases.worker.AddWorkerInteractorFactory;
 
-public interface InteractorFactory {
-  public abstract UseCaseActivator make(String interactorName);
+public abstract class InteractorFactory implements AddWorkerInteractorFactory{
 
-  public class InteractorNotFound extends RuntimeException {
-    private static final long serialVersionUID = -1309890475717132287L;
-
-    public InteractorNotFound() {
-      super("Interactor not found");
-    }
-  }
 }

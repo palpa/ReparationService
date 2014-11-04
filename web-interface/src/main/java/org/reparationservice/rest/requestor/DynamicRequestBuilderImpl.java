@@ -9,7 +9,7 @@ import reparationservice.requestor.UseCaseRequest;
 import reparationservice.usecases.worker.AddWorkerRequest;
 
 @Component
-public class RequestBuilderImpl implements RequestBuilder {
+public class DynamicRequestBuilderImpl implements RequestBuilder {
   public static final String USERNAME_PARAM_KEY = "username";
 
   @Override

@@ -11,15 +11,17 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.reparationservice.rest.controllers.AddWorkerController;
-import org.reparationservice.rest.requestor.InteractorFactoryImpl;
-import org.reparationservice.rest.requestor.RequestBuilderImpl;
+import org.reparationservice.rest.requestor.DynamicRequestBuilderImpl;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.reparationservice.rest.utils.TestUtil;
+import org.reparationservice.rest.utils.doubles.DynamicRequestBuilderStub;
 import org.reparationservice.rest.utils.doubles.InteractorFactoryStub;
-import org.reparationservice.rest.utils.doubles.RequestBuilderStub;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import reparationservice.entities.worker.WorkerGateway;
+import reparationservice.entities.worker.WorkerGatewaySpy;
 
 public class AddWorkerCtrlTest {
   private static final String WORKER_USERNAME_1 = "username1";
@@ -28,21 +30,23 @@ public class AddWorkerCtrlTest {
   private AddWorkerController addWorkerCtrl;
   private MockMvc mockMvc;
   private InteractorFactoryStub intFactoryStub;
-  private RequestBuilderStub requestBuilderStub;
+  private DynamicRequestBuilderStub requestBuilderStub;
+  private WorkerGateway workerGW;
 
   @Before
   public void setup() throws Exception {
     intFactoryStub = InteractorFactoryStub.newInstance();
-    requestBuilderStub = new RequestBuilderStub();
-    addWorkerCtrl = new AddWorkerController(intFactoryStub, requestBuilderStub);
+    requestBuilderStub = new DynamicRequestBuilderStub();
+    workerGW = new WorkerGatewaySpy();
+    addWorkerCtrl = new AddWorkerController(intFactoryStub, workerGW, requestBuilderStub);
     mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
     sendWorkerPostRequestFor(WORKER_USERNAME_1);
   }
 
   @Test
-  public void callToAddWorkerInteractor() throws Exception {
-    assertThat(intFactoryStub.getCalledInteractorName()).isEqualTo(
-        InteractorFactoryImpl.ADD_WORKER_INTERACTOR);
+  public void callToAddWorkerInteractorWithGivenGW() throws Exception {
+    assertThat(intFactoryStub.wasMakeAddWorkerInteractorCalled()).isTrue();
+    assertThat(intFactoryStub.getWorkerGateway()).isInstanceOf(workerGW.getClass());
   }
 
   @Test
@@ -64,7 +68,7 @@ public class AddWorkerCtrlTest {
         .isTrue();
     HashMap<String, Object> args = new HashMap<String, Object>();
 
-    args.put(RequestBuilderImpl.USERNAME_PARAM_KEY, workerUsername);
+    args.put(DynamicRequestBuilderImpl.USERNAME_PARAM_KEY, workerUsername);
     assertThat(
         requestBuilderStub.withArgs(args))
         .isTrue();

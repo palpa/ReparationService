@@ -16,19 +16,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import reparationservice.entities.worker.WorkerGateway;
+import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseActivator;
-import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseRequest;
 import reparationservice.usecases.worker.AddWorkerInteractor.WorkerAlreadyExists;
 
 @RestController
 public class AddWorkerController {
   private final InteractorFactory intFactory;
+  private WorkerGateway workers;
   private final RequestBuilder requestBuilder;
 
   @Autowired
-  public AddWorkerController(InteractorFactory intFactory, RequestBuilder requestBuilder) {
+  public AddWorkerController(InteractorFactory intFactory, WorkerGateway workers,
+      RequestBuilder requestBuilder) {
+    this.workers = workers;
     this.intFactory = intFactory;
     this.requestBuilder = requestBuilder;
   }
@@ -38,8 +42,8 @@ public class AddWorkerController {
     HashMap<String, Object> args = new HashMap<String, Object>();
     args.put("username", workerReq.getUsername());
     UseCaseRequest request = requestBuilder.build("AddWorkerRequest", args);
-    
-    UseCaseActivator interactor = intFactory.make("AddWorkerInteractor");
+
+    UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers);
     interactor.execute(request);
 
     return new ResponseEntity<>(HttpStatus.CREATED);
