@@ -1,5 +1,7 @@
 package org.reparationservice.rest.controllers;
 
+import java.util.HashMap;
+
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.VndErrors;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import reparationservice.interactors.AddWorkerInteractor.WorkerAlreadyExists;
-import reparationservice.interactors.requests.AddWorkerRequest;
+import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseRequest;
@@ -23,21 +25,25 @@ import reparationservice.requestor.UseCaseRequest;
 @RestController
 public class AddWorkerController {
   private final InteractorFactory intFactory;
+  private final RequestBuilder requestBuilder;
 
   @Autowired
-  public AddWorkerController(InteractorFactory intFactory) {
+  public AddWorkerController(InteractorFactory intFactory, RequestBuilder requestBuilder) {
     this.intFactory = intFactory;
+    this.requestBuilder = requestBuilder;
   }
 
   @RequestMapping(value = "/workers", method = RequestMethod.POST)
   ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
+    HashMap<String, Object> args = new HashMap<String, Object>();
+    args.put("username", workerReq.getUsername());
+    UseCaseRequest request = requestBuilder.build("AddWorkerRequest", args);
+    
     UseCaseActivator interactor = intFactory.make("AddWorkerInteractor");
-    UseCaseRequest request = new AddWorkerRequest(workerReq.getUsername());
     interactor.execute(request);
 
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
-
 
   @ControllerAdvice
   public static class AddWorkerControllerAdvice {

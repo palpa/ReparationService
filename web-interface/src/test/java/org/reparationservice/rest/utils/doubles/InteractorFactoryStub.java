@@ -1,4 +1,4 @@
-package doubles;
+package org.reparationservice.rest.utils.doubles;
 
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.InteractorFactory;
