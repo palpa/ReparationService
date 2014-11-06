@@ -1,7 +1,5 @@
 package org.reparationservice.rest.controllers;
 
-import java.util.HashMap;
-
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.VndErrors;
@@ -17,21 +15,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.requestor.InteractorFactory;
-import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
 import reparationservice.usecases.worker.AddWorkerInteractor.WorkerAlreadyExists;
+import reparationservice.usecases.worker.AddWorkerInteractorFactory;
+import reparationservice.usecases.worker.AddWorkerRequestBuilder;
 
 @RestController
 public class AddWorkerController {
-  private final InteractorFactory intFactory;
+  private final AddWorkerInteractorFactory intFactory;
   private WorkerGateway workers;
-  private final RequestBuilder requestBuilder;
+  private final AddWorkerRequestBuilder requestBuilder;
 
   @Autowired
-  public AddWorkerController(InteractorFactory intFactory, WorkerGateway workers,
-      RequestBuilder requestBuilder) {
+  public AddWorkerController(AddWorkerInteractorFactory intFactory,
+      WorkerGateway workers,
+      AddWorkerRequestBuilder requestBuilder) {
     this.workers = workers;
     this.intFactory = intFactory;
     this.requestBuilder = requestBuilder;
@@ -39,13 +38,10 @@ public class AddWorkerController {
 
   @RequestMapping(value = "/workers", method = RequestMethod.POST)
   ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
-    HashMap<String, Object> args = new HashMap<String, Object>();
-    args.put("username", workerReq.getUsername());
-    UseCaseRequest request = requestBuilder.build("AddWorkerRequest", args);
-
+    UseCaseRequest request = requestBuilder
+        .buildAddWorkerRequest(workerReq.getUsername());
     UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers);
     interactor.execute(request);
-
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

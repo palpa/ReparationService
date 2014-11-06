@@ -2,10 +2,10 @@ package org.reparationservice.rest.utils.doubles;
 
 import java.util.HashMap;
 
-import reparationservice.requestor.RequestBuilder;
+import reparationservice.requestor.DynamicRequestBuilder;
 import reparationservice.requestor.UseCaseRequest;
 
-public class DynamicRequestBuilderStub implements RequestBuilder {
+public class DynamicRequestBuilderStub implements DynamicRequestBuilder {
   private String requestName;
   private HashMap<String, Object> args;
   private boolean buildCalled = false;
