@@ -5,7 +5,7 @@ import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
 
-public class InteractorFactoryStub extends InteractorFactory{
+public class InteractorFactoryStub implements InteractorFactory{
   protected boolean executeCalled;
   private boolean makeAddWorkerInteractorCalled = false;
   private WorkerGateway workers;

@@ -8,7 +8,7 @@ import reparationservice.requestor.UseCaseActivator;
 import reparationservice.usecases.worker.AddWorkerInteractor;
 
 @Component
-public class InteractorFactoryImpl extends InteractorFactory {
+public class InteractorFactoryImpl implements InteractorFactory {
   @Override
   public UseCaseActivator makeAddWorkerInteractor(WorkerGateway workers) {
     return new AddWorkerInteractor(workers);

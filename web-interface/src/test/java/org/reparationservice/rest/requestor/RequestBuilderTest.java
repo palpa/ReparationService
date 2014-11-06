@@ -13,7 +13,7 @@ public class RequestBuilderTest {
 
   @Test
   public void buildAddWorkerRequest() {
-    AddWorkerRequestBuilder builder = new RequestBuilder();
+    AddWorkerRequestBuilder builder = new RequestBuilderImpl();
     UseCaseRequest request = builder.buildAddWorkerRequest(WORKER_USERNAME);
     assertThat(request).isInstanceOf(AddWorkerRequest.class);
     assertThat(((AddWorkerRequest) request).getUserName()).isEqualTo(WORKER_USERNAME);
