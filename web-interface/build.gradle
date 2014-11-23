@@ -21,10 +21,11 @@ jar {
 targetCompatibility = 1.7
 
 dependencies {
- 	compile project(':service-domain')	
+    compile project(':service-domain')	
     compile("org.springframework.boot:spring-boot-starter-web")
     compile 'org.springframework.hateoas:spring-hateoas'
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile project(':service-domain').sourceSets.test.output
 }
 
 eclipse {
