@@ -6,4 +6,6 @@ deploy:
   provider: heroku
   api_key:
     secure: cbdc52ogeGco4tI3CAVxpbYtIZzRjw3y9xa/BLtAcBm5X6xzOlTMG6Dym5fLHu2N/ojt8skISK7a0Q05AgNk0+G8M0s4mWVIt2cowmifmFTWuLoi4FcBJ7yFLNjbinSiHWE6oQvBKgkLfvcVw/EWc9DZiJo11IhdKw5eA71Ht+U=
-  app: reparation-service
+  app: 
+    master: reparation-service
+    test: reparation-service-test
