@@ -1,5 +1,7 @@
 package reparationservice.entities.worker;
 
+import java.util.List;
+
 import reparationservice.entities.worker.Worker;
 import reparationservice.entities.worker.WorkerDTO;
 import reparationservice.entities.worker.WorkerGateway;
@@ -25,4 +27,9 @@ public class WorkerGatewaySpy implements WorkerGateway {
 	public Worker getWorker() {
 		return worker;
 	}
+
+  @Override
+  public List<Worker> getAllWorkers() {
+    return null;
+  }
 }

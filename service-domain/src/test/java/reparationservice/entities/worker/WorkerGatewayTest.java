@@ -1,6 +1,9 @@
 package reparationservice.entities.worker;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +41,19 @@ public class WorkerGatewayTest {
 		Worker worker2 = workers
 				.getWorkerByUserName(WORKER_USER_NAME_2);
 		assertThat(worker2.getUserName()).isEqualTo(WORKER_USER_NAME_2);
+	}
+	
+	@Test
+  public void testGetAllWorkers() {
+	  List<Worker> workerList = workers.getAllWorkers();
+	  assertNotNull(workerList);
+	  assertTrue(workerList.isEmpty());
+	  
+	  workers.addWorker(newWorkerDTO(WORKER_USER_NAME_1));
+	  workerList = workers.getAllWorkers();
+	  assertFalse(workerList.isEmpty());
+	  assertEquals(1, workerList.size());
+	  assertEquals(WORKER_USER_NAME_1, workerList.get(0).getUserName());
 	}
 
 	private WorkerDTO newWorkerDTO(String userName) {
