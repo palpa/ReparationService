@@ -40,8 +40,8 @@ public class AddWorkerController {
   ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
     UseCaseRequest request = requestBuilder
         .buildAddWorkerRequest(workerReq.getUsername());
-    UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers);
-    interactor.execute(request);
+    UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers, request);
+    interactor.execute();
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

@@ -2,7 +2,6 @@ package reparationservice.usecases.worker;
 
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
-import reparationservice.requestor.UseCaseRequest;
 
 public class GetAllWorkerInteractor implements UseCaseActivator {
   private final GetAllWorkersResponder allWorkersPresenter;
@@ -19,7 +18,7 @@ public class GetAllWorkerInteractor implements UseCaseActivator {
   }
 
   @Override
-  public void execute(UseCaseRequest request) {
+  public void execute() {
     allWorkersPresenter.bindModel(workerGateway.getAllWorkers());
   }
 

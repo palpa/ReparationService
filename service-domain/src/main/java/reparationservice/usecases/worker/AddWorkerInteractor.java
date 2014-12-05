@@ -6,16 +6,18 @@ import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
 
-public class AddWorkerInteractor implements UseCaseActivator {
-	private WorkerGateway workers;
+public final class AddWorkerInteractor implements UseCaseActivator {
+	private final WorkerGateway workers;
+  private final UseCaseRequest request;
 
-	public AddWorkerInteractor(WorkerGateway workers) {
+	public AddWorkerInteractor(WorkerGateway workers, UseCaseRequest request) {
 		this.workers = workers;
+		this.request = request;
 	}
 
 	@Override
-	public void execute(UseCaseRequest request) {
-		String workerUserName = ((AddWorkerRequest) request).getUserName();
+	public void execute() {
+		String workerUserName = ((AddWorkerRequest) this.request).getUserName();
 		
 		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
 			throw new WorkerAlreadyExists();

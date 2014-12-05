@@ -9,6 +9,7 @@ import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.entities.worker.WorkerGatewaySpy;
 import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseActivator;
+import reparationservice.requestor.UseCaseRequest;
 import reparationservice.usecases.worker.AddWorkerInteractor;
 import reparationservice.usecases.worker.GetAllWorkerInteractor;
 import reparationservice.usecases.worker.GetAllWorkersResponderSpy;
@@ -25,8 +26,9 @@ public class InteractorFactoryTest {
 
   @Test
   public void makeAddWorkerInteractor() {   
+    UseCaseRequest request = null;
     UseCaseActivator addWorkerInteractor = intFactory
-        .makeAddWorkerInteractor(workerGateway);
+        .makeAddWorkerInteractor(workerGateway, request);
     assertThat(addWorkerInteractor).isInstanceOf(AddWorkerInteractor.class);
     assertThat(((AddWorkerInteractor) addWorkerInteractor).getGateway()).isInstanceOf(
         workerGateway.getClass());

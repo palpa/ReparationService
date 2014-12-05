@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.DynamicInteractorFactory;
+import reparationservice.requestor.UseCaseRequest;
 import reparationservice.usecases.worker.AddWorkerInteractor;
 
 @Component
@@ -20,8 +21,9 @@ public class DynamicInteractorFactoryImpl implements DynamicInteractorFactory {
 
   @Override
   public UseCaseActivator make(String interactorName) {
+    UseCaseRequest request = null;
     if (interactorName == ADD_WORKER_INTERACTOR)
-      return new AddWorkerInteractor(workerGW);
+      return new AddWorkerInteractor(workerGW, request);
     throw new InteractorNotFound();
   }
 }
