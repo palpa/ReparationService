@@ -16,13 +16,12 @@ public class AddWorkerInteractorTest {
   private static final String WORKER_USERNAME = "username";
   private UseCaseActivator addWorker;
   private WorkerGatewaySpy workersSpy;
-  private UseCaseRequest request;
 
   @Before
   public void givenAddWorkerInteractor() {
     workersSpy = new WorkerGatewaySpy();
-    addWorker = new AddWorkerInteractor(workersSpy);
-    request = new AddWorkerRequest(WORKER_USERNAME);
+    UseCaseRequest request = new AddWorkerRequest(WORKER_USERNAME);
+    addWorker = new AddWorkerInteractor(workersSpy, request);
   }
 
   @Test
@@ -38,7 +37,7 @@ public class AddWorkerInteractorTest {
 
   @Test
   public void executeAddOperation() {
-    addWorker.execute(request);
+    addWorker.execute(null);
     assertThat(workersSpy.addWorkerWasCalled()).isTrue();
     Worker worker = workersSpy.getWorker();
     assertThat(worker.getUserName()).isEqualTo(WORKER_USERNAME);
@@ -46,7 +45,7 @@ public class AddWorkerInteractorTest {
 
   @Test(expected = AddWorkerInteractor.WorkerAlreadyExists.class)
   public void throwWorkerAlreadyExistsWhenTwoWorkersWithSameUserNameAdded() {
-    addWorker.execute(request);
-    addWorker.execute(request);
+    addWorker.execute(null);
+    addWorker.execute(null);
   }
 }
