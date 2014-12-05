@@ -26,7 +26,7 @@ public class GetAllWorkersInteractorTest {
     WorkerGateway workerGateway = new GetAllWorkersGatewaySpy();
     
     UseCaseActivator getAllWorkers = new GetAllWorkerInteractor(workerGateway, allWorkersPresenter);
-    getAllWorkers.execute(null);
+    getAllWorkers.execute();
 
     GetAllWorkersGatewaySpy workerGatewaySpy = (GetAllWorkersGatewaySpy) workerGateway;
     assertTrue(workerGatewaySpy.getAllWorkersWasCalled());

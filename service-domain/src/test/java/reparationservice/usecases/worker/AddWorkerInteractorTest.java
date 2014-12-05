@@ -37,7 +37,7 @@ public class AddWorkerInteractorTest {
 
   @Test
   public void executeAddOperation() {
-    addWorker.execute(null);
+    addWorker.execute();
     assertThat(workersSpy.addWorkerWasCalled()).isTrue();
     Worker worker = workersSpy.getWorker();
     assertThat(worker.getUserName()).isEqualTo(WORKER_USERNAME);
@@ -45,7 +45,7 @@ public class AddWorkerInteractorTest {
 
   @Test(expected = AddWorkerInteractor.WorkerAlreadyExists.class)
   public void throwWorkerAlreadyExistsWhenTwoWorkersWithSameUserNameAdded() {
-    addWorker.execute(null);
-    addWorker.execute(null);
+    addWorker.execute();
+    addWorker.execute();
   }
 }

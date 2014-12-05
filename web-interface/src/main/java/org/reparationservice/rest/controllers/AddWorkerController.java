@@ -41,7 +41,7 @@ public class AddWorkerController {
     UseCaseRequest request = requestBuilder
         .buildAddWorkerRequest(workerReq.getUsername());
     UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers, request);
-    interactor.execute(null);
+    interactor.execute();
     return new ResponseEntity<>(HttpStatus.CREATED);
   }
 

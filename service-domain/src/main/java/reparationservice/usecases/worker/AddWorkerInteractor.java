@@ -16,7 +16,7 @@ public final class AddWorkerInteractor implements UseCaseActivator {
 	}
 
 	@Override
-	public void execute(UseCaseRequest request) {
+	public void execute() {
 		String workerUserName = ((AddWorkerRequest) this.request).getUserName();
 		
 		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)

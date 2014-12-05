@@ -17,7 +17,7 @@ public final class AddReparationInteractor implements UseCaseActivator {
 	}
 
 	@Override
-	public void execute(UseCaseRequest request) {
+	public void execute() {
 		AddReparationRequest repReq = (AddReparationRequest) this.request;
 		Customer customer = customers.getCustomerById(repReq.getCustomerId());
 		if (customer == Customer.NULL)

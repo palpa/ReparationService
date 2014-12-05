@@ -32,7 +32,7 @@ public class AddDeviceTypeInteractorTest {
 
 	@Test
 	public void executeAddOperation() {
-		addDeviceType.execute(null);
+		addDeviceType.execute();
 		assertThat(devTypesSpy.addDeviceTypeWasCalled()).isTrue();
 		DeviceType deviceType = devTypesSpy.getDeviceType();
 		assertThat(deviceType.getDescription()).isEqualTo(
@@ -41,7 +41,7 @@ public class AddDeviceTypeInteractorTest {
 
 	@Test(expected = AddDeviceTypeInteractor.DeviceTypeAlreadyExists.class)
 	public void throwDeviceTypeAlreadyExistsWhenTwoDeviceTypesWithSameDescriptionAdded() {
-		addDeviceType.execute(null);
-		addDeviceType.execute(null);
+		addDeviceType.execute();
+		addDeviceType.execute();
 	}
 }

@@ -30,7 +30,7 @@ public class AddCustomerInteractorTest {
 	  AddCustomerRequest request = new AddCustomerRequest(CUSTOMER_ID);
 		UseCaseActivator addCustomer = new AddCustomerInteractor(customersSpy, request);
 			
-    addCustomer.execute(null);
+    addCustomer.execute();
 
 		assertThat(customersSpy.addCustomerWasCalled()).isTrue();
 		Customer addedCustomer = customersSpy.getCustomer();

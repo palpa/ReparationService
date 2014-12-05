@@ -35,7 +35,7 @@ public class AddWorkerInteractorFactoryStub implements AddWorkerInteractorFactor
 
   private final class InteractorStub implements UseCaseActivator {
     @Override
-    public void execute(UseCaseRequest request) {
+    public void execute() {
       executeCalled = true;
     }
   }

@@ -34,7 +34,7 @@ public final class GetAllWorkersController implements GetAllWorkersResponder {
   @RequestMapping(method = RequestMethod.GET)
   ResponseEntity<Resources<Worker>> getWorkers() {
     UseCaseActivator interactor = intFactory.makeGetAllWorkersInteractor(workers, this);
-    interactor.execute(null);
+    interactor.execute();
     Resources<Worker> res = new Resources<>(this.workerList);
     return new ResponseEntity<>(res, HttpStatus.OK);
   }

@@ -2,7 +2,6 @@ package org.reparationservice.rest.utils.doubles;
 
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.DynamicInteractorFactory;
-import reparationservice.requestor.UseCaseRequest;
 
 public final class DynamicInteractorFactoryStub implements DynamicInteractorFactory {
   private String interactorName;
@@ -13,7 +12,7 @@ public final class DynamicInteractorFactoryStub implements DynamicInteractorFact
     this.interactorName = interactorName;
     return new UseCaseActivator() {
       @Override
-      public void execute(UseCaseRequest request) {
+      public void execute() {
         executeCalled = true;
       }
     };
