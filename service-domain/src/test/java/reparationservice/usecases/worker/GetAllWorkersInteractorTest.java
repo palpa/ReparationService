@@ -9,11 +9,22 @@ import reparationservice.entities.worker.GetAllWorkersGatewaySpy;
 import reparationservice.requestor.UseCaseActivator;
 
 public class GetAllWorkersInteractorTest {
+  
+  @Test(expected = GetAllWorkerInteractor.WorkerGatewayNotNull.class)
+  public void throwExeptionWhenNullGatewayPassed() {
+    new GetAllWorkerInteractor(null, new GetAllWorkersResponderSpy());
+  }
+  
+  @Test(expected = GetAllWorkerInteractor.PresenterNotNull.class)
+  public void throwExeptionWhenNullPresenterPassed() {
+    new GetAllWorkerInteractor(new GetAllWorkersGatewaySpy(), null);
+  }
+  
   @Test
   public void returnsAllWorkersWhenExecuteIsCalled() {
     GetAllWorkersResponder allWorkersPresenter = new GetAllWorkersResponderSpy();
-    
     WorkerGateway workerGateway = new GetAllWorkersGatewaySpy();
+    
     UseCaseActivator getAllWorkers = new GetAllWorkerInteractor(workerGateway, allWorkersPresenter);
     getAllWorkers.execute(null);
 

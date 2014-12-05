@@ -10,6 +10,10 @@ public class GetAllWorkerInteractor implements UseCaseActivator {
 
   public GetAllWorkerInteractor(WorkerGateway workerGateway,
       GetAllWorkersResponder allWorkersPresenter) {
+    if (workerGateway == null)
+      throw new WorkerGatewayNotNull();
+    if (allWorkersPresenter == null)
+      throw new PresenterNotNull();
     this.workerGateway = workerGateway;
     this.allWorkersPresenter = allWorkersPresenter;
   }
@@ -17,5 +21,13 @@ public class GetAllWorkerInteractor implements UseCaseActivator {
   @Override
   public void execute(UseCaseRequest request) {
     allWorkersPresenter.bindModel(workerGateway.getAllWorkers());
+  }
+
+  public class WorkerGatewayNotNull extends RuntimeException {
+    private static final long serialVersionUID = -2219845456935531878L;
+  }
+
+  public class PresenterNotNull extends RuntimeException {
+    private static final long serialVersionUID = 2553548905696488214L;
   }
 }
