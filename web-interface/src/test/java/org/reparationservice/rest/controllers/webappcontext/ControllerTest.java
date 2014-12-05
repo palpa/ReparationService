@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.reparationservice.rest.Application;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -27,8 +28,7 @@ public abstract class ControllerTest {
 	@Autowired
 	protected WebApplicationContext wac;
 	protected MockMvc mockMvc;
-	protected final MediaType contentType = new MediaType(
-			"application", "hal+json");
+	protected final MediaType contentType = MediaTypes.HAL_JSON;
 	
 	private MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = null;
 	@Autowired

@@ -24,7 +24,10 @@ dependencies {
     compile project(':service-domain')	
     compile("org.springframework.boot:spring-boot-starter-web")
     compile 'org.springframework.hateoas:spring-hateoas'
+    //Needed by spring-hateoas @EnableHypermediaSupport annotation
+	compile ("org.springframework.plugin:spring-plugin-core:1.1.0.RELEASE")
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("com.jayway.jsonpath:json-path:0.9.1")
     testCompile project(':service-domain').sourceSets.test.output
 }
 
