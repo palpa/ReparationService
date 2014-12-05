@@ -1,11 +1,11 @@
 package org.reparationservice.rest.utils.doubles;
 
 import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
+import reparationservice.usecases.worker.AddWorkerInteractorFactory;
 
-public class InteractorFactoryStub implements InteractorFactory{
+public class AddWorkerInteractorFactoryStub implements AddWorkerInteractorFactory{
   protected boolean executeCalled;
   private boolean makeAddWorkerInteractorCalled = false;
   private WorkerGateway workers;
@@ -29,8 +29,8 @@ public class InteractorFactoryStub implements InteractorFactory{
     return executeCalled;
   }
   
-  public static InteractorFactoryStub newInstance() {
-    return new InteractorFactoryStub();
+  public static AddWorkerInteractorFactoryStub newInstance() {
+    return new AddWorkerInteractorFactoryStub();
   }
   
   private final class InteractorStub implements UseCaseActivator {

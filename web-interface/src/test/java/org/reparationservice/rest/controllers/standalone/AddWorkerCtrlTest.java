@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.reparationservice.rest.controllers.AddWorkerController;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.reparationservice.rest.utils.TestUtil;
-import org.reparationservice.rest.utils.doubles.InteractorFactoryStub;
+import org.reparationservice.rest.utils.doubles.AddWorkerInteractorFactoryStub;
 import org.reparationservice.rest.utils.doubles.RequestBuilderStub;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,13 +26,13 @@ public class AddWorkerCtrlTest {
   private static final MediaType JSON_HAL_CONTENT_TYPE = TestUtil.JSON_HAL_CONTENT_TYPE;
   private AddWorkerController addWorkerCtrl;
   private MockMvc mockMvc;
-  private InteractorFactoryStub intFactoryStub;
+  private AddWorkerInteractorFactoryStub intFactoryStub;
   private RequestBuilderStub requestBuilderStub;
   private WorkerGateway workerGW;
 
   @Before
   public void setup() throws Exception {
-    intFactoryStub = InteractorFactoryStub.newInstance();
+    intFactoryStub = AddWorkerInteractorFactoryStub.newInstance();
     requestBuilderStub = new RequestBuilderStub();
     workerGW = new WorkerGatewaySpy();
     addWorkerCtrl = new AddWorkerController(intFactoryStub, workerGW, requestBuilderStub);
