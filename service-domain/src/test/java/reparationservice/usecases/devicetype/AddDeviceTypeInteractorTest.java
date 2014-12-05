@@ -16,13 +16,13 @@ public class AddDeviceTypeInteractorTest {
 	private static final String DEVICE_TYPE_DESCRIPTION = "Description";
 	private DeviceTypeGatewaySpy devTypesSpy;
 	private UseCaseActivator addDeviceType;
-	private UseCaseRequest request;
 
 	@Before
 	public void givenAddDeviceTypeInteractor() {
 		devTypesSpy = new DeviceTypeGatewaySpy();
-		addDeviceType = new AddDeviceTypeInteractor(devTypesSpy);
-		request = new AddDeviceTypeRequest(DEVICE_TYPE_DESCRIPTION);
+		UseCaseRequest request = new AddDeviceTypeRequest(DEVICE_TYPE_DESCRIPTION);
+		addDeviceType = new AddDeviceTypeInteractor(devTypesSpy, request);
+		
 	}
 
 	@Test
@@ -32,7 +32,7 @@ public class AddDeviceTypeInteractorTest {
 
 	@Test
 	public void executeAddOperation() {
-		addDeviceType.execute(request);
+		addDeviceType.execute(null);
 		assertThat(devTypesSpy.addDeviceTypeWasCalled()).isTrue();
 		DeviceType deviceType = devTypesSpy.getDeviceType();
 		assertThat(deviceType.getDescription()).isEqualTo(
@@ -41,7 +41,7 @@ public class AddDeviceTypeInteractorTest {
 
 	@Test(expected = AddDeviceTypeInteractor.DeviceTypeAlreadyExists.class)
 	public void throwDeviceTypeAlreadyExistsWhenTwoDeviceTypesWithSameDescriptionAdded() {
-		addDeviceType.execute(request);
-		addDeviceType.execute(request);
+		addDeviceType.execute(null);
+		addDeviceType.execute(null);
 	}
 }

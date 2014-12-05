@@ -5,16 +5,18 @@ import reparationservice.entities.devicetype.DeviceTypeGateway;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
 
-public class AddDeviceTypeInteractor implements UseCaseActivator {
-	private DeviceTypeGateway deviceTypes;
+public final class AddDeviceTypeInteractor implements UseCaseActivator {
+	private final DeviceTypeGateway deviceTypes;
+  private final UseCaseRequest request;
 
-	public AddDeviceTypeInteractor(DeviceTypeGateway deviceTypes) {
+	public AddDeviceTypeInteractor(DeviceTypeGateway deviceTypes, UseCaseRequest request) {
 		this.deviceTypes = deviceTypes;
+		this.request = request;
 	}
 
 	@Override
 	public void execute(UseCaseRequest request) {
-		AddDeviceTypeRequest dtReq = (AddDeviceTypeRequest) request;
+		AddDeviceTypeRequest dtReq = (AddDeviceTypeRequest) this.request;
 		String deviceTypeDescription = dtReq.getDescription();
 		
 		if (deviceTypes.getDeviceTypeBy(deviceTypeDescription) != DeviceType.NULL)
