@@ -1,5 +1,6 @@
 package org.reparationservice.rest.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,17 +35,16 @@ public final class GetAllWorkersController implements GetAllWorkersResponder {
   ResponseEntity<Resources<Worker>> getWorkers() {
     UseCaseActivator interactor = intFactory.makeGetAllWorkersInteractor(workers, this);
     interactor.execute(null);
-    Resources<Worker> res = new Resources<>(this.getModel());
+    Resources<Worker> res = new Resources<>(this.workerList);
     return new ResponseEntity<>(res, HttpStatus.OK);
   }
 
   @Override
-  public List<Worker> getModel() {
-    return workerList;
-  }
-
-  @Override
-  public void bindModel(List<Worker> workerList) {
-    this.workerList = workerList;
+  public void bindModel(Iterable<Worker> workerList) {
+    this.workerList = new ArrayList<Worker>();
+    
+    for (Worker worker : workerList) {
+      this.workerList.add(worker);
+    }
   }
 }
