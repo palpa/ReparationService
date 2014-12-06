@@ -30,8 +30,6 @@ public class InteractorFactoryTest {
     UseCaseActivator addWorkerInteractor = intFactory
         .makeAddWorkerInteractor(workerGateway, request);
     assertThat(addWorkerInteractor).isInstanceOf(AddWorkerInteractor.class);
-    assertThat(((AddWorkerInteractor) addWorkerInteractor).getGateway()).isInstanceOf(
-        workerGateway.getClass());
   }
 
   @Test

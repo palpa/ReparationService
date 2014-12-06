@@ -24,11 +24,7 @@ public final class AddWorkerInteractor implements UseCaseActivator {
 			
 		workers.addWorker(new WorkerDTO(workerUserName));	
 	}
-	
-  public WorkerGateway getGateway() {
-    return workers;
-  }
-	
+
 	public class WorkerAlreadyExists extends RuntimeException {
 		private static final long serialVersionUID = 3471396866818354971L;
 	}

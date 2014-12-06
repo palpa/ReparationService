@@ -25,12 +25,6 @@ public class AddWorkerInteractorTest {
   }
 
   @Test
-  public void gatewayWasConfigured() {
-    assertThat(((AddWorkerInteractor) addWorker).getGateway()).isInstanceOf(
-        WorkerGatewaySpy.class);
-  }
-
-  @Test
   public void gatewayWasNotCalledWhenInteractorNotYetExecuted() {
     assertThat(workersSpy.addWorkerWasCalled()).isFalse();
   }
