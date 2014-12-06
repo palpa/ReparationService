@@ -1,9 +1,9 @@
-package org.reparationservice.rest.utils.doubles;
+package org.reparationservice.rest.controllers.standalone.helpers.doubles;
 
 import reparationservice.requestor.UseCaseRequest;
 import reparationservice.usecases.worker.AddWorkerRequestBuilder;
 
-public class RequestBuilderStub implements AddWorkerRequestBuilder {
+public class AddWorkerRequestBuilderStub implements AddWorkerRequestBuilder {
   private boolean buildCalled = false;
   private String username;
 

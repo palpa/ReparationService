@@ -1,4 +1,4 @@
-package org.reparationservice.rest.utils.doubles;
+package org.reparationservice.rest.controllers.standalone.helpers.doubles;
 
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
