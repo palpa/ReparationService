@@ -10,6 +10,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
+import reparationservice.requestor.InteractorFactory;
+import reparationservice.requestor.RequestBuilder;
+import reparationservice.requestor.impl.InteractorFactoryImpl;
+import reparationservice.requestor.impl.RequestBuilderImpl;
 
 @Configuration
 @ComponentScan
@@ -22,6 +26,16 @@ public class Application {
   @Bean
   WorkerGateway getWorkerGW() {
     return InMemoryConfigurator.getWorkerGateway();
+  }
+  
+  @Bean
+  InteractorFactory getInteractorFactory() {
+    return new InteractorFactoryImpl();
+  }
+  
+  @Bean
+  RequestBuilder getRequestBuilder() {
+    return new RequestBuilderImpl();
   }
   
   @Configuration

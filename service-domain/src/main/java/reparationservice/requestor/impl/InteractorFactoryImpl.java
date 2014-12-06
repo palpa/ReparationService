@@ -1,6 +1,4 @@
-package org.reparationservice.rest.requestor;
-
-import org.springframework.stereotype.Component;
+package reparationservice.requestor.impl;
 
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.InteractorFactory;
@@ -10,7 +8,6 @@ import reparationservice.usecases.worker.AddWorkerInteractor;
 import reparationservice.usecases.worker.GetAllWorkerInteractor;
 import reparationservice.usecases.worker.GetAllWorkersResponder;
 
-@Component
 public class InteractorFactoryImpl implements InteractorFactory {
   @Override
   public UseCaseActivator makeAddWorkerInteractor(WorkerGateway workers, UseCaseRequest request) {

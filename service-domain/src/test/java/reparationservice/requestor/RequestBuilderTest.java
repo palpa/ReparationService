@@ -1,10 +1,11 @@
-package org.reparationservice.rest.requestor;
+package reparationservice.requestor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
 import reparationservice.requestor.UseCaseRequest;
+import reparationservice.requestor.impl.RequestBuilderImpl;
 import reparationservice.usecases.worker.AddWorkerRequest;
 import reparationservice.usecases.worker.AddWorkerRequestBuilder;
 

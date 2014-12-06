@@ -1,4 +1,4 @@
-package org.reparationservice.rest.requestor;
+package reparationservice.requestor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -10,6 +10,7 @@ import reparationservice.entities.worker.WorkerGatewaySpy;
 import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
+import reparationservice.requestor.impl.InteractorFactoryImpl;
 import reparationservice.usecases.worker.AddWorkerInteractor;
 import reparationservice.usecases.worker.GetAllWorkerInteractor;
 import reparationservice.usecases.worker.GetAllWorkersResponderSpy;
