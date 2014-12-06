@@ -1,8 +1,5 @@
 package org.reparationservice.rest.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
@@ -22,7 +19,7 @@ import reparationservice.usecases.worker.GetAllWorkersResponder;
 public final class GetAllWorkersController implements GetAllWorkersResponder {
   private final WorkerGateway workers;
   private final GetAllWorkersInteractorFactory intFactory;
-  private List<Worker> workerList;
+  private Iterable<Worker> workerList;
 
   @Autowired
   public GetAllWorkersController(GetAllWorkersInteractorFactory intFactory
@@ -41,10 +38,6 @@ public final class GetAllWorkersController implements GetAllWorkersResponder {
 
   @Override
   public void bindModel(Iterable<Worker> workerList) {
-    this.workerList = new ArrayList<Worker>();
-    
-    for (Worker worker : workerList) {
-      this.workerList.add(worker);
-    }
+    this.workerList = workerList;
   }
 }
