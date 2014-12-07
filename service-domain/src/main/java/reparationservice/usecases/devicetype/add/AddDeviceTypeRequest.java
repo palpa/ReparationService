@@ -1,4 +1,4 @@
-package reparationservice.usecases.devicetype;
+package reparationservice.usecases.devicetype.add;
 
 import reparationservice.requestor.UseCaseRequest;
 

@@ -1,7 +1,7 @@
 package org.reparationservice.rest.controllers.standalone.helpers.doubles;
 
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.AddWorkerRequestBuilder;
+import reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 
 public class AddWorkerRequestBuilderStub implements AddWorkerRequestBuilder {
   private boolean buildCalled = false;

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.AddWorkerInteractor.WorkerAlreadyExists;
-import reparationservice.usecases.worker.AddWorkerInteractorFactory;
-import reparationservice.usecases.worker.AddWorkerRequestBuilder;
+import reparationservice.usecases.worker.add.AddWorkerInteractor.WorkerAlreadyExists;
+import reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
+import reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 
 @RestController
 public class AddWorkerController {

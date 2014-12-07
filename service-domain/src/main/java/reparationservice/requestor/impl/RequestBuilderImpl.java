@@ -2,7 +2,7 @@ package reparationservice.requestor.impl;
 
 import reparationservice.requestor.RequestBuilder;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.AddWorkerRequest;
+import reparationservice.usecases.worker.add.AddWorkerRequest;
 
 public class RequestBuilderImpl implements RequestBuilder {
   @Override

@@ -1,4 +1,4 @@
-package reparationservice.usecases.reparation;
+package reparationservice.usecases.reparation.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,8 +15,6 @@ import reparationservice.entities.customer.NotEmptyCustomerSpy;
 import reparationservice.entities.customer.Reparation;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.reparation.AddReparationInteractor;
-import reparationservice.usecases.reparation.AddReparationRequest;
 
 @RunWith(HierarchicalContextRunner.class)
 public class AddReparationInteractorTest {

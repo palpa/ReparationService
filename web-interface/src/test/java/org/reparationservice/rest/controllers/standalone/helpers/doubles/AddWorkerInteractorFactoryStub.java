@@ -3,7 +3,7 @@ package org.reparationservice.rest.controllers.standalone.helpers.doubles;
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.AddWorkerInteractorFactory;
+import reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
 
 public class AddWorkerInteractorFactoryStub implements AddWorkerInteractorFactory {
   protected boolean executeCalled;

@@ -1,4 +1,4 @@
-package reparationservice.usecases.worker;
+package reparationservice.usecases.worker.getall;
 
 import static org.junit.Assert.*;
 

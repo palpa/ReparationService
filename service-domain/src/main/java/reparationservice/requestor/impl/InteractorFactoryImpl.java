@@ -4,9 +4,9 @@ import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.InteractorFactory;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.AddWorkerInteractor;
-import reparationservice.usecases.worker.GetAllWorkerInteractor;
-import reparationservice.usecases.worker.GetAllWorkersResponder;
+import reparationservice.usecases.worker.add.AddWorkerInteractor;
+import reparationservice.usecases.worker.getall.GetAllWorkerInteractor;
+import reparationservice.usecases.worker.getall.GetAllWorkersResponder;
 
 public class InteractorFactoryImpl implements InteractorFactory {
   @Override

@@ -1,5 +1,5 @@
 package reparationservice.requestor;
 
-import reparationservice.usecases.worker.AddWorkerRequestBuilder;
+import reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 
 public interface RequestBuilder extends AddWorkerRequestBuilder {}

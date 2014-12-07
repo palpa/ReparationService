@@ -1,4 +1,4 @@
-package reparationservice.usecases.customer;
+package reparationservice.usecases.customer.add;
 
 import reparationservice.requestor.UseCaseRequest;
 

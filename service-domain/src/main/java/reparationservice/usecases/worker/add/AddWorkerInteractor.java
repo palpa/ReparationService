@@ -1,4 +1,4 @@
-package reparationservice.usecases.worker;
+package reparationservice.usecases.worker.add;
 
 import reparationservice.entities.worker.Worker;
 import reparationservice.entities.worker.WorkerDTO;

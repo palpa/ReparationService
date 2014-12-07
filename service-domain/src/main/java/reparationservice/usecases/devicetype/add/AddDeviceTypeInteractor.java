@@ -1,4 +1,4 @@
-package reparationservice.usecases.devicetype;
+package reparationservice.usecases.devicetype.add;
 
 import reparationservice.entities.devicetype.DeviceType;
 import reparationservice.entities.devicetype.DeviceTypeGateway;

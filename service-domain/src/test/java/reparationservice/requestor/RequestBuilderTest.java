@@ -4,10 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import reparationservice.requestor.UseCaseRequest;
 import reparationservice.requestor.impl.RequestBuilderImpl;
-import reparationservice.usecases.worker.AddWorkerRequest;
-import reparationservice.usecases.worker.AddWorkerRequestBuilder;
+import reparationservice.usecases.worker.add.AddWorkerRequest;
+import reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 
 public class RequestBuilderTest {
   private static final String WORKER_USERNAME = "username";

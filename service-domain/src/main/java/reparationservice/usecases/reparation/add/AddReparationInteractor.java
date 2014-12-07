@@ -1,4 +1,4 @@
-package reparationservice.usecases.reparation;
+package reparationservice.usecases.reparation.add;
 
 import reparationservice.entities.customer.Customer;
 import reparationservice.entities.customer.CustomerGateway;

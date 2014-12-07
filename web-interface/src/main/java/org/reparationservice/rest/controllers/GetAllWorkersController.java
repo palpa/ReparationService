@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import reparationservice.entities.worker.Worker;
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
-import reparationservice.usecases.worker.GetAllWorkersInteractorFactory;
-import reparationservice.usecases.worker.GetAllWorkersResponder;
+import reparationservice.usecases.worker.getall.GetAllWorkersInteractorFactory;
+import reparationservice.usecases.worker.getall.GetAllWorkersResponder;
 
 @Controller
 @RequestMapping(value = "/workers", produces = "application/hal+json")

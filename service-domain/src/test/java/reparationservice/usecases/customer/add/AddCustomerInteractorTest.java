@@ -1,4 +1,4 @@
-package reparationservice.usecases.customer;
+package reparationservice.usecases.customer.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,8 +8,6 @@ import org.junit.Test;
 import reparationservice.entities.customer.Customer;
 import reparationservice.entities.customer.CustomerGatewaySpy;
 import reparationservice.requestor.UseCaseActivator;
-import reparationservice.usecases.customer.AddCustomerInteractor;
-import reparationservice.usecases.customer.AddCustomerRequest;
 
 public class AddCustomerInteractorTest {
 	private static final long CUSTOMER_ID = 1;

@@ -1,4 +1,4 @@
-package reparationservice.usecases.worker;
+package reparationservice.usecases.worker.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,8 +9,6 @@ import reparationservice.entities.worker.Worker;
 import reparationservice.entities.worker.WorkerGatewaySpy;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.AddWorkerInteractor;
-import reparationservice.usecases.worker.AddWorkerRequest;
 
 public class AddWorkerInteractorTest {
   private static final String WORKER_USERNAME = "username";

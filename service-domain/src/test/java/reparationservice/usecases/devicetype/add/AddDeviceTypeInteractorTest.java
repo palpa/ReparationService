@@ -1,4 +1,4 @@
-package reparationservice.usecases.devicetype;
+package reparationservice.usecases.devicetype.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,8 +9,6 @@ import reparationservice.entities.devicetype.DeviceType;
 import reparationservice.entities.devicetype.DeviceTypeGatewaySpy;
 import reparationservice.requestor.UseCaseActivator;
 import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.devicetype.AddDeviceTypeInteractor;
-import reparationservice.usecases.devicetype.AddDeviceTypeRequest;
 
 public class AddDeviceTypeInteractorTest {
 	private static final String DEVICE_TYPE_DESCRIPTION = "Description";

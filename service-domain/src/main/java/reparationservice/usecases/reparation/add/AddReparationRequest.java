@@ -1,4 +1,4 @@
-package reparationservice.usecases.reparation;
+package reparationservice.usecases.reparation.add;
 
 import org.joda.time.DateTime;
 

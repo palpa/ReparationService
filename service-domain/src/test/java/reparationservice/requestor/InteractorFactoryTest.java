@@ -7,13 +7,10 @@ import org.junit.Test;
 
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.entities.worker.WorkerGatewaySpy;
-import reparationservice.requestor.InteractorFactory;
-import reparationservice.requestor.UseCaseActivator;
-import reparationservice.requestor.UseCaseRequest;
 import reparationservice.requestor.impl.InteractorFactoryImpl;
-import reparationservice.usecases.worker.AddWorkerInteractor;
-import reparationservice.usecases.worker.GetAllWorkerInteractor;
-import reparationservice.usecases.worker.GetAllWorkersResponderSpy;
+import reparationservice.usecases.worker.add.AddWorkerInteractor;
+import reparationservice.usecases.worker.getall.GetAllWorkerInteractor;
+import reparationservice.usecases.worker.getall.GetAllWorkersResponderSpy;
 
 public class InteractorFactoryTest {
   private WorkerGateway workerGateway;
@@ -26,10 +23,9 @@ public class InteractorFactoryTest {
   }
 
   @Test
-  public void makeAddWorkerInteractor() {   
-    UseCaseRequest request = null;
+  public void makeAddWorkerInteractor() {
     UseCaseActivator addWorkerInteractor = intFactory
-        .makeAddWorkerInteractor(workerGateway, request);
+        .makeAddWorkerInteractor(workerGateway, null);
     assertThat(addWorkerInteractor).isInstanceOf(AddWorkerInteractor.class);
   }
 
