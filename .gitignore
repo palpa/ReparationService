@@ -5,3 +5,5 @@ build
 .classpath
 .project
 app.jar
+.idea
+*.iml
