@@ -16,6 +16,18 @@ subprojects {
         testCompile 'org.assertj:assertj-core:1.6.1'
         testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.11.1'
     }
+    //Expose project test classes
+    task testJar(type: Jar, dependsOn: testClasses) {
+        baseName = "test-${project.archivesBaseName}"
+        from sourceSets.test.output
+    }
+    //testCompile project(path: ':aProject', configuration: 'tests')
+    configurations {
+        tests
+    }
+    artifacts {
+        tests testJar
+    }
 }
 
 task wrapper(type: Wrapper) {
