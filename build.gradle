@@ -12,9 +12,9 @@ subprojects {
         mavenCentral()
     }
     dependencies {
-    	compile 'joda-time:joda-time:2.4'
-        testCompile 'org.assertj:assertj-core:1.6.1'
-        testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.11.1'
+    	compile 'joda-time:joda-time:2.6'
+        testCompile 'org.assertj:assertj-core:1.7.0'
+        testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.11.3'
     }
     //Expose project test classes
     task testJar(type: Jar, dependsOn: testClasses) {
