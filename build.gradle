@@ -2,14 +2,10 @@ buildscript {
   repositories {
     mavenCentral()
   }
-  dependencies {
-    classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.1"
-  }
 }
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: "info.solidsoft.pitest"
     sourceCompatibility = 1.7
     version = '1.0'
     repositories {
@@ -17,15 +13,9 @@ subprojects {
     }
     dependencies {
     	compile 'joda-time:joda-time:2.4'
-        testCompile 'junit:junit:4.11'
         testCompile 'org.assertj:assertj-core:1.6.1'
         testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.11.1'
     }
-    pitest {
-    targetClasses = ['reparationservice.*']  
-    threads = 4
-    outputFormats = ['XML', 'HTML']
-	}
 }
 
 task wrapper(type: Wrapper) {
