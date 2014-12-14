@@ -14,7 +14,7 @@ subprojects {
     dependencies {
     	compile 'joda-time:joda-time:2.6'
         testCompile 'org.assertj:assertj-core:1.7.0'
-        testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.11.3'
+        testCompile 'de.bechte.junit:junit-hierarchicalcontextrunner:4.12.0'
     }
     //Expose project test classes
     task testJar(type: Jar, dependsOn: testClasses) {
