@@ -15,9 +15,9 @@ import reparationservice.entities.worker.WorkerGateway;
 
 public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 		CustomerGateway {
-	private Map<String, Worker> workers = new HashMap<String, Worker>();
-	private Map<String, DeviceType> deviceTypes = new HashMap<String, DeviceType>();
-	private Map<Long, Customer> customers = new HashMap<Long, Customer>();
+	private Map<String, Worker> workers = new HashMap<>();
+	private Map<String, DeviceType> deviceTypes = new HashMap<>();
+	private Map<Long, Customer> customers = new HashMap<>();
 
 	@Override
 	public void addWorker(WorkerDTO workerDTO) {
@@ -27,7 +27,7 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 
   @Override
   public List<Worker> getAllWorkers() {
-    return new ArrayList<Worker>(workers.values());
+    return new ArrayList<>(workers.values());
   }
 
 	@Override

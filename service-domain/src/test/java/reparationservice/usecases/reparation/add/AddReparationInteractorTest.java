@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import reparationservice.entities.customer.CusromerWithDeviceSpy;
+import reparationservice.entities.customer.CustomerWithDeviceSpy;
 import reparationservice.entities.customer.CustomerGateway;
 import reparationservice.entities.customer.CustomerGatewaySpy;
 import reparationservice.entities.customer.NotEmptyCustomerSpy;
@@ -21,7 +21,7 @@ public class AddReparationInteractorTest {
   private static final int CUSTOMER_ID = NotEmptyCustomerSpy.CUSTOMER_ID;
   private static final String DEVICE_FAILURE = "failure";
   private static final DateTime CREATION_DATE = DateTime.now();
-  private static final long DEVICE_SERIAL_NUMBER = CusromerWithDeviceSpy.DEVICE_SERIAL_NUMBER;
+  private static final long DEVICE_SERIAL_NUMBER = CustomerWithDeviceSpy.DEVICE_SERIAL_NUMBER;
   private static final String REPARATION_OBSERVATIONS = "observations";
   private static final String REPARATION_URGENCY = "urgency";
 
@@ -44,7 +44,7 @@ public class AddReparationInteractorTest {
   }
 
   @Test(expected = AddReparationInteractor.CustomerNotFound.class)
-  public void throwCustomerNotFoundWhenProvidedCustomerIdDontMatchWithAnyCustomer() {
+  public void throwCustomerNotFoundWhenProvidedCustomerIdDoesNotMatchWithAnyCustomer() {
     CustomerGateway emptyCustomersSpy = new CustomerGatewaySpy();
     addReparation = new AddReparationInteractor(emptyCustomersSpy, request);
     addReparation.execute();
@@ -67,7 +67,7 @@ public class AddReparationInteractorTest {
 
       @Before
       public void givenDevice() {
-        customerWithDeviceSpy = new CusromerWithDeviceSpy();
+        customerWithDeviceSpy = new CustomerWithDeviceSpy();
         addReparation = new AddReparationInteractor(customerWithDeviceSpy, request);
       }
 

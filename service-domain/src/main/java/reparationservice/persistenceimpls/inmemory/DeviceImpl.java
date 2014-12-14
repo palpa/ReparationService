@@ -11,7 +11,7 @@ import reparationservice.entities.customer.ReparationDTO;
 
 public final class DeviceImpl extends Device {
 	private final long serialNumber;
-	private final Map<DateTime, Reparation> reparations = new HashMap<DateTime, Reparation>();
+	private final Map<DateTime, Reparation> reparations = new HashMap<>();
 
 	public DeviceImpl(long serialNumber) {
 		this.serialNumber = serialNumber;

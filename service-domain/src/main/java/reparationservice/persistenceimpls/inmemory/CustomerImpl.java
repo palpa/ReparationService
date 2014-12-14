@@ -8,7 +8,7 @@ import reparationservice.entities.customer.Device;
 
 public class CustomerImpl extends Customer {
 	private final long customerId;
-	private Map<Long, Device> devices = new HashMap<Long, Device>();
+	private Map<Long, Device> devices = new HashMap<>();
 
 	public CustomerImpl(long customerId) {
 		this.customerId = customerId;

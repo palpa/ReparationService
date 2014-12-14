@@ -11,12 +11,12 @@ import reparationservice.requestor.UseCaseActivator;
 public class GetAllWorkersInteractorTest {
   
   @Test(expected = GetAllWorkerInteractor.WorkerGatewayNotNull.class)
-  public void throwExeptionWhenNullGatewayPassed() {
+  public void throwExceptionWhenNullGatewayPassed() {
     new GetAllWorkerInteractor(null, new GetAllWorkersResponderSpy());
   }
   
   @Test(expected = GetAllWorkerInteractor.PresenterNotNull.class)
-  public void throwExeptionWhenNullPresenterPassed() {
+  public void throwExceptionWhenNullPresenterPassed() {
     new GetAllWorkerInteractor(new GetAllWorkersGatewaySpy(), null);
   }
   

@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.Test;
 
-public class AditionalTest extends ControllerTest {
+public class AdditionalTest extends ControllerTest {
   @Test
   public void returnNotFoundErrorWhenPostToWrongPath() throws Exception {
     mockMvc.perform(post("/wrong/path")

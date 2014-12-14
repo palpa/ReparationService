@@ -8,9 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
 
 public class WorkerGatewayTest {

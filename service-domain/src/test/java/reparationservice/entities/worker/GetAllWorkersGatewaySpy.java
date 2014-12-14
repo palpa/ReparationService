@@ -17,12 +17,12 @@ public class GetAllWorkersGatewaySpy implements WorkerGateway {
   }
 
   public boolean getAllWorkersWasCalled() {
-    this.getAllWorkerCalled = true;
     return getAllWorkerCalled;
   }
 
   @Override
   public List<Worker> getAllWorkers() {
-    return new ArrayList<Worker>();
+    this.getAllWorkerCalled = true;
+    return new ArrayList<>();
   }
 }

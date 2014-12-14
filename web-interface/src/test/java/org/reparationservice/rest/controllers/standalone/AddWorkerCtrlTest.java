@@ -25,7 +25,6 @@ public class AddWorkerCtrlTest {
   private static final String WORKER_USERNAME_1 = "username1";
   private static final String WORKER_USERNAME_2 = "username2";
   private static final MediaType JSON_HAL_CONTENT_TYPE = TestHelper.JSON_HAL_CONTENT_TYPE;
-  private AddWorkerController addWorkerCtrl;
   private MockMvc mockMvc;
   private AddWorkerInteractorFactoryStub intFactoryStub;
   private AddWorkerRequestBuilderStub requestBuilderStub;
@@ -36,7 +35,7 @@ public class AddWorkerCtrlTest {
     intFactoryStub = AddWorkerInteractorFactoryStub.newInstance();
     requestBuilderStub = new AddWorkerRequestBuilderStub();
     workerGW = new WorkerGatewaySpy();
-    addWorkerCtrl = new AddWorkerController(intFactoryStub, workerGW, requestBuilderStub);
+    AddWorkerController addWorkerCtrl = new AddWorkerController(intFactoryStub, workerGW, requestBuilderStub);
     mockMvc = MockMvcBuilders.standaloneSetup(addWorkerCtrl).build();
     sendWorkerPostRequestFor(WORKER_USERNAME_1);
   }
@@ -64,7 +63,7 @@ public class AddWorkerCtrlTest {
     assertThat(requestBuilderStub.withArgs(workerUsername)).isTrue();
   }
 
-  private void sendWorkerPostRequestFor(String username) throws Exception, IOException {
+  private void sendWorkerPostRequestFor(String username) throws Exception {
     mockMvc.perform(
         post("/workers")
             .contentType(JSON_HAL_CONTENT_TYPE)
