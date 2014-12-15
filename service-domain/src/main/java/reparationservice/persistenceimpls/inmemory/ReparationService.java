@@ -1,8 +1,7 @@
 package reparationservice.persistenceimpls.inmemory;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import reparationservice.entities.customer.Customer;
@@ -26,8 +25,8 @@ public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 	}
 
   @Override
-  public List<Worker> getAllWorkers() {
-    return new ArrayList<>(workers.values());
+  public Collection<Worker> getAllWorkers() {
+    return workers.values();
   }
 
 	@Override

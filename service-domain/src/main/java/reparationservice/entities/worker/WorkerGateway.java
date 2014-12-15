@@ -1,10 +1,9 @@
 package reparationservice.entities.worker;
 
-import java.util.List;
-
+import java.util.Collection;
 
 public interface WorkerGateway {
-	public abstract void addWorker(WorkerDTO workerDTO);
-	public abstract Worker getWorkerByUserName(String workerUserName);
-  public abstract List<Worker> getAllWorkers();
+  void addWorker(WorkerDTO workerDTO);
+  Worker getWorkerByUserName(String workerUserName);
+  Collection<Worker> getAllWorkers();
 }

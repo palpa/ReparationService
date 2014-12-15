@@ -3,7 +3,7 @@ package reparationservice.entities.worker;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.Assert.*;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +42,7 @@ public class WorkerGatewayTest {
 	
 	@Test
   public void testGetAllWorkers() {
-	  List<Worker> workerList = workers.getAllWorkers();
+	  Collection<Worker> workerList = workers.getAllWorkers();
 	  assertNotNull(workerList);
 	  assertTrue(workerList.isEmpty());
 	  
@@ -50,7 +50,7 @@ public class WorkerGatewayTest {
 	  workerList = workers.getAllWorkers();
 	  assertFalse(workerList.isEmpty());
 	  assertEquals(1, workerList.size());
-	  assertEquals(WORKER_USER_NAME_1, workerList.get(0).getUserName());
+	  assertEquals(WORKER_USER_NAME_1, workerList.iterator().next().getUserName());
 	}
 
 	private WorkerDTO newWorkerDTO(String userName) {

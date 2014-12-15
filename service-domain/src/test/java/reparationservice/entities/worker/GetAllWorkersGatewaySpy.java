@@ -1,7 +1,7 @@
 package reparationservice.entities.worker;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 
 public class GetAllWorkersGatewaySpy implements WorkerGateway {
 
@@ -21,8 +21,8 @@ public class GetAllWorkersGatewaySpy implements WorkerGateway {
   }
 
   @Override
-  public List<Worker> getAllWorkers() {
+  public Collection<Worker> getAllWorkers() {
     this.getAllWorkerCalled = true;
-    return new ArrayList<>();
+    return Collections.emptyList();
   }
 }
