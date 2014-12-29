@@ -4,13 +4,31 @@ buildscript {
   }
 }
 
+allprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+}
+
 subprojects {
     apply plugin: 'java'
+
+    group = 'org.reparationservice'
+    version = '0.0.1-SNAPSHOT'
+
     sourceCompatibility = 1.7
-    version = '1.0'
+    targetCompatibility = 1.7
+
+    eclipse {
+        classpath {
+            containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+            containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7'
+        }
+    }
+
     repositories {
         mavenCentral()
     }
+
     dependencies {
     	compile 'joda-time:joda-time:2.6'
         testCompile 'org.assertj:assertj-core:1.7.0'
