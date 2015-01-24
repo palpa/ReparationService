@@ -33,6 +33,6 @@ public class GetAllWorkersControllerTest extends ControllerTest {
         .andDo(print())
         .andExpect(content().contentType(contentType))
         .andExpect(OK_STATUS_EXPECTED)
-        .andExpect(jsonPath("$._embedded.workerImplList[0].userName", equalTo(WORKER_USERNAME)));
+        .andExpect(jsonPath("$._embedded.workerDTOList[0].userName", equalTo(WORKER_USERNAME)));
   }
 }

@@ -1,7 +1,9 @@
 package reparationservice.usecases.worker.getall;
 
-import reparationservice.entities.worker.Worker;
+import java.util.Collection;
+
+import reparationservice.entities.worker.WorkerDTO;
 
 public interface GetAllWorkersResponder {
-  void bindModel(Iterable<Worker> workerList);
+  void bindModel(Collection<WorkerDTO> workerList);
 }

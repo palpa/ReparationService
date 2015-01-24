@@ -31,5 +31,6 @@ public class GetAllWorkersInteractorTest {
     GetAllWorkersGatewaySpy workerGatewaySpy = (GetAllWorkersGatewaySpy) workerGateway;
     assertTrue(workerGatewaySpy.getAllWorkersWasCalled());
     assertTrue(((GetAllWorkersResponderSpy) allWorkersPresenter).bindModelWasCalled());
+    assertEquals(GetAllWorkersGatewaySpy.workerListSize, ((GetAllWorkersResponderSpy) allWorkersPresenter).getWorkerCollection().size());
   }
 }

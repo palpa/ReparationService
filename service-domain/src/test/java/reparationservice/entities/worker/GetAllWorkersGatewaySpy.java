@@ -1,11 +1,22 @@
 package reparationservice.entities.worker;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 public class GetAllWorkersGatewaySpy implements WorkerGateway {
-
+  public static int workerListSize = 1; 
+  private final Collection<Worker> workerList;
   private boolean getAllWorkerCalled = false;
+  
+  public GetAllWorkersGatewaySpy() {
+    workerList = new ArrayList<>();
+    workerList.add(new Worker() {
+      @Override
+      public String getUserName() {
+        return null;
+      }
+    });
+  }
 
   @Override
   public void addWorker(WorkerDTO workerDTO) {
@@ -23,6 +34,6 @@ public class GetAllWorkersGatewaySpy implements WorkerGateway {
   @Override
   public Collection<Worker> getAllWorkers() {
     this.getAllWorkerCalled = true;
-    return Collections.emptyList();
+    return workerList;
   }
 }

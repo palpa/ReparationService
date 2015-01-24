@@ -1,16 +1,24 @@
 package reparationservice.usecases.worker.getall;
 
-import reparationservice.entities.worker.Worker;
+import java.util.Collection;
+
+import reparationservice.entities.worker.WorkerDTO;
 
 public class GetAllWorkersResponderSpy implements GetAllWorkersResponder {
   private boolean bindModelCalled = false;
+  private Collection<WorkerDTO> workerList;
 
   @Override
-  public void bindModel(Iterable<Worker> workerList) {
+  public void bindModel(Collection<WorkerDTO> workerList) {
     bindModelCalled = true;
+    this.workerList = workerList;
   }
 
   public boolean bindModelWasCalled() {
-    return bindModelCalled ;
+    return bindModelCalled;
+  }
+
+  public Collection<WorkerDTO> getWorkerCollection() {
+    return this.workerList;
   }
 }

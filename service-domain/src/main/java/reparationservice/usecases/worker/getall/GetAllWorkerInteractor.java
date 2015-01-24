@@ -1,5 +1,10 @@
 package reparationservice.usecases.worker.getall;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import reparationservice.entities.worker.Worker;
+import reparationservice.entities.worker.WorkerDTO;
 import reparationservice.entities.worker.WorkerGateway;
 import reparationservice.requestor.UseCaseActivator;
 
@@ -19,7 +24,15 @@ public class GetAllWorkerInteractor implements UseCaseActivator {
 
   @Override
   public void execute() {
-    allWorkersPresenter.bindModel(workerGateway.getAllWorkers());
+    allWorkersPresenter.bindModel(convertToDTOCollection(workerGateway.getAllWorkers()) );
+  }
+
+  private Collection<WorkerDTO> convertToDTOCollection(Iterable<Worker> workers) {
+    Collection<WorkerDTO> workerDTOCollection = new ArrayList<>();  
+    for (Worker worker : workers) {
+      workerDTOCollection.add(new WorkerDTO(worker.getUserName()));
+    }
+    return workerDTOCollection;
   }
 
   public class WorkerGatewayNotNull extends RuntimeException {
