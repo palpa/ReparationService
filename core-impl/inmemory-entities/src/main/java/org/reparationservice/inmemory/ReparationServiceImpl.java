@@ -4,16 +4,14 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.reparationservice.entities.ReparationService;
 import org.reparationservice.entities.customer.Customer;
-import org.reparationservice.entities.customer.CustomerGateway;
 import org.reparationservice.entities.devicetype.DeviceType;
-import org.reparationservice.entities.devicetype.DeviceTypeGateway;
 import org.reparationservice.entities.worker.Worker;
 import org.reparationservice.entities.worker.WorkerDTO;
-import org.reparationservice.entities.worker.WorkerGateway;
 
-public class ReparationService implements WorkerGateway, DeviceTypeGateway,
-		CustomerGateway {
+public class ReparationServiceImpl implements
+		ReparationService {
 	private Map<String, Worker> workers = new HashMap<>();
 	private Map<String, DeviceType> deviceTypes = new HashMap<>();
 	private Map<Long, Customer> customers = new HashMap<>();

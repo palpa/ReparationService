@@ -22,15 +22,15 @@ public final class InMemoryConfigurator {
 	}
 
 	public static CustomerGateway getCustomerGateway() {
-		return new ReparationService();
+		return new ReparationServiceImpl();
 	}
 
 	public static DeviceTypeGateway getDeviceTypeGateway() {
-		return new ReparationService();
+		return new ReparationServiceImpl();
 	}
 
 	public static WorkerGateway getWorkerGateway() {
-		return new ReparationService();
+		return new ReparationServiceImpl();
 	}
 
 	public static Customer getNewCustomer(long customerId) {
