@@ -13,14 +13,15 @@ buildscript {
 apply plugin: 'spring-boot'
 
 dependencies {
-    //compile project(':service-domain')	
+    compile project(':core:entities')
+    compile project(':core:usecases')
+    compile project(':core-impl:inmemory-entities')
     compile("org.springframework.boot:spring-boot-starter-web")
     compile 'org.springframework.hateoas:spring-hateoas'
     //Needed by spring-hateoas @EnableHypermediaSupport annotation
 	compile ("org.springframework.plugin:spring-plugin-core:1.1.0.RELEASE")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("com.jayway.jsonpath:json-path:0.9.1")
-    //testCompile project(path: ':service-domain', configuration: 'tests')
 }
 
 task stage(type: Copy, dependsOn: [clean, build]) {
