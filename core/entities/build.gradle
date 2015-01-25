@@ -10,6 +10,11 @@ buildscript {
 apply plugin: "info.solidsoft.pitest"
 
 dependencies {
+  compile 'org.datanucleus:datanucleus-core:4.0.4'
+  compile 'org.datanucleus:datanucleus-api-jdo:4.0.4'
+  compile 'javax.jdo:jdo-api:3.0.1'
+  compile 'org.datanucleus:datanucleus-mongodb:4.0.5'
+  compile 'org.mongodb:mongo-java-driver:2.11.3'
   testCompile 'junit:junit:4.12'
 }
 
