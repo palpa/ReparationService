@@ -14,7 +14,7 @@ dependencies {
 }
 
 pitest {
-  targetClasses = ['reparationservice.*']  
+  targetClasses = ['org.reparationservice.*']
   threads = 4
   outputFormats = ['XML', 'HTML']
 }
