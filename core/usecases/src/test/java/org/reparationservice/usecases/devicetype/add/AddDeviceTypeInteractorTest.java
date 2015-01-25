@@ -1,12 +1,12 @@
-package reparationservice.usecases.devicetype.add;
+package org.reparationservice.usecases.devicetype.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.entities.devicetype.DeviceType;
-import reparationservice.entities.devicetype.DeviceTypeGatewaySpy;
+import org.reparationservice.doubles.DeviceTypeGatewaySpy;
+import org.reparationservice.entities.devicetype.DeviceType;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 
@@ -20,7 +20,6 @@ public class AddDeviceTypeInteractorTest {
 		devTypesSpy = new DeviceTypeGatewaySpy();
 		UseCaseRequest request = new AddDeviceTypeRequest(DEVICE_TYPE_DESCRIPTION);
 		addDeviceType = new AddDeviceTypeInteractor(devTypesSpy, request);
-		
 	}
 
 	@Test

@@ -1,9 +1,8 @@
 package org.reparationservice.doubles;
 
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
 
 import java.util.Collection;
 
@@ -11,8 +10,13 @@ public class WorkerGatewaySpy implements WorkerGateway {
 	private Worker worker = Worker.NULL;
 
 	@Override
-	public void addWorker(WorkerDTO workerDTO) {
-		this.worker = InMemoryConfigurator.getNewWorker(workerDTO);
+	public void addWorker(final WorkerDTO workerDTO) {
+		this.worker = new Worker() {
+			@Override
+			public String getUserName() {
+				return workerDTO.getUserName();
+			}
+		};
 	}
 
 	@Override

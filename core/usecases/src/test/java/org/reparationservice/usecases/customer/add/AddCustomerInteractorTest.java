@@ -1,12 +1,12 @@
-package reparationservice.usecases.customer.add;
+package org.reparationservice.usecases.customer.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.entities.customer.Customer;
-import reparationservice.entities.customer.CustomerGatewaySpy;
+import org.reparationservice.doubles.CustomerGatewaySpy;
+import org.reparationservice.entities.customer.Customer;
 import org.reparationservice.requestor.UseCaseActivator;
 
 public class AddCustomerInteractorTest {

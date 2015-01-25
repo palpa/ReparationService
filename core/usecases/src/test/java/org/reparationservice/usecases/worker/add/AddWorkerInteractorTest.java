@@ -1,12 +1,12 @@
-package reparationservice.usecases.worker.add;
+package org.reparationservice.usecases.worker.add;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerGatewaySpy;
+import org.reparationservice.doubles.WorkerGatewaySpy;
+import org.reparationservice.entities.worker.Worker;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 

@@ -1,11 +1,12 @@
-package reparationservice.usecases.worker.getall;
+package org.reparationservice.usecases.worker.getall;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.entities.worker.GetAllWorkersGatewaySpy;
+import org.reparationservice.doubles.GetAllWorkersGatewaySpy;
+import org.reparationservice.doubles.GetAllWorkersResponderSpy;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 
 public class GetAllWorkersInteractorTest {

@@ -1,5 +1,9 @@
 package org.reparationservice.doubles;
 
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
+
 import java.util.ArrayList;
 import java.util.Collection;
 

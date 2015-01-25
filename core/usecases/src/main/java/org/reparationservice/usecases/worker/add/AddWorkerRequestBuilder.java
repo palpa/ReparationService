@@ -1,4 +1,4 @@
-package reparationservice.usecases.worker.add;
+package org.reparationservice.usecases.worker.add;
 
 import org.reparationservice.requestor.UseCaseRequest;
 

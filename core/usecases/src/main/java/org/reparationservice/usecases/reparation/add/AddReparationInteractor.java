@@ -1,9 +1,9 @@
 package org.reparationservice.usecases.reparation.add;
 
-import reparationservice.entities.customer.Customer;
-import reparationservice.entities.customer.CustomerGateway;
-import reparationservice.entities.customer.Device;
-import reparationservice.entities.customer.ReparationDTO;
+import org.reparationservice.entities.customer.Customer;
+import org.reparationservice.entities.customer.CustomerGateway;
+import org.reparationservice.entities.customer.Device;
+import org.reparationservice.entities.customer.ReparationDTO;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 

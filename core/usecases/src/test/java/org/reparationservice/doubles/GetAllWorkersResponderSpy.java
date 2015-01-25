@@ -1,8 +1,9 @@
-package reparationservice.usecases.worker.getall;
+package org.reparationservice.doubles;
 
 import java.util.Collection;
 
-import reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.usecases.worker.getall.GetAllWorkersResponder;
 
 public class GetAllWorkersResponderSpy implements GetAllWorkersResponder {
   private boolean bindModelCalled = false;

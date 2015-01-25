@@ -1,7 +1,7 @@
-package reparationservice.usecases.devicetype.add;
+package org.reparationservice.usecases.devicetype.add;
 
-import reparationservice.entities.devicetype.DeviceType;
-import reparationservice.entities.devicetype.DeviceTypeGateway;
+import org.reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.entities.devicetype.DeviceTypeGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 

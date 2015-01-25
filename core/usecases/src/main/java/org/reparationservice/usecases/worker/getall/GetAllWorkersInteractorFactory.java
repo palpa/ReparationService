@@ -1,6 +1,6 @@
-package reparationservice.usecases.worker.getall;
+package org.reparationservice.usecases.worker.getall;
 
-import reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 
 public interface GetAllWorkersInteractorFactory {

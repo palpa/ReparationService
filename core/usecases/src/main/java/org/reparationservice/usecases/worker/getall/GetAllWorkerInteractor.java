@@ -1,11 +1,11 @@
-package reparationservice.usecases.worker.getall;
+package org.reparationservice.usecases.worker.getall;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 
 public class GetAllWorkerInteractor implements UseCaseActivator {

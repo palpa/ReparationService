@@ -1,8 +1,8 @@
-package reparationservice.usecases.worker.add;
+package org.reparationservice.usecases.worker.add;
 
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 

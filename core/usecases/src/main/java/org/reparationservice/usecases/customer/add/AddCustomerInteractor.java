@@ -1,6 +1,6 @@
-package reparationservice.usecases.customer.add;
+package org.reparationservice.usecases.customer.add;
 
-import reparationservice.entities.customer.CustomerGateway;
+import org.reparationservice.entities.customer.CustomerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 

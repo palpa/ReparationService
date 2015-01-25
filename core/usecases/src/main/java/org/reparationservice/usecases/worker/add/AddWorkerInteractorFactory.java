@@ -1,6 +1,6 @@
-package reparationservice.usecases.worker.add;
+package org.reparationservice.usecases.worker.add;
 
-import reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 

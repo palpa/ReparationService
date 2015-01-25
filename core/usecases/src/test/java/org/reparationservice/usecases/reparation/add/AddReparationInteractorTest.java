@@ -8,11 +8,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import reparationservice.entities.customer.CustomerWithDeviceSpy;
-import reparationservice.entities.customer.CustomerGateway;
-import reparationservice.entities.customer.CustomerGatewaySpy;
-import reparationservice.entities.customer.NotEmptyCustomerSpy;
-import reparationservice.entities.customer.Reparation;
+import org.reparationservice.doubles.CustomerGatewaySpy;
+import org.reparationservice.doubles.CustomerWithDeviceSpy;
+import org.reparationservice.doubles.NotEmptyCustomerSpy;
+import org.reparationservice.entities.customer.CustomerGateway;
+import org.reparationservice.entities.customer.Reparation;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 
