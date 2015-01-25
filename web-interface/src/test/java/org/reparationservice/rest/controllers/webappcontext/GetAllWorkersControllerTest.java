@@ -9,12 +9,11 @@ import org.junit.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.ResultMatcher;
-
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
 
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class GetAllWorkersControllerTest extends ControllerTest {

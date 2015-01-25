@@ -1,1 +1,1 @@
-include 'service-domain', 'web-interface'
+include 'core:entities', 'core:usecases', 'core-impl:inmemory-entities', 'web-interface'

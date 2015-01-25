@@ -1,5 +1,11 @@
 package org.reparationservice.rest;
 
+import org.reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.inmemory.InMemoryConfigurator;
+import org.reparationservice.requestor.InteractorFactory;
+import org.reparationservice.requestor.RequestBuilder;
+import org.reparationservice.requestor.impl.InteractorFactoryImpl;
+import org.reparationservice.requestor.impl.RequestBuilderImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration.WebMvcAutoConfigurationAdapter;
@@ -7,13 +13,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-
-import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
-import reparationservice.requestor.InteractorFactory;
-import reparationservice.requestor.RequestBuilder;
-import reparationservice.requestor.impl.InteractorFactoryImpl;
-import reparationservice.requestor.impl.RequestBuilderImpl;
 
 @Configuration
 @ComponentScan

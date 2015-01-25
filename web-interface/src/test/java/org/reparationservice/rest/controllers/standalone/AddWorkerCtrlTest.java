@@ -15,18 +15,17 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.requestor.UseCaseActivator;
+import org.reparationservice.requestor.UseCaseRequest;
 import org.reparationservice.rest.controllers.AddWorkerController;
 import org.reparationservice.rest.controllers.standalone.helpers.TestHelper;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
+import org.reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
+import org.reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
-import reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
-import reparationservice.requestor.UseCaseActivator;
-import reparationservice.requestor.UseCaseRequest;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AddWorkerCtrlTest {

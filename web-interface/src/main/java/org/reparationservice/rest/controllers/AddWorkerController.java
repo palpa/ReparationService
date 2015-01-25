@@ -1,6 +1,12 @@
 package org.reparationservice.rest.controllers;
 
+import org.reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.requestor.UseCaseActivator;
+import org.reparationservice.requestor.UseCaseRequest;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
+import org.reparationservice.usecases.worker.add.AddWorkerInteractor;
+import org.reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
+import org.reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;
@@ -13,13 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.requestor.UseCaseActivator;
-import reparationservice.requestor.UseCaseRequest;
-import reparationservice.usecases.worker.add.AddWorkerInteractor.WorkerAlreadyExists;
-import reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
-import reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 
 @RestController
 public class AddWorkerController {
@@ -48,9 +47,9 @@ public class AddWorkerController {
   @ControllerAdvice
   public static class AddWorkerControllerAdvice {
     @ResponseBody
-    @ExceptionHandler(WorkerAlreadyExists.class)
+    @ExceptionHandler(AddWorkerInteractor.WorkerAlreadyExists.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    VndErrors workerAlreadyExistsExceptionHandler(WorkerAlreadyExists ex) {
+    VndErrors workerAlreadyExistsExceptionHandler(AddWorkerInteractor.WorkerAlreadyExists ex) {
       String message = (ex.getMessage() == null || ex.getMessage().isEmpty()) ?
           "Worker Already Exists" : ex.getMessage();
       return new VndErrors("error", message);

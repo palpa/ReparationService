@@ -7,13 +7,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 import org.junit.Test;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.ResultMatcher;
-
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerGateway;
 
 @DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class AddWorkerControllerTest extends ControllerTest {

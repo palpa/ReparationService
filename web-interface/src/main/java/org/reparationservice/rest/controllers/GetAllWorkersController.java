@@ -2,6 +2,11 @@ package org.reparationservice.rest.controllers;
 
 import java.util.Collection;
 
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.requestor.UseCaseActivator;
+import org.reparationservice.usecases.worker.getall.GetAllWorkersInteractorFactory;
+import org.reparationservice.usecases.worker.getall.GetAllWorkersResponder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
@@ -9,12 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
-import reparationservice.requestor.UseCaseActivator;
-import reparationservice.usecases.worker.getall.GetAllWorkersInteractorFactory;
-import reparationservice.usecases.worker.getall.GetAllWorkersResponder;
 
 @Controller
 @RequestMapping(value = "/workers", produces = "application/hal+json")
