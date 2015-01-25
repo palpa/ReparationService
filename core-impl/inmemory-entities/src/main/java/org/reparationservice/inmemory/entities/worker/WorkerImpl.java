@@ -1,7 +1,7 @@
 package org.reparationservice.inmemory.entities.worker;
 
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
 
 public class WorkerImpl extends Worker {
 	private String userName;

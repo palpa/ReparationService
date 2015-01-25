@@ -1,16 +1,12 @@
 package org.reparationservice.inmemory.entities.worker;
 
-import de.bechte.junit.runners.context.HierarchicalContextRunner;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.inmemory.InMemoryConfigurator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(HierarchicalContextRunner.class)
 public class WorkerTest {
 	private static final String USER_NAME = "UserName";
 

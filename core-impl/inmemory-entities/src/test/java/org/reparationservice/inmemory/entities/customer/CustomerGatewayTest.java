@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.reparationservice.entities.customer.Customer;
+import org.reparationservice.entities.customer.CustomerGateway;
 import org.reparationservice.inmemory.InMemoryConfigurator;
 
 public class CustomerGatewayTest {

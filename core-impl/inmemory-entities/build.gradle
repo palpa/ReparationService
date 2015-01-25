@@ -10,6 +10,7 @@ buildscript {
 apply plugin: "info.solidsoft.pitest"
 
 dependencies {
+  compile project(':core:entities')
   testCompile 'junit:junit:4.12'
 }
 

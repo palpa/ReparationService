@@ -3,6 +3,9 @@ package org.reparationservice.inmemory.entities.customer;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
+import org.reparationservice.entities.customer.Reparation;
+import org.reparationservice.entities.customer.ReparationDTO;
+import org.reparationservice.inmemory.InMemoryConfigurator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

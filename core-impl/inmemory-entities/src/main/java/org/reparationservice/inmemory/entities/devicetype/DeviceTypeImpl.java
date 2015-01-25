@@ -1,6 +1,6 @@
 package org.reparationservice.inmemory.entities.devicetype;
 
-import reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.entities.devicetype.DeviceType;
 
 public class DeviceTypeImpl extends DeviceType {
 	private String description;

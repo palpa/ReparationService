@@ -6,9 +6,9 @@ import java.util.Map;
 import org.joda.time.DateTime;
 
 import org.reparationservice.inmemory.InMemoryConfigurator;
-import reparationservice.entities.customer.Device;
-import reparationservice.entities.customer.Reparation;
-import reparationservice.entities.customer.ReparationDTO;
+import org.reparationservice.entities.customer.Device;
+import org.reparationservice.entities.customer.Reparation;
+import org.reparationservice.entities.customer.ReparationDTO;
 
 public final class DeviceImpl extends Device {
 	private final long serialNumber;

@@ -5,9 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Test;
 
-import org.reparationservice.inmemory.InMemoryConfigurator;
-import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
-
 public class InMemoryConfiguratorTest {
 	@Test(expected = AssertionError.class)
 	public void cannotInstantiateClassEvenWithReflection() throws Exception {

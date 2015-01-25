@@ -5,8 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.reparationservice.inmemory.InMemoryConfigurator;
-import reparationservice.entities.customer.Customer;
-import reparationservice.entities.customer.Device;
+import org.reparationservice.entities.customer.Customer;
+import org.reparationservice.entities.customer.Device;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -2,8 +2,8 @@ package org.reparationservice.inmemory.entities.customer;
 
 import org.joda.time.DateTime;
 
-import reparationservice.entities.customer.Reparation;
-import reparationservice.entities.customer.ReparationDTO;
+import org.reparationservice.entities.customer.Reparation;
+import org.reparationservice.entities.customer.ReparationDTO;
 
 public final class ReparationImpl extends Reparation {
 	private final DateTime creationDate;

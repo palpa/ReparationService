@@ -2,6 +2,11 @@ package org.reparationservice.inmemory.entities.devicetype;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.entities.devicetype.DeviceTypeGateway;
+import org.reparationservice.inmemory.InMemoryConfigurator;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeviceTypeGatewayTest {
 	private static final String DEVICE_TYPE_DESCRIPTION_1 = "Description1";

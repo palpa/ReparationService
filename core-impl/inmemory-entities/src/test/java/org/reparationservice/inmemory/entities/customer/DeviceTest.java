@@ -5,6 +5,10 @@ import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.reparationservice.entities.customer.Device;
+import org.reparationservice.entities.customer.Reparation;
+import org.reparationservice.entities.customer.ReparationDTO;
+import org.reparationservice.inmemory.InMemoryConfigurator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,8 +17,6 @@ public class DeviceTest {
 	private static final DateTime REP_CREATION_DATE_1 = DateTime.now();
 	private static final DateTime REP_CREATION_DATE_2 = REP_CREATION_DATE_1
 			.plusDays(1);
-	private static final int INVALID_SERIAL_NUMBER = -1;
-	private static final DateTime ANY_CREATION_DATE = null;
 	private Device device;
 	private static final int SERIAL_NUMBER = 150;
 

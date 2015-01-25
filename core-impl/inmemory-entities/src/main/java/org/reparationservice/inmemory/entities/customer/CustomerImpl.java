@@ -1,11 +1,11 @@
 package org.reparationservice.inmemory.entities.customer;
 
+import org.reparationservice.entities.customer.Customer;
+import org.reparationservice.entities.customer.Device;
+import org.reparationservice.inmemory.InMemoryConfigurator;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.reparationservice.inmemory.InMemoryConfigurator;
-import reparationservice.entities.customer.Customer;
-import reparationservice.entities.customer.Device;
 
 public class CustomerImpl extends Customer {
 	private final long customerId;

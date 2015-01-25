@@ -1,4 +1,8 @@
-package org.reparationservice.inmemory.entities.devicetype;
+package org.reparationservice.doubles;
+
+import org.reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.entities.devicetype.DeviceTypeGateway;
+import org.reparationservice.inmemory.InMemoryConfigurator;
 
 public class DeviceTypeGatewaySpy implements DeviceTypeGateway {
 	private DeviceType deviceType = DeviceType.NULL;

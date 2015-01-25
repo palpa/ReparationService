@@ -1,4 +1,4 @@
-package org.reparationservice.inmemory.entities.worker;
+package org.reparationservice.doubles;
 
 import java.util.ArrayList;
 import java.util.Collection;

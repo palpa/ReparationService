@@ -1,6 +1,8 @@
 package org.reparationservice.inmemory.entities.devicetype;
 
 import org.junit.Test;
+import org.reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.inmemory.InMemoryConfigurator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

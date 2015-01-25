@@ -1,4 +1,4 @@
-package org.reparationservice.inmemory.entities.worker;
+package org.reparationservice.doubles;
 
 import reparationservice.entities.worker.Worker;
 import reparationservice.entities.worker.WorkerDTO;

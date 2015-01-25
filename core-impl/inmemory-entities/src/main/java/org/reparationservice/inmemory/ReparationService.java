@@ -1,17 +1,16 @@
-package org.reparationservice.inmemory.entities;
+package org.reparationservice.inmemory;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.reparationservice.inmemory.InMemoryConfigurator;
-import reparationservice.entities.customer.Customer;
-import reparationservice.entities.customer.CustomerGateway;
-import reparationservice.entities.devicetype.DeviceType;
-import reparationservice.entities.devicetype.DeviceTypeGateway;
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.entities.customer.Customer;
+import org.reparationservice.entities.customer.CustomerGateway;
+import org.reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.entities.devicetype.DeviceTypeGateway;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
 
 public class ReparationService implements WorkerGateway, DeviceTypeGateway,
 		CustomerGateway {

@@ -2,11 +2,15 @@ package org.reparationservice.inmemory.entities.worker;
 
 import org.junit.Before;
 import org.junit.Test;
-import reparationservice.persistenceimpls.inmemory.InMemoryConfigurator;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.inmemory.InMemoryConfigurator;
 
 import java.util.Collection;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class WorkerGatewayTest {
 	private static final String WORKER_USER_NAME_1 = "UserName1";
@@ -41,14 +45,14 @@ public class WorkerGatewayTest {
 	@Test
   public void testGetAllWorkers() {
 	  Collection<Worker> workerList = workers.getAllWorkers();
-	  assertNotNull(workerList);
-	  assertTrue(workerList.isEmpty());
+		assertThat(workerList).isNotNull();
+		assertThat(workerList).isEmpty();
 	  
 	  workers.addWorker(newWorkerDTO(WORKER_USER_NAME_1));
 	  workerList = workers.getAllWorkers();
-	  assertFalse(workerList.isEmpty());
-	  assertEquals(1, workerList.size());
-	  assertEquals(WORKER_USER_NAME_1, workerList.iterator().next().getUserName());
+		assertThat(workerList).isNotEmpty();
+		assertThat(workerList.size()).isEqualTo(1);
+		assertThat(workerList.iterator().next().getUserName()).isEqualTo(WORKER_USER_NAME_1);
 	}
 
 	private WorkerDTO newWorkerDTO(String userName) {

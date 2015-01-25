@@ -1,21 +1,20 @@
 package org.reparationservice.inmemory;
 
 import org.reparationservice.inmemory.entities.devicetype.DeviceTypeImpl;
-import org.reparationservice.inmemory.entities.ReparationService;
 import org.reparationservice.inmemory.entities.worker.WorkerImpl;
 import org.reparationservice.inmemory.entities.customer.CustomerImpl;
 import org.reparationservice.inmemory.entities.customer.DeviceImpl;
 import org.reparationservice.inmemory.entities.customer.ReparationImpl;
-import reparationservice.entities.customer.Customer;
-import reparationservice.entities.customer.CustomerGateway;
-import reparationservice.entities.customer.Device;
-import reparationservice.entities.customer.Reparation;
-import reparationservice.entities.customer.ReparationDTO;
-import reparationservice.entities.devicetype.DeviceType;
-import reparationservice.entities.devicetype.DeviceTypeGateway;
-import reparationservice.entities.worker.Worker;
-import reparationservice.entities.worker.WorkerDTO;
-import reparationservice.entities.worker.WorkerGateway;
+import org.reparationservice.entities.customer.Customer;
+import org.reparationservice.entities.customer.CustomerGateway;
+import org.reparationservice.entities.customer.Device;
+import org.reparationservice.entities.customer.Reparation;
+import org.reparationservice.entities.customer.ReparationDTO;
+import org.reparationservice.entities.devicetype.DeviceType;
+import org.reparationservice.entities.devicetype.DeviceTypeGateway;
+import org.reparationservice.entities.worker.Worker;
+import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.entities.worker.WorkerGateway;
 
 public final class InMemoryConfigurator {
 	private InMemoryConfigurator() {
