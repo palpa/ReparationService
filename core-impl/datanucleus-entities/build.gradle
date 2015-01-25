@@ -1,0 +1,21 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.1"
+  }
+}
+
+apply plugin: "info.solidsoft.pitest"
+
+dependencies {
+  compile project(':core:entities')
+  testCompile 'junit:junit:4.12'
+}
+
+pitest {
+  targetClasses = ['org.reparationservice.*']
+  threads = 4
+  outputFormats = ['XML', 'HTML']
+}
