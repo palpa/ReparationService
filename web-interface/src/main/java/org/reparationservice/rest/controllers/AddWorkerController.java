@@ -34,11 +34,12 @@ public class AddWorkerController {
   @RequestMapping(value = "/workers", method = RequestMethod.POST)
   ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
 
+    UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers);
+
     AddWorkerResponder responder = new AddWorkerPresenter();
     UseCaseRequest request = requestBuilder
         .buildAddWorkerRequest(workerReq.getUsername(), responder);
 
-    UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers, request);
     interactor.execute(request);
 
     return ((AddWorkerPresenter) responder).getResponse();

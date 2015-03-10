@@ -21,7 +21,7 @@ public class AddWorkerInteractorTest {
   public void givenAddWorkerInteractor() {
     workersSpy = new WorkerGatewaySpy();
     request = new AddWorkerRequest(WORKER_USERNAME, responder);
-    addWorker = new AddWorkerInteractor(workersSpy, request);
+    addWorker = new AddWorkerInteractor(workersSpy);
   }
 
   @Test

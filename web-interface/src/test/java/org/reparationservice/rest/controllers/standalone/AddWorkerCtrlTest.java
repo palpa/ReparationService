@@ -45,7 +45,7 @@ public class AddWorkerCtrlTest {
 
   @Before
   public void setup() throws Exception {
-    when(addWorkerIF.makeAddWorkerInteractor(any(WorkerGateway.class), any(UseCaseRequest.class)))
+    when(addWorkerIF.makeAddWorkerInteractor(any(WorkerGateway.class)))
         .thenReturn(interactor);
 
     AddWorkerController addWorkerCtrl = new AddWorkerController(addWorkerIF, workerGW, addWorkerRB);
@@ -57,8 +57,8 @@ public class AddWorkerCtrlTest {
   @Test
   public void callToAddWorkerInteractorWithGivenGW() throws Exception {
     ArgumentCaptor<WorkerGateway> wGwArg = ArgumentCaptor.forClass(WorkerGateway.class);
-    verify(addWorkerIF, times(1)).makeAddWorkerInteractor(wGwArg.capture(),
-        any(UseCaseRequest.class));
+    verify(addWorkerIF, times(1)).makeAddWorkerInteractor(wGwArg.capture()
+    );
 
     assertThat(wGwArg.getValue()).isSameAs(workerGW);
   }
