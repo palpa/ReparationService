@@ -65,7 +65,8 @@ public class AddWorkerCtrlTest {
 
   @Test
   public void interactorActionWasExecuted() throws Exception {
-    verify(interactor).execute();
+    ArgumentCaptor<UseCaseRequest> requestArg =  ArgumentCaptor.forClass(UseCaseRequest.class);
+    verify(interactor).execute(requestArg.capture());
   }
 
   @Test

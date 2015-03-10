@@ -47,7 +47,7 @@ public class AddReparationInteractorTest {
   public void throwCustomerNotFoundWhenProvidedCustomerIdDoesNotMatchWithAnyCustomer() {
     CustomerGateway emptyCustomersSpy = new CustomerGatewaySpy();
     addReparation = new AddReparationInteractor(emptyCustomersSpy, request);
-    addReparation.execute();
+    addReparation.execute(request);
   }
 
   public class CustomerIsFound {
@@ -59,7 +59,7 @@ public class AddReparationInteractorTest {
 
     @Test(expected = AddReparationInteractor.DeviceNotFound.class)
     public void throwDeviceNotFoundWhenDeviceSerialNumberNotFound() {
-      addReparation.execute();
+      addReparation.execute(request);
     }
 
     public class DeviceIsFound {
@@ -73,7 +73,7 @@ public class AddReparationInteractorTest {
 
       @Test
       public void addReparation() {
-        addReparation.execute();
+        addReparation.execute(request);
 
         Reparation reparation = getReparation(DEVICE_SERIAL_NUMBER,
             CREATION_DATE, customerWithDeviceSpy);

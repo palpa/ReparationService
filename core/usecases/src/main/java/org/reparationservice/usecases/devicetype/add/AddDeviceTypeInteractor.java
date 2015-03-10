@@ -15,7 +15,7 @@ public final class AddDeviceTypeInteractor implements UseCaseActivator {
 	}
 
 	@Override
-	public void execute() {
+	public void execute(UseCaseRequest request) {
 		AddDeviceTypeRequest dtReq = (AddDeviceTypeRequest) this.request;
 		String deviceTypeDescription = dtReq.getDescription();
 		

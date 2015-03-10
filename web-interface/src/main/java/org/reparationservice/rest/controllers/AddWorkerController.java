@@ -39,7 +39,7 @@ public class AddWorkerController {
         .buildAddWorkerRequest(workerReq.getUsername(), responder);
 
     UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers, request);
-    interactor.execute();
+    interactor.execute(request);
 
     return ((AddWorkerPresenter) responder).getResponse();
   }

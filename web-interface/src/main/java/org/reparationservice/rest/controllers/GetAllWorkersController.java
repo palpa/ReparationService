@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.reparationservice.entities.worker.WorkerDTO;
 import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
+import org.reparationservice.requestor.UseCaseRequest;
 import org.reparationservice.usecases.worker.getall.GetAllWorkersInteractorFactory;
 import org.reparationservice.usecases.worker.getall.GetAllWorkersResponder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public final class GetAllWorkersController implements GetAllWorkersResponder {
   @RequestMapping(method = RequestMethod.GET)
   ResponseEntity<Resources<WorkerDTO>> getWorkers() {
     UseCaseActivator interactor = intFactory.makeGetAllWorkersInteractor(workers, this);
-    interactor.execute();
+    UseCaseRequest request = null;
+    interactor.execute(request);
     Resources<WorkerDTO> res = new Resources<>(this.workerList);
     return new ResponseEntity<>(res, HttpStatus.OK);
   }

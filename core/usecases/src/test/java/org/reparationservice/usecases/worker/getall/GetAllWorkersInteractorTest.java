@@ -8,6 +8,7 @@ import org.reparationservice.doubles.GetAllWorkersGatewaySpy;
 import org.reparationservice.doubles.GetAllWorkersResponderSpy;
 import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
+import org.reparationservice.requestor.UseCaseRequest;
 
 public class GetAllWorkersInteractorTest {
   
@@ -27,7 +28,8 @@ public class GetAllWorkersInteractorTest {
     WorkerGateway workerGateway = new GetAllWorkersGatewaySpy();
     
     UseCaseActivator getAllWorkers = new GetAllWorkerInteractor(workerGateway, allWorkersPresenter);
-    getAllWorkers.execute();
+    UseCaseRequest request = null;
+    getAllWorkers.execute(request);
 
     GetAllWorkersGatewaySpy workerGatewaySpy = (GetAllWorkersGatewaySpy) workerGateway;
     assertTrue(workerGatewaySpy.getAllWorkersWasCalled());

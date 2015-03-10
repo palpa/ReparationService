@@ -14,7 +14,7 @@ public final class AddCustomerInteractor implements UseCaseActivator {
 	}
 
 	@Override
-	public void execute() {
+	public void execute(UseCaseRequest request) {
 		long customerId = ((AddCustomerRequest) this.request).getId();
 		customers.addCustomer(customerId);	
 	}

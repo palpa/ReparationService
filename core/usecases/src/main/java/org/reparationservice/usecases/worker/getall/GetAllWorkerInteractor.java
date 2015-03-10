@@ -7,6 +7,7 @@ import org.reparationservice.entities.worker.Worker;
 import org.reparationservice.entities.worker.WorkerDTO;
 import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
+import org.reparationservice.requestor.UseCaseRequest;
 
 public class GetAllWorkerInteractor implements UseCaseActivator {
   private final GetAllWorkersResponder allWorkersPresenter;
@@ -23,7 +24,7 @@ public class GetAllWorkerInteractor implements UseCaseActivator {
   }
 
   @Override
-  public void execute() {
+  public void execute(UseCaseRequest request) {
     allWorkersPresenter.bindModel(convertToDTOCollection(workerGateway.getAllWorkers()) );
   }
 

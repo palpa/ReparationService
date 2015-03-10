@@ -16,11 +16,11 @@ public final class AddWorkerInteractor implements UseCaseActivator {
   }
 
   @Override
-  public void execute() {
-    String workerUserName = request.getUserName();
+  public void execute(UseCaseRequest request) {
+    String workerUserName = this.request.getUserName();
 
     if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
-      request.workerAlreadyExists();
+      this.request.workerAlreadyExists();
     else
       workers.addWorker(new WorkerDTO(workerUserName));
   }
