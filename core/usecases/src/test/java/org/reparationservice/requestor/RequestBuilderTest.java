@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.reparationservice.requestor.impl.RequestBuilderImpl;
 import org.reparationservice.usecases.worker.add.AddWorkerRequest;
 import org.reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
+import org.reparationservice.usecases.worker.add.AddWorkerResponder;
+import org.reparationservice.usecases.worker.add.AddWorkerResponderSpy;
 
 public class RequestBuilderTest {
   private static final String WORKER_USERNAME = "username";
@@ -14,8 +16,12 @@ public class RequestBuilderTest {
   @Test
   public void buildAddWorkerRequest() {
     AddWorkerRequestBuilder builder = new RequestBuilderImpl();
-    UseCaseRequest request = builder.buildAddWorkerRequest(WORKER_USERNAME);
+    AddWorkerResponder responder = new AddWorkerResponderSpy();
+    UseCaseRequest request = builder.buildAddWorkerRequest(WORKER_USERNAME, responder);
     assertThat(request).isInstanceOf(AddWorkerRequest.class);
-    assertThat(((AddWorkerRequest) request).getUserName()).isEqualTo(WORKER_USERNAME);
+    AddWorkerRequest addWorkerReq = (AddWorkerRequest) request;
+    assertThat(addWorkerReq.getUserName()).isEqualTo(WORKER_USERNAME);
+    addWorkerReq.workerAlreadyExists();
+    assertThat(((AddWorkerResponderSpy) responder).workerAlreadyExistsWasCalled()).isTrue();
   }
 }

@@ -23,6 +23,7 @@ import org.reparationservice.rest.controllers.standalone.helpers.TestHelper;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
 import org.reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
 import org.reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
+import org.reparationservice.usecases.worker.add.AddWorkerResponder;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -72,11 +73,12 @@ public class AddWorkerCtrlTest {
     sendWorkerPostRequestFor(WORKER_USERNAME_2);
     
     ArgumentCaptor<String> usernameArg = ArgumentCaptor.forClass(String.class);
-    verify(addWorkerRB, times(2)).buildAddWorkerRequest(usernameArg.capture());
+    ArgumentCaptor<AddWorkerResponder> responderArg =  ArgumentCaptor.forClass(AddWorkerResponder.class);
+    verify(addWorkerRB, times(2)).buildAddWorkerRequest(usernameArg.capture(), responderArg.capture());
     
-    List<String> unernames = usernameArg.getAllValues();
-    assertThat(unernames.get(0)).isEqualTo(WORKER_USERNAME_1);
-    assertThat(unernames.get(1)).isEqualTo(WORKER_USERNAME_2);
+    List<String> usernameList = usernameArg.getAllValues();
+    assertThat(usernameList.get(0)).isEqualTo(WORKER_USERNAME_1);
+    assertThat(usernameList.get(1)).isEqualTo(WORKER_USERNAME_2);
   }
 
   private void sendWorkerPostRequestFor(String username) throws Exception {

@@ -7,25 +7,21 @@ import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 
 public final class AddWorkerInteractor implements UseCaseActivator {
-	private final WorkerGateway workers;
-  private final UseCaseRequest request;
+  private final WorkerGateway workers;
+  private final AddWorkerRequest request;
 
-	public AddWorkerInteractor(WorkerGateway workers, UseCaseRequest request) {
-		this.workers = workers;
-		this.request = request;
-	}
+  public AddWorkerInteractor(WorkerGateway workers, UseCaseRequest request) {
+    this.workers = workers;
+    this.request = (AddWorkerRequest) request;
+  }
 
-	@Override
-	public void execute() {
-		String workerUserName = ((AddWorkerRequest) this.request).getUserName();
-		
-		if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
-			throw new WorkerAlreadyExists();
-			
-		workers.addWorker(new WorkerDTO(workerUserName));	
-	}
+  @Override
+  public void execute() {
+    String workerUserName = request.getUserName();
 
-	public class WorkerAlreadyExists extends RuntimeException {
-		private static final long serialVersionUID = 3471396866818354971L;
-	}
+    if (workers.getWorkerByUserName(workerUserName) != Worker.NULL)
+      request.workerAlreadyExists();
+    else
+      workers.addWorker(new WorkerDTO(workerUserName));
+  }
 }
