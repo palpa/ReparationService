@@ -4,6 +4,5 @@ import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 
 public interface GetAllWorkersInteractorFactory {
-  UseCaseActivator makeGetAllWorkersInteractor(WorkerGateway workers,
-      GetAllWorkersResponder getAllWorkersResponder);
+  UseCaseActivator makeGetAllWorkersInteractor(WorkerGateway workers);
 }
