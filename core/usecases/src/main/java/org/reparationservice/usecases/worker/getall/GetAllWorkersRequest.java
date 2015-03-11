@@ -5,7 +5,7 @@ import org.reparationservice.requestor.UseCaseRequest;
 
 import java.util.Collection;
 
-public class GetAllWorkersRequest extends UseCaseRequest implements GetAllWorkersResponder {
+public class GetAllWorkersRequest implements UseCaseRequest, GetAllWorkersResponder {
   private final GetAllWorkersResponder responder;
 
   public GetAllWorkersRequest(GetAllWorkersResponder responder) {

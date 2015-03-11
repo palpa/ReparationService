@@ -2,7 +2,7 @@ package org.reparationservice.usecases.worker.add;
 
 import org.reparationservice.requestor.UseCaseRequest;
 
-public class AddWorkerRequest extends UseCaseRequest implements AddWorkerResponder {
+public class AddWorkerRequest implements UseCaseRequest, AddWorkerResponder {
   private final AddWorkerResponder responder;
   private final String username;
 

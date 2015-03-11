@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 import org.reparationservice.requestor.UseCaseRequest;
 
-public class AddReparationRequest extends UseCaseRequest {
+public class AddReparationRequest implements UseCaseRequest {
   private final long customerId;
   private final DateTime creationDate;
   private final long deviceSerialNumber;

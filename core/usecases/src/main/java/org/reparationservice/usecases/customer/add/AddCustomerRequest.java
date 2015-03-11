@@ -2,7 +2,7 @@ package org.reparationservice.usecases.customer.add;
 
 import org.reparationservice.requestor.UseCaseRequest;
 
-public class AddCustomerRequest extends UseCaseRequest {
+public class AddCustomerRequest implements UseCaseRequest {
 	private long id;
 
 	public AddCustomerRequest(long id) {

@@ -1,5 +1,4 @@
 package org.reparationservice.requestor;
 
-public abstract class UseCaseRequest {
-
+public interface UseCaseRequest {
 }

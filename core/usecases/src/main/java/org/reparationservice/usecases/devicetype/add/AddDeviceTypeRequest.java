@@ -2,7 +2,7 @@ package org.reparationservice.usecases.devicetype.add;
 
 import org.reparationservice.requestor.UseCaseRequest;
 
-public class AddDeviceTypeRequest extends UseCaseRequest implements AddDeviceTypeResponder {
+public class AddDeviceTypeRequest implements UseCaseRequest, AddDeviceTypeResponder {
   private final AddDeviceTypeResponder responder;
   private String deviceTypeDescription;
 
