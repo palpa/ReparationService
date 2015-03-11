@@ -37,11 +37,11 @@ public class AddWorkerInteractorTest {
     assertThat(worker.getUserName()).isEqualTo(WORKER_USERNAME);
   }
 
-  @Test//(expected = AddWorkerInteractor.WorkerAlreadyExists.class)
+  @Test
   public void throwWorkerAlreadyExistsWhenTwoWorkersWithSameUserNameAdded() {
     addWorker.execute(request);
     addWorker.execute(request);
     assertThat(((AddWorkerResponderSpy) responder).workerAlreadyExistsWasCalled()).isTrue();
+    assertThat(workersSpy.addWorkerCalledTimes()).isEqualTo(1);
   }
-
 }

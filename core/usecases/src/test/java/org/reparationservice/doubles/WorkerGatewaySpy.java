@@ -7,33 +7,39 @@ import org.reparationservice.entities.worker.WorkerGateway;
 import java.util.Collection;
 
 public class WorkerGatewaySpy implements WorkerGateway {
-	private Worker worker = Worker.NULL;
+  private Worker worker = Worker.NULL;
+  private int addWorkerCalledTimes = 0;
 
-	@Override
-	public void addWorker(final WorkerDTO workerDTO) {
-		this.worker = new Worker() {
-			@Override
-			public String getUserName() {
-				return workerDTO.getUserName();
-			}
-		};
-	}
+  @Override
+  public void addWorker(final WorkerDTO workerDTO) {
+    addWorkerCalledTimes++;
+    this.worker = new Worker() {
+      @Override
+      public String getUserName() {
+        return workerDTO.getUserName();
+      }
+    };
+  }
 
-	@Override
-	public Worker getWorkerByUserName(String workerUserName) {
-		return worker;
-	}
+  @Override
+  public Worker getWorkerByUserName(String workerUserName) {
+    return worker;
+  }
 
-	public boolean addWorkerWasCalled() {
-		return worker != Worker.NULL;
-	}
+  public boolean addWorkerWasCalled() {
+    return (addWorkerCalledTimes > 0);
+  }
 
-	public Worker getWorker() {
-		return worker;
-	}
+  public Worker getWorker() {
+    return worker;
+  }
 
   @Override
   public Collection<Worker> getAllWorkers() {
     return null;
+  }
+
+  public int addWorkerCalledTimes() {
+    return addWorkerCalledTimes;
   }
 }

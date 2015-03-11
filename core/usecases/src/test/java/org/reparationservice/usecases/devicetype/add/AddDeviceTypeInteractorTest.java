@@ -58,6 +58,7 @@ public class AddDeviceTypeInteractorTest {
       addDeviceType.execute(request);
       assertThat(((AddDeviceTypeResponderSpy) responder).deviceTypeAlreadyExistsWasCalled())
           .isTrue();
+      assertThat(devTypesSpy.addDeviceTypeCalledTimes()).isEqualTo(1);
     }
   }
 }

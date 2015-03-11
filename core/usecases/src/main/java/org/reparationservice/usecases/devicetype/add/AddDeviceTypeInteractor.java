@@ -24,8 +24,8 @@ public final class AddDeviceTypeInteractor implements UseCaseActivator {
 
     if (deviceTypes.getDeviceTypeBy(deviceTypeDescription) != DeviceType.NULL)
       dtReq.deviceTypeAlreadyExists();
-
-    deviceTypes.addDeviceType(deviceTypeDescription);
+    else
+      deviceTypes.addDeviceType(deviceTypeDescription);
   }
 
   class RequestCannotBeNull extends RuntimeException {
