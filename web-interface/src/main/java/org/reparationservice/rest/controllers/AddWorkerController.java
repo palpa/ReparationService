@@ -1,13 +1,12 @@
 package org.reparationservice.rest.controllers;
 
-import org.reparationservice.entities.worker.WorkerGateway;
 import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 import org.reparationservice.rest.requests.AddWorkerJsonRequest;
-import org.reparationservice.usecases.worker.add.AddWorkerInteractorFactory;
 import org.reparationservice.usecases.worker.add.AddWorkerRequestBuilder;
 import org.reparationservice.usecases.worker.add.AddWorkerResponder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,24 +17,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AddWorkerController {
-  private final AddWorkerInteractorFactory intFactory;
-  private WorkerGateway workers;
+  private final UseCaseActivator interactor;
   private final AddWorkerRequestBuilder requestBuilder;
 
   @Autowired
-  public AddWorkerController(AddWorkerInteractorFactory intFactory,
-      WorkerGateway workers,
+  public AddWorkerController(@Qualifier("AddWorkerInteractor") UseCaseActivator interactor,
       AddWorkerRequestBuilder requestBuilder) {
-    this.workers = workers;
-    this.intFactory = intFactory;
+    this.interactor = interactor;
     this.requestBuilder = requestBuilder;
   }
 
-  @RequestMapping(value = "/workers", method = RequestMethod.POST)
-  ResponseEntity<?> addWorker(@RequestBody AddWorkerJsonRequest workerReq) {
-
-    UseCaseActivator interactor = intFactory.makeAddWorkerInteractor(workers);
-
+  @RequestMapping(value = "/workers", method = RequestMethod.POST) ResponseEntity<?> addWorker(
+      @RequestBody AddWorkerJsonRequest workerReq) {
     AddWorkerResponder responder = new AddWorkerPresenter();
     UseCaseRequest request = requestBuilder
         .buildAddWorkerRequest(workerReq.getUsername(), responder);
