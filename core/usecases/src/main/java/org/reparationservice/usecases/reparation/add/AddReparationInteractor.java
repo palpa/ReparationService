@@ -9,16 +9,14 @@ import org.reparationservice.requestor.UseCaseRequest;
 
 public final class AddReparationInteractor implements UseCaseActivator {
 	private final CustomerGateway customers;
-  private final UseCaseRequest request;
 
-	public AddReparationInteractor(CustomerGateway customers, UseCaseRequest request) {
+	public AddReparationInteractor(CustomerGateway customers) {
 		this.customers = customers;
-		this.request = request; 
 	}
 
 	@Override
 	public void execute(UseCaseRequest request) {
-		AddReparationRequest repReq = (AddReparationRequest) this.request;
+		AddReparationRequest repReq = (AddReparationRequest) request;
 		Customer customer = customers.getCustomerById(repReq.getCustomerId());
 		if (customer == Customer.NULL)
 			throw new CustomerNotFound();

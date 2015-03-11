@@ -33,20 +33,10 @@ public class AddReparationInteractorTest {
     request = createRequest();
   }
 
-  @Test
-  public void checkReparationRequest() {
-    AddReparationRequest repReq = (AddReparationRequest) request;
-    assertThat(repReq.getCustomerId()).isEqualTo(CUSTOMER_ID);
-    assertThat(repReq.getCreationDate()).isEqualTo(CREATION_DATE);
-    assertThat(repReq.getDeviceSerialNumber()).isEqualTo(
-        DEVICE_SERIAL_NUMBER);
-    assertThat(repReq.getDeviceFailure()).isEqualTo(DEVICE_FAILURE);
-  }
-
   @Test(expected = AddReparationInteractor.CustomerNotFound.class)
   public void throwCustomerNotFoundWhenProvidedCustomerIdDoesNotMatchWithAnyCustomer() {
     CustomerGateway emptyCustomersSpy = new CustomerGatewaySpy();
-    addReparation = new AddReparationInteractor(emptyCustomersSpy, request);
+    addReparation = new AddReparationInteractor(emptyCustomersSpy);
     addReparation.execute(request);
   }
 
@@ -54,7 +44,7 @@ public class AddReparationInteractorTest {
     @Before
     public void givenCustomer() {
       CustomerGateway notEmptyCustomerSpy = new NotEmptyCustomerSpy();
-      addReparation = new AddReparationInteractor(notEmptyCustomerSpy, request);
+      addReparation = new AddReparationInteractor(notEmptyCustomerSpy);
     }
 
     @Test(expected = AddReparationInteractor.DeviceNotFound.class)
@@ -68,7 +58,7 @@ public class AddReparationInteractorTest {
       @Before
       public void givenDevice() {
         customerWithDeviceSpy = new CustomerWithDeviceSpy();
-        addReparation = new AddReparationInteractor(customerWithDeviceSpy, request);
+        addReparation = new AddReparationInteractor(customerWithDeviceSpy);
       }
 
       @Test
