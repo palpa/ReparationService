@@ -19,11 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/workers", produces = "application/hal+json")
-public final class GetAllWorkersController implements GetAllWorkersResponder {
+public final class GetAllWorkersController {
   private final UseCaseActivator interactor;
   private final GetAllWorkersRequestBuilder requestBuilder;
-
-  private Iterable<WorkerDTO> workerList = Collections.emptyList();
 
   @Autowired
   public GetAllWorkersController(@Qualifier("GetAllWorkersInteractor") UseCaseActivator interactor,
@@ -32,15 +30,25 @@ public final class GetAllWorkersController implements GetAllWorkersResponder {
     this.requestBuilder = requestBuilder;
   }
 
-  @RequestMapping(method = RequestMethod.GET) ResponseEntity<Resources<WorkerDTO>> getWorkers() {
-    UseCaseRequest request = requestBuilder.buildGetAllWorkersRequest(this);
+  @RequestMapping(method = RequestMethod.GET) ResponseEntity<?> getWorkers() {
+    GetAllWorkersResponder presenter = new ResponsePresenter();
+    UseCaseRequest request = requestBuilder.buildGetAllWorkersRequest(presenter);
+
     interactor.execute(request);
-    Resources<WorkerDTO> res = new Resources<>(this.workerList);
-    return new ResponseEntity<>(res, HttpStatus.OK);
+
+    return ((ResponsePresenter) presenter).getResponse();
   }
 
-  @Override
-  public void bindModel(Collection<WorkerDTO> workerList) {
-    this.workerList = workerList;
+  private class ResponsePresenter implements GetAllWorkersResponder {
+    private Collection<WorkerDTO> workerList = Collections.emptyList();
+
+    @Override public void bindModel(Collection<WorkerDTO> workerList) {
+      this.workerList = workerList;
+    }
+
+    public ResponseEntity<?> getResponse() {
+      Resources<WorkerDTO> res = new Resources<>(this.workerList);
+      return new ResponseEntity<>(res, HttpStatus.OK);
+    }
   }
 }
