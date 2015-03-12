@@ -8,34 +8,38 @@ import org.reparationservice.requestor.UseCaseActivator;
 import org.reparationservice.requestor.UseCaseRequest;
 
 public final class AddReparationInteractor implements UseCaseActivator {
-	private final CustomerGateway customers;
+  private final CustomerGateway customers;
 
-	public AddReparationInteractor(CustomerGateway customers) {
-		this.customers = customers;
-	}
+  public AddReparationInteractor(CustomerGateway customers) {
+    this.customers = customers;
+  }
 
-	@Override
-	public void execute(UseCaseRequest request) {
-		AddReparationRequest repReq = (AddReparationRequest) request;
-		Customer customer = customers.getCustomerById(repReq.getCustomerId());
-		if (customer == Customer.NULL)
-			throw new CustomerNotFound();
+  @Override
+  public void execute(UseCaseRequest request) {
+    AddReparationRequest repReq = (AddReparationRequest) request;
 
-		Device device = customer.getDevice(repReq.getDeviceSerialNumber());
+    if (customerIsFound(repReq))
+      if (deviceIsFound(repReq))
+        addReparation(repReq);
+      else
+        repReq.deviceNotFound();
+    else
+      repReq.customerNotFound();
+  }
 
-		if (device == Device.NULL)
-			throw new DeviceNotFound();
+  private void addReparation(AddReparationRequest repReq) {
+    ReparationDTO reparationDTO = new ReparationDTO(
+        repReq.getCreationDate(), repReq.getDeviceFailure());
+    customers.getCustomerById(repReq.getCustomerId())
+        .getDevice(repReq.getDeviceSerialNumber()).addReparation(reparationDTO);
+  }
 
-		ReparationDTO reparationDTO = new ReparationDTO(
-				repReq.getCreationDate(), repReq.getDeviceFailure());
-		device.addReparation(reparationDTO);
-	}
+  private boolean deviceIsFound(AddReparationRequest repReq) {
+    return customers.getCustomerById(repReq.getCustomerId())
+        .getDevice(repReq.getDeviceSerialNumber()) != Device.NULL;
+  }
 
-	public class CustomerNotFound extends RuntimeException {
-		private static final long serialVersionUID = -4809605819126335670L;
-	}
-
-	public class DeviceNotFound extends RuntimeException {
-		private static final long serialVersionUID = 5345290062168301775L;
-	}
+  private boolean customerIsFound(AddReparationRequest repReq) {
+    return customers.getCustomerById(repReq.getCustomerId()) != Customer.NULL;
+  }
 }

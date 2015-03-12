@@ -27,17 +27,24 @@ public class AddReparationInteractorTest {
 
   private UseCaseActivator addReparation;
   private UseCaseRequest request;
+  private AddReparationResponder responder;
 
   @Before
   public void givenRequest() throws Exception {
-    request = createRequest();
+    responder = new AddReparationResponderSpy();
+    request = new AddReparationRequest(CUSTOMER_ID, DEVICE_SERIAL_NUMBER,
+        CREATION_DATE, DEVICE_FAILURE, REPARATION_URGENCY,
+        REPARATION_OBSERVATIONS, responder);
   }
 
-  @Test(expected = AddReparationInteractor.CustomerNotFound.class)
-  public void throwCustomerNotFoundWhenProvidedCustomerIdDoesNotMatchWithAnyCustomer() {
+  @Test
+  public void callCustomerNotFoundWhenProvidedCustomerIdDoesNotMatchWithAnyCustomer() {
     CustomerGateway emptyCustomersSpy = new CustomerGatewaySpy();
     addReparation = new AddReparationInteractor(emptyCustomersSpy);
     addReparation.execute(request);
+
+    assertThat(((AddReparationResponderSpy) responder).customerNotFoundWasCalledTimes())
+        .isEqualTo(1);
   }
 
   public class CustomerIsFound {
@@ -47,9 +54,11 @@ public class AddReparationInteractorTest {
       addReparation = new AddReparationInteractor(notEmptyCustomerSpy);
     }
 
-    @Test(expected = AddReparationInteractor.DeviceNotFound.class)
-    public void throwDeviceNotFoundWhenDeviceSerialNumberNotFound() {
+    @Test
+    public void callDeviceNotFoundWhenDeviceSerialNumberNotFound() {
       addReparation.execute(request);
+      assertThat(((AddReparationResponderSpy) responder).deviceNotFoundWasCalledTimes())
+          .isEqualTo(1);
     }
 
     public class DeviceIsFound {
@@ -79,11 +88,5 @@ public class AddReparationInteractorTest {
             .getReparation(creationDate);
       }
     }
-  }
-
-  private UseCaseRequest createRequest() {
-    return new AddReparationRequest(CUSTOMER_ID, DEVICE_SERIAL_NUMBER,
-        CREATION_DATE, DEVICE_FAILURE, REPARATION_URGENCY,
-        REPARATION_OBSERVATIONS);
   }
 }
