@@ -17,26 +17,23 @@ public final class AddReparationInteractor implements UseCaseActivator {
   public void execute(UseCaseRequest request) {
     AddReparationRequest repReq = (AddReparationRequest) request;
 
-    if (customerIsFound(repReq))
-      if (deviceIsFound(repReq))
-        addReparation(repReq);
-      else
-        repReq.deviceNotFound();
-    else
+    Customer customer = customers.getCustomerById(repReq.getCustomerId());
+    if (customerNotFound(customer))
       repReq.customerNotFound();
+    else {
+      Device device = customer.getDevice(repReq.getDeviceSerialNumber());
+      if (deviceNotFound(device))
+        repReq.deviceNotFound();
+      else
+        device.addReparation(repReq);
+    }
   }
 
-  private void addReparation(AddReparationRequest repReq) {
-    customers.getCustomerById(repReq.getCustomerId())
-        .getDevice(repReq.getDeviceSerialNumber()).addReparation(repReq);
+  private boolean deviceNotFound(Device device) {
+    return device == Device.NULL;
   }
 
-  private boolean deviceIsFound(AddReparationRequest repReq) {
-    return customers.getCustomerById(repReq.getCustomerId())
-        .getDevice(repReq.getDeviceSerialNumber()) != Device.NULL;
-  }
-
-  private boolean customerIsFound(AddReparationRequest repReq) {
-    return customers.getCustomerById(repReq.getCustomerId()) != Customer.NULL;
+  private boolean customerNotFound(Customer customer) {
+    return customer == Customer.NULL;
   }
 }
