@@ -9,6 +9,9 @@ import org.reparationservice.entities.customer.Customer;
 import org.reparationservice.entities.devicetype.DeviceType;
 import org.reparationservice.entities.worker.Worker;
 import org.reparationservice.entities.worker.WorkerDTO;
+import org.reparationservice.inmemory.entities.customer.CustomerImpl;
+import org.reparationservice.inmemory.entities.devicetype.DeviceTypeImpl;
+import org.reparationservice.inmemory.entities.worker.WorkerImpl;
 
 public class ReparationServiceImpl implements
 		ReparationService {
@@ -18,7 +21,7 @@ public class ReparationServiceImpl implements
 
 	@Override
 	public void addWorker(WorkerDTO workerDTO) {
-		Worker worker = InMemoryConfigurator.getNewWorker(workerDTO);
+    Worker worker = new WorkerImpl(workerDTO);
 		workers.put(workerDTO.getUserName(), worker);
 	}
 
@@ -36,8 +39,8 @@ public class ReparationServiceImpl implements
 
 	@Override
 	public void addDeviceType(String deviceTypeDescription) {
-		this.deviceTypes.put(deviceTypeDescription,
-				InMemoryConfigurator.getNewDeviceType(deviceTypeDescription));
+    this.deviceTypes.put(deviceTypeDescription,
+        new DeviceTypeImpl(deviceTypeDescription));
 	}
 
 	@Override
@@ -56,6 +59,6 @@ public class ReparationServiceImpl implements
 
 	@Override
 	public void addCustomer(long customerId) {
-		customers.put(customerId, InMemoryConfigurator.getNewCustomer(customerId));
+    customers.put(customerId, new CustomerImpl(customerId));
 	}
 }

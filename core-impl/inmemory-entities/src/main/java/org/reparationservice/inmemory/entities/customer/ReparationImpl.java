@@ -11,7 +11,7 @@ public final class ReparationImpl extends Reparation {
 
 	public ReparationImpl(ReparationDTO reparationDTO) {
 		this.creationDate = reparationDTO.getCreationDate();
-		this.failure = reparationDTO.getFailure();
+		this.failure = reparationDTO.getDeviceFailure();
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public final class ReparationImpl extends Reparation {
 	}
 
 	@Override
-	public String getFailure() {
+	public String getDeviceFailure() {
 		return failure;
 	}
 }

@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 
-import org.reparationservice.inmemory.InMemoryConfigurator;
 import org.reparationservice.entities.customer.Device;
 import org.reparationservice.entities.customer.Reparation;
 import org.reparationservice.entities.customer.ReparationDTO;
@@ -30,7 +29,7 @@ public final class DeviceImpl extends Device {
 
 	@Override
 	public void addReparation(ReparationDTO reparationDTO) {
-		reparations.put(reparationDTO.getCreationDate(),
-				InMemoryConfigurator.getNewReparation(reparationDTO));
+    reparations.put(reparationDTO.getCreationDate(),
+        new ReparationImpl(reparationDTO));
 	}
 }

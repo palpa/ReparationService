@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import org.junit.runner.RunWith;
 import org.reparationservice.doubles.CustomerGatewaySpy;
-import org.reparationservice.entities.customer.Customer;
 import org.reparationservice.requestor.UseCaseActivator;
 
 @RunWith(HierarchicalContextRunner.class)
@@ -23,7 +22,7 @@ public class AddCustomerInteractorTest {
 
   @Test
   public void gatewayWasNotCalledWhenInteractorNotYetExecuted() {
-    assertThat(customersSpy.addCustomerWasCalled()).isFalse();
+    assertThat(customersSpy.addCustomerTimesCalled()).isEqualTo(0);
   }
 
   @Test(expected = AddCustomerInteractor.CustomerGatewayCannotBeNull.class)
@@ -49,10 +48,9 @@ public class AddCustomerInteractorTest {
       AddCustomerRequest request = new AddCustomerRequest(CUSTOMER_ID);
       addCustomer.execute(request);
 
-      assertThat(customersSpy.addCustomerWasCalled()).isTrue();
-      Customer addedCustomer = customersSpy.getCustomer();
-      assertThat(addedCustomer).isNotNull();
-      assertThat(addedCustomer.getId()).isEqualTo(CUSTOMER_ID);
+      assertThat(customersSpy.addCustomerTimesCalled()).isEqualTo(1);
+      assertThat(customersSpy.addCustomerWasCalledWith(CUSTOMER_ID)).isTrue();
+
     }
   }
 }

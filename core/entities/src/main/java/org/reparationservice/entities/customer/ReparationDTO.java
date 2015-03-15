@@ -2,20 +2,12 @@ package org.reparationservice.entities.customer;
 
 import org.joda.time.DateTime;
 
-public final class ReparationDTO {
-	private final DateTime creationDate;
-	private final String failure;
+public interface ReparationDTO {
+  DateTime getCreationDate();
 
-	public ReparationDTO(DateTime creationDate, String failure) {
-		this.creationDate = creationDate;
-		this.failure = failure;
-	}
+  String getDeviceFailure();
 
-	public DateTime getCreationDate() {
-		return creationDate;
-	}
+  String getUrgency();
 
-	public String getFailure() {
-		return failure;
-	}
+  String getObservations();
 }

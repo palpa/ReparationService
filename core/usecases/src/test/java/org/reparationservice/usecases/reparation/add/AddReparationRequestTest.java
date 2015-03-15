@@ -3,16 +3,14 @@ package org.reparationservice.usecases.reparation.add;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
-import org.reparationservice.doubles.CustomerWithDeviceSpy;
-import org.reparationservice.doubles.NotEmptyCustomerSpy;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddReparationRequestTest {
-  private static final int CUSTOMER_ID = NotEmptyCustomerSpy.CUSTOMER_ID;
+  private static final int CUSTOMER_ID = 1;
   private static final String DEVICE_FAILURE = "failure";
   private static final DateTime CREATION_DATE = DateTime.now();
-  private static final long DEVICE_SERIAL_NUMBER = CustomerWithDeviceSpy.DEVICE_SERIAL_NUMBER;
+  private static final long DEVICE_SERIAL_NUMBER = 1;
   private static final String REPARATION_OBSERVATIONS = "observations";
   private static final String REPARATION_URGENCY = "urgency";
   private AddReparationResponder responder;

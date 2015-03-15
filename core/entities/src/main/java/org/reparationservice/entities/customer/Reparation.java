@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 public abstract class Reparation {
 	public static final Reparation NULL = new Reparation() {
 		@Override
-		public String getFailure() {
+		public String getDeviceFailure() {
 			return "";
 		}
 
@@ -17,5 +17,5 @@ public abstract class Reparation {
 
 	public abstract DateTime getCreationDate();
 
-	public abstract String getFailure();
+	public abstract String getDeviceFailure();
 }

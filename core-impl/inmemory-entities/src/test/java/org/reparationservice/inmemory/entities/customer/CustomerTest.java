@@ -4,7 +4,6 @@ import de.bechte.junit.runners.context.HierarchicalContextRunner;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.reparationservice.inmemory.InMemoryConfigurator;
 import org.reparationservice.entities.customer.Customer;
 import org.reparationservice.entities.customer.Device;
 
@@ -59,6 +58,6 @@ public class CustomerTest {
 	}
 
 	private Customer createCustomer(long customerId) {
-		return InMemoryConfigurator.getNewCustomer(customerId);
-	}
+    return new CustomerImpl(customerId);
+  }
 }

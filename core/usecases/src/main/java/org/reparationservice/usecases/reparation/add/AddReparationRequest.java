@@ -2,9 +2,10 @@ package org.reparationservice.usecases.reparation.add;
 
 import org.joda.time.DateTime;
 
+import org.reparationservice.entities.customer.ReparationDTO;
 import org.reparationservice.requestor.UseCaseRequest;
 
-public class AddReparationRequest implements UseCaseRequest, AddReparationResponder {
+public class AddReparationRequest implements UseCaseRequest, AddReparationResponder, ReparationDTO {
   private final long customerId;
   private final DateTime creationDate;
   private final long deviceSerialNumber;
@@ -29,23 +30,23 @@ public class AddReparationRequest implements UseCaseRequest, AddReparationRespon
     return customerId;
   }
 
-  public DateTime getCreationDate() {
-    return creationDate;
-  }
-
   public long getDeviceSerialNumber() {
     return deviceSerialNumber;
   }
 
-  public String getDeviceFailure() {
+  @Override public DateTime getCreationDate() {
+    return creationDate;
+  }
+
+  @Override public String getDeviceFailure() {
     return failure;
   }
 
-  public String getUrgency() {
+  @Override public String getUrgency() {
     return urgency;
   }
 
-  public String getObservations() {
+  @Override public String getObservations() {
     return observations;
   }
 

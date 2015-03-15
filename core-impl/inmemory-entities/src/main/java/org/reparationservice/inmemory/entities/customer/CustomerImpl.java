@@ -2,7 +2,6 @@ package org.reparationservice.inmemory.entities.customer;
 
 import org.reparationservice.entities.customer.Customer;
 import org.reparationservice.entities.customer.Device;
-import org.reparationservice.inmemory.InMemoryConfigurator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +28,7 @@ public class CustomerImpl extends Customer {
 
 	@Override
 	public void addDevice(long deviceSerialNumber) {
-		devices.put(deviceSerialNumber,
-				InMemoryConfigurator.getNewDevice(deviceSerialNumber));
+    devices.put(deviceSerialNumber,
+        new DeviceImpl(deviceSerialNumber));
 	}
 }
